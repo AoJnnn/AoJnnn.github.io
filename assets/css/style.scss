@@ -1,7 +1,7 @@
 ---
 ---
 
-@import "minima";
+@import "jekyll-theme-minimal";
 
 body {
   background: url('{{ site.background_image }}') no-repeat center center fixed;
@@ -23,7 +23,6 @@ body {
   text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
 
-/* 二次元角色装饰 */
 .anime-character {
   position: fixed;
   bottom: 0;
