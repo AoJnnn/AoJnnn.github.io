@@ -7,5 +7,5 @@ plugins:
   - jekyll-seo-tag
 
 # 在这里更换你的背景图片URL！
-background_image: https://example.com/your-background.jpg
+background_image: https://AoJnnn.github.io/images/back.png
 github_comments_repo: AoJnnn/AoJnnn.github.io

@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+  <!-- 修正CSS路径 -->
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
   <img src="https://www.example.com/anime-character.png" class="anime-character">
   
-  <div class="wrapper">
-    {{ content }}
+  <main class="wrapper"> <!-- 添加包裹容器 -->
+    {{ content }} <!-- 确保这个标签存在 -->
     
     <!-- 评论系统 -->
     {% if page.comments %}
@@ -18,9 +19,9 @@
         {% include comments.html %}
       </div>
     {% endif %}
-  </div>
+  </main>
 
-  <!-- 樱花飘落效果 -->
-  <script src="{{ "/assets/js/sakura.js" | relative_url }}"></script>
+  <!-- 确保樱花脚本加载 -->
+  <script src="{{ '/assets/js/sakura.js' | relative_url }}"></script>
 </body>
 </html>
