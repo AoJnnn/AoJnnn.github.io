@@ -1,0 +1,34 @@
+---
+---
+
+@import "minima";
+
+body {
+  background: url('{{ site.background_image }}') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Microsoft YaHei', sans-serif;
+}
+
+.wrapper {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.post-title {
+  color: #ff6b6b;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+/* 二次元角色装饰 */
+.anime-character {
+  position: fixed;
+  bottom: 0;
+  right: 50px;
+  width: 300px;
+  z-index: -1;
+  opacity: 0.8;
+}
