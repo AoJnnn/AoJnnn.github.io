@@ -1,0 +1,10 @@
+title: AoJnnnの小窝
+description: AoJnnn的NoBlog！
+theme: jekyll-theme-minimal
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# 在这里更换你的背景图片URL！
+background_image: https://example.com/your-background.jpg
+github_comments_repo: AoJnnn/AoJnnn.github.io

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+</head>
+<body>
+  <img src="https://www.example.com/anime-character.png" class="anime-character">
+  
+  <div class="wrapper">
+    {{ content }}
+    
+    <!-- 评论系统 -->
+    {% if page.comments %}
+      <div class="comments">
+        <h3>留言板 ✨</h3>
+        {% include comments.html %}
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- 樱花飘落效果 -->
+  <script src="{{ "/assets/js/sakura.js" | relative_url }}"></script>
+</body>
+</html>
