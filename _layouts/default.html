@@ -1,27 +1,23 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>{{ page.title }}</title>
-  <!-- 修正CSS路径 -->
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-</head>
-<body>
-  <img src="https://www.example.com/anime-character.png" class="anime-character">
-  
-  <main class="wrapper"> <!-- 添加包裹容器 -->
-    {{ content }} <!-- 确保这个标签存在 -->
-    
-    <!-- 评论系统 -->
-    {% if page.comments %}
-      <div class="comments">
-        <h3>留言板 ✨</h3>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% seo %}
+    <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+  </head>
+  <body>
+    <!-- 移除主题默认容器 -->
+    <div class="wrapper-anime">
+      {{ content }}
+      
+      <!-- 评论系统 -->
+      <div class="comments-section">
         {% include comments.html %}
       </div>
-    {% endif %}
-  </main>
+    </div>
 
-  <!-- 确保樱花脚本加载 -->
-  <script src="{{ '/assets/js/sakura.js' | relative_url }}"></script>
-</body>
+    <!-- 樱花动画 -->
+    <script src="{{ "/assets/js/sakura.js" | relative_url }}"></script>
+  </body>
 </html>

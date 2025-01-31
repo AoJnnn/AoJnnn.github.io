@@ -1,32 +1,31 @@
 ---
+# 空Front Matter确保文件被处理
 ---
 
 @import "jekyll-theme-minimal";
 
-// 覆盖wrapper样式
-.wrapper {
-  background: rgba(255, 255, 255, 0.9) !important;
+/* 覆盖主题样式 */
+body {
+  background: url('{{ site.background_image }}') !important;
+  background-size: cover !important;
+}
+
+/* 增强内容可见性 */
+.wrapper-anime {
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 15px;
   padding: 2rem;
   margin: 2rem auto;
   max-width: 800px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  min-height: 60vh; // 确保容器高度
+  position: relative;
+  z-index: 1000;
+  box-shadow: 0 0 30px rgba(0,0,0,0.3);
 }
 
-// 增加文章列表样式
-.post {
-  margin-bottom: 2rem;
-  padding: 1rem;
-  border-bottom: 1px solid #eee;
-  
-  h2 {
-    color: #ff6b6b;
-    margin-bottom: 0.5rem;
-  }
-  
-  &-date {
-    color: #666;
-    font-size: 0.9em;
+/* 适配移动端 */
+@media screen and (max-width: 600px) {
+  .wrapper-anime {
+    margin: 1rem;
+    padding: 1rem;
   }
 }

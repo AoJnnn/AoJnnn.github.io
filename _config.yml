@@ -6,6 +6,12 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
+# 强制指定Markdown解析器
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
 # 在这里更换你的背景图片URL！
 background_image: https://AoJnnn.github.io/images/back.png
 github_comments_repo: AoJnnn/AoJnnn.github.io

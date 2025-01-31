@@ -1,40 +1,28 @@
-name: Build and deploy Jekyll site
-
-on:
-  push:
-    branches: ["main"]
-
+name: Build and Deploy
+on: [push]
 jobs:
-  build-deploy:
-    runs-on: ubuntu-22.04  # 明确指定支持的操作系统版本
+  build:
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup Ruby
+      
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.0.6'  # GitHub Pages官方认证版本
-          bundler: '2.4.21'     # 兼容版本
+          ruby-version: '3.0'
+          bundler: 2.4.21
           cache: true
-        env:
-          RUBY_BUILD_CACHE_PATH: ${{ runner.tool_cache }}/ruby
-
-      - name: Install Dependencies
+          
+      - name: Install dependencies
         run: |
-          sudo mkdir -p /opt/hostedtoolcache/Ruby/3.0.6/x64
-          sudo chmod 777 /opt/hostedtoolcache/Ruby/3.0.6/x64
           bundle config path vendor/bundle
           bundle install
-
-      - name: Verify Ruby Installation
+          
+      - name: Build with Jekyll
         run: |
-          ruby -v
-          echo "3.0.6" > /opt/hostedtoolcache/Ruby/3.0.6/x64.complete
-
-      - name: Build Site
-        run: bundle exec jekyll build
-
-      - name: Deploy to GitHub Pages
+          bundle exec jekyll build --trace
+          
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
