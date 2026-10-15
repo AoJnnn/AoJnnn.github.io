@@ -6,7 +6,7 @@ description: "第一篇文章，此blog的由来"
 ---
 
 水群时候有人问是怎么实现@我后在句子之后加喵~的
-![Beginning 配图](./Beginning_P1.jpg)
+<img src="./Beginning_P1.jpg" style="width: 50%; max-width: 100%; height: auto;">
 
 ## 内容和代码放在一起
 
