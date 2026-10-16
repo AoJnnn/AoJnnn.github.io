@@ -1,8 +1,9 @@
 ---
 title: "Icon"
-date: "2026-10-12"
+date: "2026-10-16"
 category: "设计"
 description: "一个派蒙的win10开始按钮图标。"
+cover: "./Icon_Co.webp"
 ---
 
 <img src="./Icon_P1.png" style="width: 10%; max-width: 20%; max-height: auto;">

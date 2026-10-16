@@ -3,6 +3,7 @@ title: "Beginning"
 date: "2026-10-15"
 category: "技术"
 description: "第一篇文章，此blog的由来"
+cover: "./Beginning_P2.jpg"
 ---
 
 水群时候有人问是怎么实现@我后在句子之后加喵~的

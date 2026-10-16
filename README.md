@@ -19,6 +19,7 @@ title: "文章标题"
 date: "2026-10-15"
 category: "技术"
 description: "一句话摘要"
+cover: "./cover.jpg"
 ---
 
 正文内容。
