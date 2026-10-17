@@ -1,7 +1,7 @@
 ---
 title: "Animen"
 date: "2026-10-17"
-category: "技术"
+category: "次元"
 description: "关于我与动漫"
 cover: "./Animen_Co.webp"
 ---

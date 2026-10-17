@@ -20,6 +20,7 @@ html{overflow-y:scroll;scrollbar-gutter:stable}
 .article-head time{margin-top:0}
 .article-meta .tag{color:var(--red);font:inherit;letter-spacing:0}
 .article-meta .tag:before{content:none}
+.article-views{color:var(--blue);font:inherit}
 .article-body{padding:36px 0 80px;line-height:2.05;letter-spacing:.015em}
 .article-body>p:first-child{font-size:20px;line-height:1.9;color:#4d4942}
 .article-body h2{border-left:3px solid var(--anime-cyan);padding-left:14px;margin:50px 0 18px}
