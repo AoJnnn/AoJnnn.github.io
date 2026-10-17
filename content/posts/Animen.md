@@ -12,18 +12,18 @@ cover: "./Animen_Co.webp"
 | --- | --- | --- | --- |
 | 哆啦A梦 | 7 | 童年回忆 | |
 | 名侦探柯南 | 7 | 童年回忆 | |
-| 千与千寻 | 8 | 童年回忆 | |
+| 千与千寻 | 8 | 童年回忆 | [永远同在](https://www.bilibili.com/video/BV1Sw411r7ty/) |
 | 龙猫 | 8 | 童年回忆 | |
 | 悬崖上的金鱼姬 | 7+ | 童年回忆 | |
-| 天空之城 | 7 | 童年回忆 | |
+| 天空之城 | 7 | 童年回忆 | 天空之城 |
 | 工作细胞 | 6 | | |
 | 魔装学院 | 0 | 篇 | |
 | 棍勇 | 1 | 类篇 | |
-| 你的名字 | 8 | | |
+| 你的名字 | 8 | | 觉得[三叶的主题曲](https://www.bilibili.com/video/BV1hA4m137N1/)好听 |
 | 天气之子 | 8+ | 很喜欢雨天的氛围 | |
 | 超炮 | 7+ | 可以可以 | 不多说 |
 | 未闻花名 | 8- | 哭死 | [secret base](https://www.bilibili.com/video/BV1V24y1L7e6/) |
-| 铃芽之旅 | 6 | 剧情一般啊 | |
+| 铃芽之旅 | 6 | 剧情一般啊 | 歌还不错[すずめ](https://www.bilibili.com/video/BV1VY4y1Q7tz/) |
 | 四谎 | 8- | 哎~ | [OP](https://www.bilibili.com/video/BV1xp421y7Tf/)和[ED](https://www.bilibili.com/video/BV1NPFfzRE1v/)都好听 |
 | 孤独摇滚 | 8 | | |
 | 间谍过家家 | 8- | | |
@@ -37,26 +37,26 @@ cover: "./Animen_Co.webp"
 | 五等分的花嫁 | 6- | 人物塑造不行啊 | |
 | 艾莉同学 | 7- | | |
 | 我心危 | 8- | 好看😋 | 可惜夜[OP](https://www.bilibili.com/video/BV1yN4y1W7Ma/) |
-| 86 | 7+ | | |
+| 86 | 7+ | | 泽野神了[avid](https://www.bilibili.com/video/BV1Pc411K7ag/) |
 | 魔女之旅 | 8 | 屑魔女最可爱了 | [リテラチュア](https://www.bilibili.com/video/BV1ch411m7F1/) |
-| re0 | 7 | 前期486... | |
+| re0 | 7 | 前期486... | [STYX HELIX](https://www.bilibili.com/video/BV1Ubjc6FEfr/)<br>[Stay Alive](https://www.bilibili.com/video/BV18iL96GEC2/) |
 | 中二病 | 7+ |放逐这个世界!| |
-| 败犬女主 | 8- | 青春感万岁 | [love2000](https://www.bilibili.com/video/BV1iz421q7cd/)完美翻唱ED |
+| 败犬女主 | 8- | 青春感万岁 | [love2000](https://www.bilibili.com/video/BV1iz421q7cd/)完美翻唱 |
 | 别当欧尼酱了 | 7+ | 别当南梁了() | |
 | 声之形 | 6+ | 后来才觉得还不错 | |
 | 胰脏 | 6+ | | |
-| 月色真美 | 7 | [ED](https://www.bilibili.com/video/BV1NpteePEr7/)无敌了 | |
+| 月色真美 | 7 | [ED](https://www.bilibili.com/video/BV1NpteePEr7/)超神 | |
 | 紫罗兰 | 8- | | 衷心[sincerely](https://www.bilibili.com/video/BV1RAV66zESm/) |
-| 我推的孩子 | 6 | | |
+| 我推的孩子 | 6 |  | [アイドル](https://www.bilibili.com/video/BV17h411u7sb/) |
 | 路人女主 | 7+ | | |
 | 樱花庄 | 7 | | |
 | gbc | 7+ | | [🧊](https://www.bilibili.com/video/BV1ox4y1e71S/) |
 | 约战 | 7+ | | |
 | cl | 9- | | |
 | 悦动青春 | 6- | 无聊 | |
-| 春物 | 8- | 动漫一二季OP神<br>   青春啊 | nagi神[ユキトキ](https://www.bilibili.com/video/BV14K411H71L/) [春擬き](https://www.bilibili.com/video/BV1Ta4y1e7CA/) |
-| 葬送的芙莉莲 | 8 | | |
-| 莉可莉丝 | 7+ | | [花之塔](https://www.bilibili.com/video/BV1Dc411f7bp/) |
+| 春物 | 8- | 动漫一二季OP神<br>   青春啊 | nagi神[ユキトキ](https://www.bilibili.com/video/BV14K411H71L/) 神 [春擬き](https://www.bilibili.com/video/BV1Ta4y1e7CA/) |
+| 葬送的芙莉莲 | 8 | | [lulu.](https://www.bilibili.com/video/BV1FnrFBNEAJ/)神<br>[勇者](https://www.bilibili.com/video/BV1uF411U7Ts/)神 |
+| 莉可莉丝 | 7+ | | [花之塔](https://www.bilibili.com/video/BV1Dc411f7bp/)<br>[ALIVE](https://www.bilibili.com/video/BV1XB4y1e7ce/) |
 | 魔圆 | 8+ | | |
 | 利兹与青鸟 | 8 | | |
 | 埃罗芒阿老师 | 7 | | |
@@ -77,7 +77,7 @@ cover: "./Animen_Co.webp"
 | mujica | 7 | | |
 | kon | 7 | | |
 | 寒蝉 | 7 | 吓哭 | |
-| 东京喰种 | | | |
+| 东京喰种 | | | 痛啊[unravel](https://www.bilibili.com/video/BV1x54y147Ci/) |
 | 薰香花朵 | 7 | 画风ok剧情无聊 | |
 | 刀剑神域 | 7+ | | |
 | 游戏人生 | 8 | 有意思 | |
@@ -96,8 +96,8 @@ cover: "./Animen_Co.webp"
 | 学园孤岛 | 7- | 稍微无聊 | |
 | 终将成为你 | 8 | 美味！ | [ED](https://www.bilibili.com/video/BV1RCew6nE8m/)超好听 |
 | 少女歌剧 | 8 | | |
-| 梦限大 | 7+ | yumeiwa power！ | |
-| 尼姑猫猫 | 8- | 有意思但是恶俗了 | |
+| 梦限大 | 7+ | yumeiwa power！| |
+| 尼姑猫猫 | 8- | 有意思但是恶俗了 | 那莫内~ |
 
 ## 先上传了，没写完
 
