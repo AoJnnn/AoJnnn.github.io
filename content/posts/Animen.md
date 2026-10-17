@@ -1,7 +1,7 @@
 ---
 title: "Animen"
 date: "2026-10-17"
-category: "技术
+category: "技术"
 description: "关于我与动漫"
 cover: "./Animen_Co.webp"
 ---
@@ -98,8 +98,6 @@ cover: "./Animen_Co.webp"
 | 少女歌剧 | 8 | | |
 | 梦限大 | 7+ | yumeiwa power！ | |
 | 尼姑猫猫 | 8- | 有意思但是恶俗了 | |
-| 玉子市场 | 8 | 可爱 | OP超南庭ED还行 |
-
 
 ## 先上传了，没写完
 
