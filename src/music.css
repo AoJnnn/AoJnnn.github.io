@@ -386,8 +386,9 @@
 
 /* ---------- 底部播放条 ---------- */
 
+/* env(safe-area-inset-bottom) 需要 <meta viewport> 里的 viewport-fit=cover 才生效 */
 body.has-nmp {
-  padding-bottom: 76px;
+  padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
 }
 
 .nmp {
@@ -401,8 +402,8 @@ body.has-nmp {
   grid-template-areas: 'cover meta controls seek extra';
   align-items: center;
   column-gap: 16px;
-  height: 76px;
-  padding: 0 24px;
+  height: calc(76px + env(safe-area-inset-bottom, 0px));
+  padding: 0 24px env(safe-area-inset-bottom, 0px);
   background: rgba(247, 244, 237, 0.92);
   backdrop-filter: blur(16px) saturate(1.4);
   -webkit-backdrop-filter: blur(16px) saturate(1.4);
@@ -715,7 +716,7 @@ body.has-nmp {
       'seek seek seek';
     height: auto;
     row-gap: 4px;
-    padding: 9px 16px 10px;
+    padding: 9px 16px calc(10px + env(safe-area-inset-bottom, 0px));
     column-gap: 12px;
   }
 
@@ -749,6 +750,6 @@ body.has-nmp {
   }
 
   body.has-nmp {
-    padding-bottom: 100px;
+    padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px));
   }
 }
