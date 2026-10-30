@@ -98,13 +98,48 @@ console.log(`码率 ${BITRATE} → ${OUT}\n`)
 
 const tracks = []
 let skipped = 0
+let reused = 0
+
+// 增量：读取上一次的清单，源文件没变就直接复用，不重新编码
+const prevById = new Map(
+  (() => {
+    try {
+      return JSON.parse(readFileSync(join(OUT, 'tracks.json'), 'utf8')).tracks ?? []
+    } catch {
+      return []
+    }
+  })().map((t) => [t.id, t]),
+)
+const FORCE = flags.force === 'true'
 
 for (const [index, file] of files.entries()) {
   const rel = relative(SRC, file)
   const id = slugId(rel)
   const label = `[${String(index + 1).padStart(3, ' ')}/${files.length}] ${rel}`
+  const audioOut = join(AUDIO_DIR, `${id}.opus`)
 
   try {
+    const stat = statSync(file)
+    // 用「大小 + 修改时间」做签名，避免对 1GB 源文件做哈希
+    const srcSig = `${stat.size}-${Math.round(stat.mtimeMs)}`
+
+    // 复用条件：清单里有记录、源签名未变、且所有产物都还在
+    const prev = prevById.get(id)
+    const prevSigOk = prev && (prev.srcSig === undefined || prev.srcSig === srcSig)
+    const outputsOk =
+      prev &&
+      existsSync(audioOut) &&
+      (!prev.cover || existsSync(join(OUT, prev.cover))) &&
+      (!prev.thumb || existsSync(join(OUT, prev.thumb))) &&
+      (!prev.hasLyrics || existsSync(join(LYRIC_DIR, `${id}.lrc`)))
+
+    if (!FORCE && prev && prevSigOk && outputsOk) {
+      tracks.push({ ...prev, srcSig })
+      reused++
+      console.log(`${label}  →  ${prev.title}  (未变化，复用)`)
+      continue
+    }
+
     const info = probe(file)
     const tags = info.format?.tags ?? {}
     const duration = Number(info.format?.duration ?? 0)
@@ -114,13 +149,16 @@ for (const [index, file] of files.entries()) {
     const category = basename(dirname(rel))
 
     // 1) 转码
-    const audioOut = join(AUDIO_DIR, `${id}.opus`)
+    //    -fflags +bitexact / -flags:a +bitexact 让输出可复现：
+    //    Ogg 容器默认写入随机流序列号，不加这两项的话每次重跑
+    //    都会产生字节不同的文件，git 会把整个曲库标记为已修改。
     run('ffmpeg', [
       '-hide_banner', '-loglevel', 'error', '-y',
       '-i', file,
       '-vn', '-map', '0:a:0',
       '-c:a', 'libopus', '-b:a', BITRATE, '-vbr', 'on', '-application', 'audio',
       '-map_metadata', '-1',
+      '-fflags', '+bitexact', '-flags:a', '+bitexact',
       audioOut,
     ])
 
@@ -131,8 +169,10 @@ for (const [index, file] of files.entries()) {
     if (hasVideo) {
       const big = join(COVER_DIR, `${id}.webp`)
       const small = join(COVER_DIR, `${id}-sm.webp`)
-      run('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', '-i', file, '-an', '-map', '0:v:0', '-frames:v', '1', '-c:v', 'libwebp', '-quality', '82', '-vf', 'scale=400:-1', big])
-      run('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', '-i', file, '-an', '-map', '0:v:0', '-frames:v', '1', '-c:v', 'libwebp', '-quality', '78', '-vf', 'scale=80:-1', small])
+      const common = ['-hide_banner', '-loglevel', 'error', '-y', '-i', file, '-an', '-map', '0:v:0', '-frames:v', '1', '-c:v', 'libwebp']
+      const tail = ['-fflags', '+bitexact', '-flags:v', '+bitexact']
+      run('ffmpeg', [...common, '-quality', '82', '-vf', 'scale=400:-1', ...tail, big])
+      run('ffmpeg', [...common, '-quality', '78', '-vf', 'scale=80:-1', ...tail, small])
       cover = `covers/${id}.webp`
       thumb = `covers/${id}-sm.webp`
     }
@@ -162,6 +202,7 @@ for (const [index, file] of files.entries()) {
       thumb,
       hasLyrics,
       size: statSync(audioOut).size,
+      srcSig,
     })
 
     console.log(`${label}  →  ${title}`)
@@ -184,7 +225,7 @@ const manifest = {
 writeFileSync(join(OUT, 'tracks.json'), JSON.stringify(manifest, null, 2), 'utf8')
 
 const totalBytes = tracks.reduce((sum, t) => sum + t.size, 0)
-console.log(`\n完成：${tracks.length} 首，跳过 ${skipped} 首`)
+console.log(`\n完成：${tracks.length} 首（复用 ${reused} 首，跳过 ${skipped} 首）`)
 console.log(`音频合计 ${(totalBytes / 1024 / 1024).toFixed(1)} MB`)
 console.log(`总时长 ${(manifest.totalDuration / 3600).toFixed(1)} 小时`)
 console.log(`分类：${categories.join(' / ')}`)
