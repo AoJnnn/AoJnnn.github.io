@@ -482,6 +482,17 @@ body.has-nmp {
   text-overflow: ellipsis;
 }
 
+/* 缓冲提示：不额外插入 DOM，用伪元素挂在歌手名后面 */
+.nmp.is-buffering .nmp-artist::after,
+.music-now.is-buffering #now-meta::after {
+  content: ' · 缓冲中…';
+  color: var(--red);
+}
+
+.nmp.is-buffering .nmp-artist {
+  color: var(--muted);
+}
+
 .nmp-controls {
   grid-area: controls;
   display: flex;

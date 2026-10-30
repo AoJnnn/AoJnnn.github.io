@@ -178,6 +178,16 @@ function getAudio(): HTMLAudioElement {
       step(1, true)
     }
   })
+  // 冷缓存下首字节可能要等几秒，给个可见反馈
+  const setBuffering = (on: boolean) => {
+    document.getElementById('nmp')?.classList.toggle('is-buffering', on)
+    document.getElementById('now')?.classList.toggle('is-buffering', on)
+  }
+  audio.addEventListener('waiting', () => setBuffering(true))
+  audio.addEventListener('stalled', () => setBuffering(true))
+  audio.addEventListener('playing', () => setBuffering(false))
+  audio.addEventListener('canplay', () => setBuffering(false))
+  audio.addEventListener('error', () => setBuffering(false))
   document.body.appendChild(audio)
   return audio
 }
@@ -499,6 +509,40 @@ function filteredTracks(): Track[] {
   })
 }
 
+/**
+ * 列表封面按需加载。
+ * 浏览器的 loading="lazy" 在这里并不总能生效（234 行会被一次性请求），
+ * 和音频抢带宽会让切歌明显变慢，所以自己用 IntersectionObserver 控制。
+ */
+let thumbObserver: IntersectionObserver | null = null
+
+function ensureThumbObserver(): IntersectionObserver {
+  if (thumbObserver) return thumbObserver
+  thumbObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue
+        const img = entry.target as HTMLImageElement
+        const src = img.dataset.src
+        if (src) {
+          img.src = src
+          delete img.dataset.src
+        }
+        thumbObserver!.unobserve(img)
+      }
+    },
+    { rootMargin: '320px 0px' },
+  )
+  return thumbObserver
+}
+
+function observeThumbs() {
+  const host = document.getElementById('music-list')
+  if (!host) return
+  const observer = ensureThumbObserver()
+  host.querySelectorAll<HTMLImageElement>('img[data-src]').forEach((img) => observer.observe(img))
+}
+
 function renderList() {
   const host = document.getElementById('music-list')
   if (!host) return
@@ -511,7 +555,7 @@ function renderList() {
     .map((t, i) => {
       const isCurrent = current?.id === t.id
       const isPlaying = isCurrent && audio && !audio.paused
-      const thumb = t.thumb ? `<img src="${assetUrl(t.thumb)}" alt="" loading="lazy" decoding="async" />` : '<span class="ml-ph"></span>'
+      const thumb = t.thumb ? `<img data-src="${assetUrl(t.thumb)}" alt="" decoding="async" />` : '<span class="ml-ph"></span>'
       return `<button class="ml-row${isCurrent ? ' is-current' : ''}${isPlaying ? ' is-playing' : ''}" type="button" data-id="${t.id}" data-index="${i}">
         <span class="ml-index">${isPlaying ? '<span class="ml-eq"><i></i><i></i><i></i></span>' : String(i + 1).padStart(2, '0')}</span>
         <span class="ml-thumb">${thumb}</span>
@@ -520,11 +564,13 @@ function renderList() {
       </button>`
     })
     .join('')
+
+  observeThumbs()
 }
 
 /**
  * 只更新行的「当前/播放中」状态，不重建 DOM。
- * 播放/暂停会频繁触发，整表重建（234 行 + 图片）会造成明显卡顿。
+ * 播放/暂停会频繁触发，整表重建（234 行）会造成明显卡顿。
  */
 function syncListState() {
   const host = document.getElementById('music-list')
