@@ -97,9 +97,11 @@ cover: "./Animen_Co.webp"
 | 终将成为你 | 8 | 美味！ | [ED](https://www.bilibili.com/video/BV1RCew6nE8m/)超好听 |
 | 少女歌剧 | 8 | | |
 | 梦限大 | 7+ | yumeiwa power！| |
-| 尼姑猫猫 | 8- | 有意思但是恶俗了 | 那莫内~ |
+| 尼姑猫猫 | 7++ | 有意思但是恶俗了 | 那莫内~ |
+| 玉子市场 | 8+ | 好！ | ed还行，op难庭 |
 
 ## 先上传了，没写完
 
-http://192.168.2.9:5173/
+追番真心推荐[lanerc](https://AoJnnn.lanerc.app)，超分和弹幕做得不错，每天一个广告也可以接受
+
 ## END
