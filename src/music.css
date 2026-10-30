@@ -1,0 +1,743 @@
+/* ==================================================================
+   音乐库页面
+   ================================================================== */
+
+/* ---------- 焦点与点按反馈 ---------- */
+
+/* 去掉移动端点按时的默认高亮（那层蓝灰色方块） */
+.nmp button,
+.nmp input,
+.music-page button,
+.music-page input,
+.music-page a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 鼠标点击 / 触摸点击不显示焦点框（不影响键盘） */
+.nmp button:focus:not(:focus-visible),
+.music-page button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* 键盘导航保留一个低调的描边，兼顾可访问性 */
+.nmp button:focus-visible,
+.music-page button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* 不支持 :focus-visible 的旧浏览器：退回不显示焦点框 */
+@supports not selector(:focus-visible) {
+  .nmp button:focus,
+  .music-page button:focus {
+    outline: none;
+  }
+}
+
+.music-page {
+  padding: 72px 0 130px;
+}
+
+.music-page .page-intro p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- 工具条 ---------- */
+
+.music-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 0 0 20px;
+  border-bottom: 1px solid var(--line);
+  margin: 0 0 28px;
+}
+
+.music-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 220px;
+  min-width: 180px;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  background: #faf8f2;
+  color: var(--muted);
+}
+
+.music-search span {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.music-search input {
+  flex: 1;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.6;
+  min-width: 0;
+}
+
+.music-search:focus-within {
+  border-color: var(--blue);
+}
+
+.music-filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: color 0.18s, border-color 0.18s, background 0.18s;
+}
+
+.chip:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.chip.is-on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.music-playall {
+  border: 1px solid var(--red);
+  background: var(--red);
+  color: #fff8f4;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  padding: 9px 18px;
+  cursor: pointer;
+  transition: opacity 0.18s;
+  white-space: nowrap;
+}
+
+.music-playall:hover {
+  opacity: 0.85;
+}
+
+/* ---------- 两栏布局 ---------- */
+
+.music-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ---------- 歌曲列表 ---------- */
+
+.music-list {
+  border-top: 1px solid var(--line);
+}
+
+.ml-row {
+  display: grid;
+  grid-template-columns: 30px 44px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 9px 10px 9px 4px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  transition: background 0.15s;
+}
+
+.ml-row:hover {
+  background: rgba(79, 156, 168, 0.08);
+}
+
+.ml-row.is-current {
+  background: rgba(79, 156, 168, 0.13);
+}
+
+.ml-index {
+  font: 11px/1 var(--sans);
+  color: var(--muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.ml-row.is-current .ml-index {
+  color: var(--blue);
+}
+
+.ml-thumb {
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+  background: #e8e2d7;
+  display: grid;
+  place-items: center;
+}
+
+.ml-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ml-ph {
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(45deg, #e8e2d7, #e8e2d7 4px, #f0ebe1 4px, #f0ebe1 8px);
+}
+
+.ml-text {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ml-text b {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ml-row.is-current .ml-text b {
+  color: var(--blue);
+}
+
+.ml-text small {
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ml-dur {
+  font-size: 11px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.ml-empty {
+  padding: 28px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* 播放中的跳动条 */
+.ml-eq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 10px;
+}
+
+.ml-eq i {
+  width: 2px;
+  background: var(--red);
+  animation: ml-eq 0.9s ease-in-out infinite;
+}
+
+.ml-eq i:nth-child(1) {
+  height: 40%;
+  animation-delay: -0.2s;
+}
+
+.ml-eq i:nth-child(2) {
+  height: 100%;
+  animation-delay: -0.5s;
+}
+
+.ml-eq i:nth-child(3) {
+  height: 65%;
+  animation-delay: -0.1s;
+}
+
+@keyframes ml-eq {
+  0%,
+  100% {
+    transform: scaleY(0.4);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+/* ---------- 右侧正在播放 ---------- */
+
+.music-now {
+  position: sticky;
+  top: 24px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.42);
+  padding: 20px;
+}
+
+.now-cover {
+  position: relative;
+  aspect-ratio: 1;
+  background: #e8e2d7;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.now-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.now-ph {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 44px;
+  color: #c9c2b4;
+}
+
+.now-text {
+  display: grid;
+  gap: 4px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.now-text b {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.now-text span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.now-text small {
+  font-size: 11px;
+  color: var(--anime-cyan);
+  letter-spacing: 0.04em;
+}
+
+.now-lyrics {
+  position: relative;
+  height: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-top: 14px;
+  scrollbar-width: thin;
+  mask-image: linear-gradient(180deg, transparent 0, #000 34px, #000 calc(100% - 34px), transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 34px, #000 calc(100% - 34px), transparent 100%);
+}
+
+.lyrics-inner {
+  padding: 140px 6px 140px 0;
+}
+
+.ly {
+  font-size: 13px;
+  line-height: 1.75;
+  color: #b3ada1;
+  margin: 0 0 9px;
+  transition: color 0.25s, opacity 0.25s;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.ly.is-past {
+  color: #a29c90;
+}
+
+.ly.is-active {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.lyrics-empty {
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+  padding: 40px 0;
+}
+
+/* ---------- 底部播放条 ---------- */
+
+body.has-nmp {
+  padding-bottom: 76px;
+}
+
+.nmp {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  display: none;
+  grid-template-columns: 48px minmax(0, 170px) auto minmax(150px, 1fr) auto;
+  grid-template-areas: 'cover meta controls seek extra';
+  align-items: center;
+  column-gap: 16px;
+  height: 76px;
+  padding: 0 24px;
+  background: rgba(247, 244, 237, 0.92);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -10px 30px rgba(37, 35, 31, 0.07);
+}
+
+.nmp.is-active {
+  display: grid;
+}
+
+.nmp-cover {
+  grid-area: cover;
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  padding: 0;
+  border-radius: 6px;
+  background: #e8e2d7;
+  overflow: hidden;
+  cursor: pointer;
+  flex: none;
+  transition: transform 0.16s;
+}
+
+.nmp-cover:hover {
+  transform: translateY(-1px);
+}
+
+.nmp-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.nmp-cover-ph {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #c2bbad;
+  font-size: 17px;
+}
+
+.nmp-cover-ph[hidden],
+.nmp-cover img[hidden],
+.now-ph[hidden],
+.now-cover img[hidden] {
+  display: none !important;
+}
+
+.nmp-meta {
+  grid-area: meta;
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.nmp-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nmp-artist {
+  font-size: 11px;
+  line-height: 1.3;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nmp-controls {
+  grid-area: controls;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nmp-btn {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--ink);
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.16s, color 0.16s, transform 0.12s;
+}
+
+.nmp-btn svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.nmp-btn:hover {
+  background: rgba(37, 35, 31, 0.07);
+}
+
+.nmp-btn:active {
+  transform: scale(0.9);
+}
+
+.nmp-mode {
+  color: #ada79b;
+}
+
+.nmp-mode.is-on {
+  color: var(--blue);
+}
+
+.nmp-play {
+  width: 44px;
+  height: 44px;
+  margin: 0 6px;
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: 0 2px 10px rgba(37, 35, 31, 0.18);
+}
+
+.nmp-play svg {
+  width: 18px;
+  height: 18px;
+}
+
+.nmp-play:hover {
+  background: var(--red);
+  color: #fff8f4;
+  transform: none;
+}
+
+.nmp-seek {
+  grid-area: seek;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.nmp-time {
+  font-size: 10px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  flex: none;
+  min-width: 34px;
+}
+
+.nmp-cur {
+  text-align: right;
+}
+
+.nmp-dur {
+  text-align: left;
+}
+
+.nmp-extra {
+  grid-area: extra;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nmp-range.nmp-vol {
+  width: 82px;
+  --fill: var(--blue);
+}
+
+/* 自定义 range：--p 是 0~1 的比值，--fill 是已填充颜色
+   填充终点 = 半个滑块 + 比值 × (轨道宽 - 滑块宽)，
+   这样色条末端永远和滑块圆心对齐 */
+.nmp-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 18px;
+  background: transparent;
+  cursor: pointer;
+  min-width: 0;
+  --p: 0;
+  --thumb: 11px;
+  --fill: var(--red);
+  --fill-end: calc(var(--thumb) / 2 + var(--p) * (100% - var(--thumb)));
+}
+
+.nmp-range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--fill) 0 var(--fill-end),
+    #ded7c9 var(--fill-end) 100%
+  );
+}
+
+.nmp-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--thumb);
+  height: var(--thumb);
+  margin-top: -3.5px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--fill);
+  box-shadow: 0 1px 3px rgba(37, 35, 31, 0.18);
+  transition: transform 0.15s;
+}
+
+.nmp-range:hover::-webkit-slider-thumb {
+  transform: scale(1.18);
+}
+
+/* Firefox 有原生进度条伪元素，直接用，不需要算偏移 */
+.nmp-range::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: #ded7c9;
+}
+
+.nmp-range::-moz-range-progress {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--fill);
+}
+
+.nmp-range::-moz-range-thumb {
+  width: var(--thumb);
+  height: var(--thumb);
+  border: 2px solid var(--fill);
+  border-radius: 50%;
+  background: var(--paper);
+}
+
+/* ---------- 响应式 ---------- */
+
+@media (max-width: 980px) {
+  .music-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .music-now {
+    position: static;
+    order: -1;
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 14px;
+    align-items: center;
+    padding: 16px;
+  }
+
+  .now-cover {
+    margin: 0;
+    width: 96px;
+    grid-row: span 2;
+  }
+
+  .now-text {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .now-lyrics {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .music-page {
+    padding-top: 72px;
+  }
+
+  .music-toolbar {
+    gap: 10px;
+  }
+
+  .music-search {
+    flex: 1 1 100%;
+  }
+
+  .music-playall {
+    order: 3;
+  }
+
+  .nmp {
+    grid-template-columns: 44px minmax(0, 1fr) auto;
+    grid-template-areas:
+      'cover meta controls'
+      'seek seek seek';
+    height: auto;
+    row-gap: 4px;
+    padding: 9px 16px 10px;
+    column-gap: 12px;
+  }
+
+  .nmp-cover {
+    width: 44px;
+    height: 44px;
+  }
+
+  .nmp-controls {
+    gap: 0;
+  }
+
+  .nmp-btn {
+    width: 30px;
+    height: 30px;
+  }
+
+  .nmp-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .nmp-play {
+    width: 38px;
+    height: 38px;
+    margin: 0 3px;
+  }
+
+  .nmp-extra {
+    display: none;
+  }
+
+  body.has-nmp {
+    padding-bottom: 100px;
+  }
+}
