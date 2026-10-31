@@ -111,26 +111,7 @@
   flex-wrap: wrap;
 }
 
-.chip {
-  border: 1px solid var(--line);
-  background: transparent;
-  color: var(--muted);
-  font-size: 12px;
-  padding: 6px 12px;
-  cursor: pointer;
-  transition: color 0.18s, border-color 0.18s, background 0.18s;
-}
-
-.chip:hover {
-  color: var(--ink);
-  border-color: var(--ink);
-}
-
-.chip.is-on {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--paper);
-}
+/* .chip 是全站通用组件，样式在 style.css */
 
 .music-playall {
   border: 1px solid var(--red);

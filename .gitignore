@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# 构建期生成（CI 用 GITHUB_TOKEN 抓取，不入库）
+public/updates.json
+public/rss.xml
+public/sitemap.xml

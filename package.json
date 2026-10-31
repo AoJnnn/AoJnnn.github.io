@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && node scripts/gen-feeds.mjs && vite build",
     "preview": "vite preview",
-    "music": "node scripts/build-music.mjs"
+    "music": "node scripts/build-music.mjs",
+    "feeds": "node scripts/gen-feeds.mjs",
+    "updates": "node scripts/fetch-updates.mjs"
   },
   "devDependencies": {
     "typescript": "~6.0.2",

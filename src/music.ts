@@ -1,4 +1,5 @@
 import './music.css'
+import { getCachedUrl, hasCached, listCachedIds, putCachedBlob, touchCached } from './audiocache'
 
 /* ------------------------------------------------------------------ *
  *  类型
@@ -188,6 +189,121 @@ function bufferedRatio(duration: number): number {
     if (ranges.start(i) <= t + 0.5) end = Math.max(end, ranges.end(i))
   }
   return Math.max(0, Math.min(1, end / duration))
+}
+
+/** 当前播放点之后已经缓冲了多少秒 */
+function bufferedAhead(): number {
+  if (!audio) return 0
+  const ranges = audio.buffered
+  if (!ranges || !ranges.length) return 0
+  const t = audio.currentTime
+  let best = 0
+  for (let i = 0; i < ranges.length; i++) {
+    if (ranges.start(i) <= t + 0.5) best = Math.max(best, ranges.end(i) - t)
+  }
+  return Math.max(0, best)
+}
+
+/* ------------------------------------------------------------------ *
+ *  本地缓存与预取
+ *  —— 不换服务器、不降码率，靠「听过的歌存在本地」来缩短起播时间
+ * ------------------------------------------------------------------ */
+
+/** 一次只跑一个抓取任务，避免同时抢占播放带宽 */
+let cachingId: string | null = null
+
+/**
+ * 已在本地缓存里的曲目 id。
+ * 启动时从 IndexedDB 载入一次，之后同步判断——
+ * 这样「没缓存过的歌」不会被一次多余的存储查询拖慢起播。
+ */
+const cachedIds = new Set<string>()
+let cachedIdsLoaded = false
+
+async function loadCachedIds() {
+  if (cachedIdsLoaded) return
+  try {
+    for (const id of await listCachedIds()) cachedIds.add(id)
+  } catch {
+    /* 存储不可用则忽略 */
+  }
+  cachedIdsLoaded = true
+}
+
+/**
+ * 把某首歌抓下来存进 IndexedDB。
+ * 若该曲目刚刚播过，文件通常还在 HTTP 缓存里，这一步几乎不耗流量。
+ */
+async function cacheTrack(track: Track): Promise<void> {
+  if (cachingId) return
+  cachingId = track.id
+  try {
+    if (cachedIds.has(track.id)) return
+    if (await hasCached(track.id)) {
+      cachedIds.add(track.id)
+      return
+    }
+    const res = await fetch(assetUrl(`audio/${track.id}.opus`))
+    if (!res.ok) return
+    const blob = await res.blob()
+    if (blob.size === 0) return
+    await putCachedBlob(track.id, blob)
+    cachedIds.add(track.id)
+  } catch {
+    /* 配额不足 / 离线 / 被中断，都不影响播放 */
+  } finally {
+    if (cachingId === track.id) cachingId = null
+  }
+}
+
+/**
+ * 决定何时把音频存进本地缓存。
+ *
+ * 注意不能等「缓冲很多秒」——浏览器对音频的提前缓冲通常只有十几秒，
+ * 阈值设高了永远不触发。这里改成在带宽空闲的时机抓取：
+ * - 刚切走的那首（字节基本已在 HTTP 缓存里，几乎零成本）
+ * - 一首播完之后
+ * - 播放中且缓冲还算充足时的兜底检查
+ */
+function scheduleCaching(previous?: Track | null) {
+  if (previous && previous.id !== current?.id) {
+    void cacheTrack(previous)
+    return
+  }
+  if (!current || !audio) return
+  if (bufferedAhead() >= 8 && audio.readyState >= 3) void cacheTrack(current)
+}
+
+/**
+ * 设置音源：优先用本地缓存，未命中再走网络。
+ * 用 async 是为了先查一次 IndexedDB（通常几毫秒），
+ * 期间若用户又切了歌就直接放弃这次赋值。
+ */
+async function startSource(track: Track, el: HTMLAudioElement) {
+  let cached: string | null = null
+  // 只有「确实缓存过」的曲目才去查存储；没缓存过的直接走网络，
+  // 避免首次播放被一次无谓的 IndexedDB 查询拖慢。
+  if (cachedIds.has(track.id)) {
+    try {
+      cached = await Promise.race([
+        getCachedUrl(track.id).catch(() => null),
+        new Promise<null>((resolve) => window.setTimeout(() => resolve(null), 300)),
+      ])
+    } catch {
+      cached = null
+    }
+  }
+  // 已经切走或元素被替换，放弃
+  if (current?.id !== track.id || audio !== el) return
+
+  el.src = cached ?? assetUrl(`audio/${track.id}.opus`)
+  el.volume = prefs.volume
+  el.muted = prefs.muted
+  if (cached) void touchCached(track.id)
+
+  void el.play().catch(() => {
+    /* 自动播放被拦，等用户手动点 */
+  })
 }
 
 function wireAudio(el: HTMLAudioElement) {
@@ -583,6 +699,56 @@ function renderBar() {
  *  播放控制
  * ------------------------------------------------------------------ */
 
+/**
+ * 首次播放加速：在用户「真的要播」之前就把请求发出去。
+ *
+ * 冷缓存下每首歌都要从 GitHub 源站回源（实测 127KB/s），
+ * 只有把下载提前到点击之前，才能真正缩短「点下去到出声」的时间。
+ */
+const prefetching = new Set<string>()
+
+function prefetchAudio(track: Track) {
+  if (!track || prefetching.has(track.id) || cachedIds.has(track.id)) return
+  // 最多同时准备 3 首，避免把带宽铺得太散
+  if (prefetching.size >= 3) return
+  prefetching.add(track.id)
+  fetch(assetUrl(`audio/${track.id}.opus`), { credentials: 'same-origin' })
+    .then((res) => (res.ok ? res.blob() : null))
+    .catch(() => null)
+    .finally(() => prefetching.delete(track.id))
+}
+
+/**
+ * 页面一打开就轻量预热列表第一首：
+ * 只取开头 256KB，足以让 CDN 边缘节点回源并缓存，
+ * 自己几乎不耗流量，但能显著缩短第一次点击的等待。
+ */
+function warmTrack(track: Track) {
+  if (!track || cachedIds.has(track.id) || prefetching.has(track.id)) return
+  prefetching.add(track.id)
+  fetch(assetUrl(`audio/${track.id}.opus`), {
+    headers: { Range: 'bytes=0-262143' },
+    credentials: 'same-origin',
+  })
+    .catch(() => null)
+    .finally(() => prefetching.delete(track.id))
+}
+
+/** 悬停 / 按下时提前下载，把等待藏进用户的操作延迟里 */
+function bindPrefetch() {
+  const host = document.getElementById('music-list')
+  if (!host) return
+  const onIntent = (event: Event) => {
+    const row = (event.target as HTMLElement).closest<HTMLElement>('.ml-row')
+    const id = row?.dataset.id
+    if (!id) return
+    const track = (manifest?.tracks ?? []).find((t) => t.id === id)
+    if (track) prefetchAudio(track)
+  }
+  host.addEventListener('pointerover', onIntent)
+  host.addEventListener('pointerdown', onIntent)
+}
+
 function playTrack(track: Track, list?: Track[]) {
   if (list) queue = list
   if (!queue.length) queue = manifest?.tracks.slice() ?? []
@@ -596,13 +762,14 @@ function playTrack(track: Track, list?: Track[]) {
   if (!sameTrack) {
     // 立刻给出反馈：waiting 事件有时要等到真正卡住才触发
     setBuffering(true)
-    el.src = assetUrl(`audio/${track.id}.opus`)
     el.volume = prefs.volume
     el.muted = prefs.muted
+    void startSource(track, el)
+  } else {
+    void el.play().catch(() => {
+      /* 自动播放被拦，等用户手动点 */
+    })
   }
-  void el.play().catch(() => {
-    /* 自动播放被拦，等用户手动点 */
-  })
   ensureBar()
   renderBar()
   loadLyrics(track)
@@ -688,10 +855,20 @@ async function loadLyrics(track: Track) {
   renderNowPanel()
 }
 
+let lastCacheCheck = 0
+
 function onTimeUpdate() {
   const el = audio
   if (!el) return
   renderBar()
+
+  // 每 5 秒评估一次是否把当前曲目/下一首存进本地缓存
+  const now = Date.now()
+  if (now - lastCacheCheck > 5000) {
+    lastCacheCheck = now
+    scheduleCaching()
+  }
+
   if (!lyrics.length) return
   const t = el.currentTime
   let next = lyricCursor
@@ -952,6 +1129,11 @@ export function musicPage(shell: Shell) {
   renderBar()
   renderNowPanel()
 
+  // 载入本地缓存索引（异步，不阻塞）
+  void loadCachedIds()
+  // 悬停/按下即预取，把下载提前到点击之前
+  bindPrefetch()
+
   const searchInput = document.getElementById('music-search') as HTMLInputElement | null
 
   document.getElementById('music-filters')?.addEventListener('click', (event) => {
@@ -995,6 +1177,10 @@ export function musicPage(shell: Shell) {
       renderNowPanel()
       // 直接进页面时恢复上次的当前曲目展示（不自动播放）
       if (current) renderBar()
+
+      // 页面打开就轻量预热列表第一首，缩短第一次点击的等待
+      const first = filteredTracks()[0]
+      if (first) window.setTimeout(() => warmTrack(first), 600)
     })
     .catch((error: Error) => {
       const host = document.getElementById('music-list')
