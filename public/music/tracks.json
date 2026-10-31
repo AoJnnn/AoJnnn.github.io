@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-30T12:06:45.920Z",
+  "generatedAt": "2026-10-31T05:23:56.727Z",
   "bitrate": "64k",
   "totalDuration": 66372,
   "categories": [
@@ -21,7 +21,8 @@
       "thumb": "covers/fef1738f52-sm.webp",
       "hasLyrics": true,
       "size": 1972312,
-      "srcSig": "3452540-1793199671000"
+      "srcSig": "3452540-1793199671000",
+      "lyricsSig": ""
     },
     {
       "id": "68694d9f0b",
@@ -35,7 +36,9 @@
       "thumb": "covers/68694d9f0b-sm.webp",
       "hasLyrics": false,
       "size": 59310193,
-      "srcSig": "103801980-1793240584000"
+      "srcSig": "103801980-1793240584000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "2c3c10d56d",
@@ -49,7 +52,8 @@
       "thumb": "covers/2c3c10d56d-sm.webp",
       "hasLyrics": true,
       "size": 1650793,
-      "srcSig": "2603411-1793198358000"
+      "srcSig": "2603411-1793198358000",
+      "lyricsSig": ""
     },
     {
       "id": "b6084ec639",
@@ -63,7 +67,8 @@
       "thumb": "covers/b6084ec639-sm.webp",
       "hasLyrics": true,
       "size": 2660538,
-      "srcSig": "3499094-1793201322000"
+      "srcSig": "3499094-1793201322000",
+      "lyricsSig": ""
     },
     {
       "id": "197edb650c",
@@ -72,12 +77,14 @@
       "album": "風の住む街",
       "category": "纯音乐",
       "duration": 286,
-      "synced": false,
+      "synced": true,
       "cover": "covers/197edb650c.webp",
       "thumb": "covers/197edb650c-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2695084,
-      "srcSig": "4687391-1793198359000"
+      "srcSig": "4687391-1793198359000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "63ae83d27e",
@@ -91,7 +98,8 @@
       "thumb": "covers/63ae83d27e-sm.webp",
       "hasLyrics": true,
       "size": 2547812,
-      "srcSig": "4736149-1793198361000"
+      "srcSig": "4736149-1793198361000",
+      "lyricsSig": ""
     },
     {
       "id": "f6a559d2e0",
@@ -105,7 +113,9 @@
       "thumb": "covers/f6a559d2e0-sm.webp",
       "hasLyrics": false,
       "size": 3221701,
-      "srcSig": "5619057-1793201479000"
+      "srcSig": "5619057-1793201479000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "6c63d399e3",
@@ -119,7 +129,9 @@
       "thumb": "covers/6c63d399e3-sm.webp",
       "hasLyrics": false,
       "size": 5220547,
-      "srcSig": "8268126-1793201397000"
+      "srcSig": "8268126-1793201397000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "6f389874d6",
@@ -133,7 +145,8 @@
       "thumb": "covers/6f389874d6-sm.webp",
       "hasLyrics": true,
       "size": 2143835,
-      "srcSig": "3688134-1793198364000"
+      "srcSig": "3688134-1793198364000",
+      "lyricsSig": ""
     },
     {
       "id": "6e8a5af81f",
@@ -147,7 +160,9 @@
       "thumb": "covers/6e8a5af81f-sm.webp",
       "hasLyrics": false,
       "size": 2270028,
-      "srcSig": "4096616-1793240571000"
+      "srcSig": "4096616-1793240571000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "270d635ecf",
@@ -161,7 +176,8 @@
       "thumb": "covers/270d635ecf-sm.webp",
       "hasLyrics": true,
       "size": 3280774,
-      "srcSig": "5889245-1793198342000"
+      "srcSig": "5889245-1793198342000",
+      "lyricsSig": ""
     },
     {
       "id": "62a312d6b2",
@@ -175,7 +191,8 @@
       "thumb": "covers/62a312d6b2-sm.webp",
       "hasLyrics": true,
       "size": 3319217,
-      "srcSig": "4206814-1793200581000"
+      "srcSig": "4206814-1793200581000",
+      "lyricsSig": ""
     },
     {
       "id": "5fde8e1ee3",
@@ -189,7 +206,8 @@
       "thumb": "covers/5fde8e1ee3-sm.webp",
       "hasLyrics": true,
       "size": 2527017,
-      "srcSig": "4410780-1793198345000"
+      "srcSig": "4410780-1793198345000",
+      "lyricsSig": ""
     },
     {
       "id": "a855a43fd0",
@@ -203,7 +221,8 @@
       "thumb": "covers/a855a43fd0-sm.webp",
       "hasLyrics": true,
       "size": 2616197,
-      "srcSig": "4526038-1793198349000"
+      "srcSig": "4526038-1793198349000",
+      "lyricsSig": ""
     },
     {
       "id": "bba4c6ecc9",
@@ -212,12 +231,14 @@
       "album": "Revolution ～私たちの望むものは～",
       "category": "纯音乐",
       "duration": 291.2,
-      "synced": false,
+      "synced": true,
       "cover": "covers/bba4c6ecc9.webp",
       "thumb": "covers/bba4c6ecc9-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2694274,
-      "srcSig": "4713083-1793198356000"
+      "srcSig": "4713083-1793198356000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "0ee0cc49b6",
@@ -231,7 +252,8 @@
       "thumb": null,
       "hasLyrics": true,
       "size": 2687739,
-      "srcSig": "3242257-1793240591000"
+      "srcSig": "3242257-1793240591000",
+      "lyricsSig": ""
     },
     {
       "id": "3c1d785328",
@@ -240,12 +262,14 @@
       "album": "Eternal Light",
       "category": "纯音乐",
       "duration": 532.9,
-      "synced": false,
+      "synced": true,
       "cover": "covers/3c1d785328.webp",
       "thumb": "covers/3c1d785328-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 5018149,
-      "srcSig": "8853343-1793198355000"
+      "srcSig": "8853343-1793198355000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "9be3da7233",
@@ -259,7 +283,8 @@
       "thumb": "covers/9be3da7233-sm.webp",
       "hasLyrics": true,
       "size": 2111188,
-      "srcSig": "4109831-1793200717000"
+      "srcSig": "4109831-1793200717000",
+      "lyricsSig": ""
     },
     {
       "id": "5159e2d1cc",
@@ -273,7 +298,8 @@
       "thumb": "covers/5159e2d1cc-sm.webp",
       "hasLyrics": true,
       "size": 3101421,
-      "srcSig": "5539663-1793198349000"
+      "srcSig": "5539663-1793198349000",
+      "lyricsSig": ""
     },
     {
       "id": "f19ff5767e",
@@ -287,7 +313,8 @@
       "thumb": "covers/f19ff5767e-sm.webp",
       "hasLyrics": true,
       "size": 1901542,
-      "srcSig": "3483614-1793198351000"
+      "srcSig": "3483614-1793198351000",
+      "lyricsSig": ""
     },
     {
       "id": "648d899bcc",
@@ -301,7 +328,8 @@
       "thumb": "covers/648d899bcc-sm.webp",
       "hasLyrics": true,
       "size": 1864473,
-      "srcSig": "4681041-1793351710514"
+      "srcSig": "4681041-1793351710514",
+      "lyricsSig": ""
     },
     {
       "id": "327086cbaa",
@@ -310,12 +338,14 @@
       "album": "BRIGHT",
       "category": "日语",
       "duration": 310.2,
-      "synced": false,
+      "synced": true,
       "cover": "covers/327086cbaa.webp",
       "thumb": "covers/327086cbaa-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2626576,
-      "srcSig": "5270392-1793198343000"
+      "srcSig": "5270392-1793198343000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "c074c087f6",
@@ -329,7 +359,8 @@
       "thumb": "covers/c074c087f6-sm.webp",
       "hasLyrics": true,
       "size": 3506907,
-      "srcSig": "7002271-1793198348000"
+      "srcSig": "7002271-1793198348000",
+      "lyricsSig": ""
     },
     {
       "id": "f558a82a96",
@@ -338,12 +369,14 @@
       "album": "白金ディスコ & 「偽物語」劇伴音楽集 其ノ參",
       "category": "日语",
       "duration": 255.6,
-      "synced": false,
+      "synced": true,
       "cover": "covers/f558a82a96.webp",
       "thumb": "covers/f558a82a96-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2058511,
-      "srcSig": "4290464-1793198359000"
+      "srcSig": "4290464-1793198359000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "8dfc1fb09d",
@@ -357,7 +390,8 @@
       "thumb": "covers/8dfc1fb09d-sm.webp",
       "hasLyrics": true,
       "size": 2315246,
-      "srcSig": "4863610-1793198367000"
+      "srcSig": "4863610-1793198367000",
+      "lyricsSig": ""
     },
     {
       "id": "213af69c0c",
@@ -366,12 +400,14 @@
       "album": "Hush a by little girl",
       "category": "日语",
       "duration": 220.5,
-      "synced": false,
+      "synced": true,
       "cover": "covers/213af69c0c.webp",
       "thumb": "covers/213af69c0c-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1883674,
-      "srcSig": "3985272-1793198367000"
+      "srcSig": "3985272-1793198367000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "0be2b858a3",
@@ -385,7 +421,8 @@
       "thumb": "covers/0be2b858a3-sm.webp",
       "hasLyrics": true,
       "size": 2005136,
-      "srcSig": "4152838-1793198361000"
+      "srcSig": "4152838-1793198361000",
+      "lyricsSig": ""
     },
     {
       "id": "17a9b930a0",
@@ -399,7 +436,8 @@
       "thumb": "covers/17a9b930a0-sm.webp",
       "hasLyrics": true,
       "size": 2029983,
-      "srcSig": "3945843-1793198358000"
+      "srcSig": "3945843-1793198358000",
+      "lyricsSig": ""
     },
     {
       "id": "bba034a117",
@@ -413,7 +451,8 @@
       "thumb": "covers/bba034a117-sm.webp",
       "hasLyrics": true,
       "size": 2017184,
-      "srcSig": "3935683-1793198361000"
+      "srcSig": "3935683-1793198361000",
+      "lyricsSig": ""
     },
     {
       "id": "2d06eb143c",
@@ -427,7 +466,8 @@
       "thumb": "covers/2d06eb143c-sm.webp",
       "hasLyrics": true,
       "size": 2001563,
-      "srcSig": "3969609-1793198366000"
+      "srcSig": "3969609-1793198366000",
+      "lyricsSig": ""
     },
     {
       "id": "a14fc191b5",
@@ -441,7 +481,8 @@
       "thumb": "covers/a14fc191b5-sm.webp",
       "hasLyrics": true,
       "size": 1975661,
-      "srcSig": "3989347-1793198358000"
+      "srcSig": "3989347-1793198358000",
+      "lyricsSig": ""
     },
     {
       "id": "e41038aae9",
@@ -455,7 +496,8 @@
       "thumb": "covers/e41038aae9-sm.webp",
       "hasLyrics": true,
       "size": 1520544,
-      "srcSig": "3180686-1793198343000"
+      "srcSig": "3180686-1793198343000",
+      "lyricsSig": ""
     },
     {
       "id": "4fdfd9ad95",
@@ -469,7 +511,8 @@
       "thumb": "covers/4fdfd9ad95-sm.webp",
       "hasLyrics": true,
       "size": 2386498,
-      "srcSig": "4830097-1793198363000"
+      "srcSig": "4830097-1793198363000",
+      "lyricsSig": ""
     },
     {
       "id": "59f1d6239e",
@@ -483,7 +526,8 @@
       "thumb": "covers/59f1d6239e-sm.webp",
       "hasLyrics": true,
       "size": 2104655,
-      "srcSig": "4584818-1793198354000"
+      "srcSig": "4584818-1793198354000",
+      "lyricsSig": ""
     },
     {
       "id": "2f3a285169",
@@ -492,12 +536,14 @@
       "album": "打上花火",
       "category": "日语",
       "duration": 289.3,
-      "synced": false,
+      "synced": true,
       "cover": "covers/2f3a285169.webp",
       "thumb": "covers/2f3a285169-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2445468,
-      "srcSig": "4984312-1793198343000"
+      "srcSig": "4984312-1793198343000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "84655474de",
@@ -506,12 +552,14 @@
       "album": "冬の花",
       "category": "日语",
       "duration": 240.6,
-      "synced": false,
+      "synced": true,
       "cover": "covers/84655474de.webp",
       "thumb": "covers/84655474de-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1959082,
-      "srcSig": "3917134-1793198358000"
+      "srcSig": "3917134-1793198358000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "f52c33c1ce",
@@ -525,7 +573,8 @@
       "thumb": "covers/f52c33c1ce-sm.webp",
       "hasLyrics": true,
       "size": 2098243,
-      "srcSig": "4680959-1793198363000"
+      "srcSig": "4680959-1793198363000",
+      "lyricsSig": ""
     },
     {
       "id": "9ef19acdd2",
@@ -534,12 +583,14 @@
       "album": "怪物",
       "category": "日语",
       "duration": 206,
-      "synced": false,
+      "synced": true,
       "cover": "covers/9ef19acdd2.webp",
       "thumb": "covers/9ef19acdd2-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1710368,
-      "srcSig": "3408814-1793198350000"
+      "srcSig": "3408814-1793198350000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "7843083863",
@@ -548,12 +599,14 @@
       "album": "光るなら",
       "category": "日语",
       "duration": 254.1,
-      "synced": false,
+      "synced": true,
       "cover": "covers/7843083863.webp",
       "thumb": "covers/7843083863-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1990478,
-      "srcSig": "4451558-1793198344000"
+      "srcSig": "4451558-1793198344000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "adbb1ceaf1",
@@ -562,12 +615,14 @@
       "album": "するどいささくれ",
       "category": "日语",
       "duration": 234.1,
-      "synced": false,
+      "synced": true,
       "cover": "covers/adbb1ceaf1.webp",
       "thumb": "covers/adbb1ceaf1-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1868344,
-      "srcSig": "3908493-1793198352000"
+      "srcSig": "3908493-1793198352000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "003fb9a028",
@@ -576,12 +631,14 @@
       "album": "好きだから。",
       "category": "日语",
       "duration": 298.7,
-      "synced": false,
+      "synced": true,
       "cover": "covers/003fb9a028.webp",
       "thumb": "covers/003fb9a028-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2507156,
-      "srcSig": "4864072-1793198342000"
+      "srcSig": "4864072-1793198342000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "58781df47a",
@@ -595,7 +652,8 @@
       "thumb": "covers/58781df47a-sm.webp",
       "hasLyrics": true,
       "size": 1853344,
-      "srcSig": "4051063-1793198346000"
+      "srcSig": "4051063-1793198346000",
+      "lyricsSig": ""
     },
     {
       "id": "bffea99c0c",
@@ -604,12 +662,14 @@
       "album": "花",
       "category": "日语",
       "duration": 246.7,
-      "synced": false,
+      "synced": true,
       "cover": "covers/bffea99c0c.webp",
       "thumb": "covers/bffea99c0c-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1941511,
-      "srcSig": "4088501-1793198366000"
+      "srcSig": "4088501-1793198366000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "c055093e76",
@@ -623,7 +683,8 @@
       "thumb": "covers/c055093e76-sm.webp",
       "hasLyrics": true,
       "size": 2272142,
-      "srcSig": "11174721-1793198352000"
+      "srcSig": "11174721-1793198352000",
+      "lyricsSig": ""
     },
     {
       "id": "00c5862a6e",
@@ -632,12 +693,14 @@
       "album": "BOOTLEG",
       "category": "日语",
       "duration": 332.2,
-      "synced": false,
+      "synced": true,
       "cover": "covers/00c5862a6e.webp",
       "thumb": "covers/00c5862a6e-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2763635,
-      "srcSig": "5520719-1793198363000"
+      "srcSig": "5520719-1793198363000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "04d09afded",
@@ -646,12 +709,14 @@
       "album": "廻廻奇譚",
       "category": "日语",
       "duration": 221.4,
-      "synced": false,
+      "synced": true,
       "cover": "covers/04d09afded.webp",
       "thumb": "covers/04d09afded-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1706630,
-      "srcSig": "3748100-1793198344000"
+      "srcSig": "3748100-1793198344000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "8a044c6819",
@@ -660,12 +725,14 @@
       "album": "約束 -Promise code-",
       "category": "日语",
       "duration": 218.8,
-      "synced": false,
+      "synced": true,
       "cover": "covers/8a044c6819.webp",
       "thumb": "covers/8a044c6819-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1678245,
-      "srcSig": "3879616-1793198345000"
+      "srcSig": "3879616-1793198345000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "dab8753891",
@@ -674,12 +741,14 @@
       "album": "金魚花火",
       "category": "日语",
       "duration": 273.4,
-      "synced": false,
+      "synced": true,
       "cover": "covers/dab8753891.webp",
       "thumb": "covers/dab8753891-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2380285,
-      "srcSig": "4489605-1793198356000"
+      "srcSig": "4489605-1793198356000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "c50ec47e3c",
@@ -693,7 +762,8 @@
       "thumb": "covers/c50ec47e3c-sm.webp",
       "hasLyrics": true,
       "size": 2729944,
-      "srcSig": "5778087-1793198349000"
+      "srcSig": "5778087-1793198349000",
+      "lyricsSig": ""
     },
     {
       "id": "8bf02a9aec",
@@ -702,12 +772,14 @@
       "album": "告白実行委員会 -FLYING SONGS- 恋してる",
       "category": "日语",
       "duration": 219.9,
-      "synced": false,
+      "synced": true,
       "cover": "covers/8bf02a9aec.webp",
       "thumb": "covers/8bf02a9aec-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1822907,
-      "srcSig": "3925995-1793198345000"
+      "srcSig": "3925995-1793198345000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "742e600fb9",
@@ -716,12 +788,14 @@
       "album": "何度だって、好き。〜告白実行委員会〜",
       "category": "日语",
       "duration": 253.1,
-      "synced": false,
+      "synced": true,
       "cover": "covers/742e600fb9.webp",
       "thumb": "covers/742e600fb9-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2089000,
-      "srcSig": "4487969-1793198345000"
+      "srcSig": "4487969-1793198345000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "e0ecc59b6d",
@@ -730,12 +804,14 @@
       "album": "老人と海",
       "category": "日语",
       "duration": 255.5,
-      "synced": false,
+      "synced": true,
       "cover": "covers/e0ecc59b6d.webp",
       "thumb": "covers/e0ecc59b6d-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2059474,
-      "srcSig": "4261190-1793198354000"
+      "srcSig": "4261190-1793198354000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "3dd0f0d3ca",
@@ -744,12 +820,14 @@
       "album": "恋",
       "category": "日语",
       "duration": 253.3,
-      "synced": false,
+      "synced": true,
       "cover": "covers/3dd0f0d3ca.webp",
       "thumb": "covers/3dd0f0d3ca-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2008878,
-      "srcSig": "4162171-1793198367000"
+      "srcSig": "4162171-1793198367000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "f95a777390",
@@ -758,12 +836,14 @@
       "album": "恋愛サーキュレーション & あとがたり",
       "category": "日语",
       "duration": 253.9,
-      "synced": false,
+      "synced": true,
       "cover": "covers/f95a777390.webp",
       "thumb": "covers/f95a777390-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2073945,
-      "srcSig": "4282488-1793198359000"
+      "srcSig": "4282488-1793198359000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "0a3c820a5e",
@@ -777,7 +857,8 @@
       "thumb": "covers/0a3c820a5e-sm.webp",
       "hasLyrics": true,
       "size": 1857287,
-      "srcSig": "3921147-1793198346000"
+      "srcSig": "3921147-1793198346000",
+      "lyricsSig": ""
     },
     {
       "id": "97f62fe89f",
@@ -791,7 +872,8 @@
       "thumb": "covers/97f62fe89f-sm.webp",
       "hasLyrics": true,
       "size": 2105380,
-      "srcSig": "4979893-1793198363000"
+      "srcSig": "4979893-1793198363000",
+      "lyricsSig": ""
     },
     {
       "id": "9807097475",
@@ -800,12 +882,14 @@
       "album": "一期一会 Sweets for my SPITZ",
       "category": "日语",
       "duration": 191.1,
-      "synced": false,
+      "synced": true,
       "cover": "covers/9807097475.webp",
       "thumb": "covers/9807097475-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1621519,
-      "srcSig": "3103989-1793198352000"
+      "srcSig": "3103989-1793198352000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "7f1ac78616",
@@ -814,12 +898,14 @@
       "album": "Roman",
       "category": "日语",
       "duration": 393.5,
-      "synced": false,
+      "synced": true,
       "cover": "covers/7f1ac78616.webp",
       "thumb": "covers/7f1ac78616-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 3333432,
-      "srcSig": "6521431-1793198349000"
+      "srcSig": "6521431-1793198349000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "a5e09026d4",
@@ -828,12 +914,14 @@
       "album": "君の名は。",
       "category": "日语",
       "duration": 130.8,
-      "synced": false,
+      "synced": true,
       "cover": "covers/a5e09026d4.webp",
       "thumb": "covers/a5e09026d4-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1108904,
-      "srcSig": "2342083-1793200779000"
+      "srcSig": "2342083-1793200779000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "f54d9ad055",
@@ -842,12 +930,14 @@
       "album": "",
       "category": "日语",
       "duration": 216.5,
-      "synced": false,
+      "synced": true,
       "cover": "covers/f54d9ad055.webp",
       "thumb": "covers/f54d9ad055-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1880102,
-      "srcSig": "4072113-1793198357000"
+      "srcSig": "4072113-1793198357000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "4741f3e01f",
@@ -856,12 +946,14 @@
       "album": "AIR ORIGINAL SOUNDTRACK",
       "category": "日语",
       "duration": 369,
-      "synced": false,
+      "synced": true,
       "cover": "covers/4741f3e01f.webp",
       "thumb": "covers/4741f3e01f-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2866779,
-      "srcSig": "6314372-1793198346000"
+      "srcSig": "6314372-1793198346000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "b084217290",
@@ -870,12 +962,14 @@
       "album": "僕が死のうと思ったのは",
       "category": "日语",
       "duration": 382.9,
-      "synced": false,
+      "synced": true,
       "cover": "covers/b084217290.webp",
       "thumb": "covers/b084217290-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 3142696,
-      "srcSig": "6544594-1793198368000"
+      "srcSig": "6544594-1793198368000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "61ec02b64f",
@@ -884,12 +978,14 @@
       "album": "僕らの手には何もないけど、",
       "category": "日语",
       "duration": 252.6,
-      "synced": false,
+      "synced": true,
       "cover": "covers/61ec02b64f.webp",
       "thumb": "covers/61ec02b64f-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2117281,
-      "srcSig": "4223481-1793198347000"
+      "srcSig": "4223481-1793198347000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "621e4a80bf",
@@ -898,12 +994,14 @@
       "album": "君の名は。",
       "category": "日语",
       "duration": 284.4,
-      "synced": false,
+      "synced": true,
       "cover": "covers/621e4a80bf.webp",
       "thumb": "covers/621e4a80bf-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2272470,
-      "srcSig": "4801742-1793198348000"
+      "srcSig": "4801742-1793198348000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "e1edb5f29d",
@@ -917,7 +1015,8 @@
       "thumb": "covers/e1edb5f29d-sm.webp",
       "hasLyrics": true,
       "size": 2132130,
-      "srcSig": "4414888-1793202778000"
+      "srcSig": "4414888-1793202778000",
+      "lyricsSig": ""
     },
     {
       "id": "c62b160c7e",
@@ -931,7 +1030,8 @@
       "thumb": "covers/c62b160c7e-sm.webp",
       "hasLyrics": true,
       "size": 2053785,
-      "srcSig": "4728128-1793198364000"
+      "srcSig": "4728128-1793198364000",
+      "lyricsSig": ""
     },
     {
       "id": "eb674c9f03",
@@ -945,7 +1045,8 @@
       "thumb": "covers/eb674c9f03-sm.webp",
       "hasLyrics": true,
       "size": 3080260,
-      "srcSig": "6527593-1793241109000"
+      "srcSig": "6527593-1793241109000",
+      "lyricsSig": ""
     },
     {
       "id": "f0c3389535",
@@ -954,12 +1055,14 @@
       "album": "voices in a bottle ～海を越え届いた歌声～",
       "category": "日语",
       "duration": 216.8,
-      "synced": false,
+      "synced": true,
       "cover": "covers/f0c3389535.webp",
       "thumb": "covers/f0c3389535-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1763769,
-      "srcSig": "3980889-1793198353000"
+      "srcSig": "3980889-1793198353000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "b8d1c2a80b",
@@ -968,12 +1071,14 @@
       "album": "AIMYON BEST ALBUM - 唇を追え！ -",
       "category": "日语",
       "duration": 194.1,
-      "synced": false,
+      "synced": true,
       "cover": "covers/b8d1c2a80b.webp",
       "thumb": "covers/b8d1c2a80b-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1529219,
-      "srcSig": "4652429-1793198351000"
+      "srcSig": "4652429-1793198351000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "be2cdb04c4",
@@ -987,7 +1092,8 @@
       "thumb": "covers/be2cdb04c4-sm.webp",
       "hasLyrics": true,
       "size": 2137109,
-      "srcSig": "4630513-1793198365000"
+      "srcSig": "4630513-1793198365000",
+      "lyricsSig": ""
     },
     {
       "id": "408ebddd0d",
@@ -1001,7 +1107,8 @@
       "thumb": "covers/408ebddd0d-sm.webp",
       "hasLyrics": true,
       "size": 1940332,
-      "srcSig": "4490511-1793198365000"
+      "srcSig": "4490511-1793198365000",
+      "lyricsSig": ""
     },
     {
       "id": "82e3b7cb57",
@@ -1015,7 +1122,8 @@
       "thumb": "covers/82e3b7cb57-sm.webp",
       "hasLyrics": true,
       "size": 16389890,
-      "srcSig": "31564922-1793200485000"
+      "srcSig": "31564922-1793200485000",
+      "lyricsSig": ""
     },
     {
       "id": "7b2ffce658",
@@ -1024,12 +1132,14 @@
       "album": "COVER☆GIRL",
       "category": "日语",
       "duration": 249.9,
-      "synced": false,
+      "synced": true,
       "cover": "covers/7b2ffce658.webp",
       "thumb": "covers/7b2ffce658-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1994598,
-      "srcSig": "4285258-1793198343000"
+      "srcSig": "4285258-1793198343000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "880f3741c3",
@@ -1038,12 +1148,14 @@
       "album": "心做し",
       "category": "日语",
       "duration": 268.8,
-      "synced": false,
+      "synced": true,
       "cover": "covers/880f3741c3.webp",
       "thumb": "covers/880f3741c3-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2384040,
-      "srcSig": "4496162-1793198366000"
+      "srcSig": "4496162-1793198366000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "d7d1219b58",
@@ -1057,7 +1169,8 @@
       "thumb": "covers/d7d1219b58-sm.webp",
       "hasLyrics": true,
       "size": 2071781,
-      "srcSig": "4522319-1793198365000"
+      "srcSig": "4522319-1793198365000",
+      "lyricsSig": ""
     },
     {
       "id": "392172a73b",
@@ -1071,7 +1184,8 @@
       "thumb": "covers/392172a73b-sm.webp",
       "hasLyrics": true,
       "size": 2248293,
-      "srcSig": "4370425-1793198351000"
+      "srcSig": "4370425-1793198351000",
+      "lyricsSig": ""
     },
     {
       "id": "8cc4d2c600",
@@ -1085,7 +1199,8 @@
       "thumb": "covers/8cc4d2c600-sm.webp",
       "hasLyrics": true,
       "size": 1613162,
-      "srcSig": "3227220-1793198351000"
+      "srcSig": "3227220-1793198351000",
+      "lyricsSig": ""
     },
     {
       "id": "340ed95cc9",
@@ -1099,7 +1214,8 @@
       "thumb": "covers/340ed95cc9-sm.webp",
       "hasLyrics": true,
       "size": 2778931,
-      "srcSig": "5517427-1793198357000"
+      "srcSig": "5517427-1793198357000",
+      "lyricsSig": ""
     },
     {
       "id": "336dea52a8",
@@ -1108,12 +1224,14 @@
       "album": "イマココ / 月がきれい (アニメ盤)",
       "category": "日语",
       "duration": 362.3,
-      "synced": false,
+      "synced": true,
       "cover": "covers/336dea52a8.webp",
       "thumb": "covers/336dea52a8-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 3063927,
-      "srcSig": "5896124-1793198357000"
+      "srcSig": "5896124-1793198357000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "5b87af4f37",
@@ -1127,7 +1245,8 @@
       "thumb": "covers/5b87af4f37-sm.webp",
       "hasLyrics": true,
       "size": 2410179,
-      "srcSig": "4165621-1793242718000"
+      "srcSig": "4165621-1793242718000",
+      "lyricsSig": ""
     },
     {
       "id": "da12222c86",
@@ -1136,12 +1255,14 @@
       "album": "A Little Story",
       "category": "日语",
       "duration": 204.5,
-      "synced": false,
+      "synced": true,
       "cover": "covers/da12222c86.webp",
       "thumb": "covers/da12222c86-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1856535,
-      "srcSig": "4057615-1793198350000"
+      "srcSig": "4057615-1793198350000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "d4a41a3fb1",
@@ -1150,12 +1271,14 @@
       "album": "A/Z|aLIEz",
       "category": "日语",
       "duration": 268.5,
-      "synced": false,
+      "synced": true,
       "cover": "covers/d4a41a3fb1.webp",
       "thumb": "covers/d4a41a3fb1-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2055659,
-      "srcSig": "4730457-1793198365000"
+      "srcSig": "4730457-1793198365000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "5271655ba4",
@@ -1169,7 +1292,8 @@
       "thumb": "covers/5271655ba4-sm.webp",
       "hasLyrics": true,
       "size": 2027471,
-      "srcSig": "4543347-1793198348000"
+      "srcSig": "4543347-1793198348000",
+      "lyricsSig": ""
     },
     {
       "id": "16510dc4fd",
@@ -1183,7 +1307,8 @@
       "thumb": "covers/16510dc4fd-sm.webp",
       "hasLyrics": true,
       "size": 1427684,
-      "srcSig": "2460150-1793198346000"
+      "srcSig": "2460150-1793198346000",
+      "lyricsSig": ""
     },
     {
       "id": "cae4c195ac",
@@ -1197,7 +1322,8 @@
       "thumb": "covers/cae4c195ac-sm.webp",
       "hasLyrics": true,
       "size": 1870774,
-      "srcSig": "4173460-1793198346000"
+      "srcSig": "4173460-1793198346000",
+      "lyricsSig": ""
     },
     {
       "id": "6034a3e5ad",
@@ -1211,7 +1337,8 @@
       "thumb": "covers/6034a3e5ad-sm.webp",
       "hasLyrics": true,
       "size": 1740746,
-      "srcSig": "3798501-1793198348000"
+      "srcSig": "3798501-1793198348000",
+      "lyricsSig": ""
     },
     {
       "id": "d0507a8314",
@@ -1220,12 +1347,14 @@
       "album": "ノイタミナ FAN BEST",
       "category": "日语",
       "duration": 253.6,
-      "synced": false,
+      "synced": true,
       "cover": "covers/d0507a8314.webp",
       "thumb": "covers/d0507a8314-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2068117,
-      "srcSig": "4186986-1793198344000"
+      "srcSig": "4186986-1793198344000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "dc14baabbd",
@@ -1239,7 +1368,8 @@
       "thumb": "covers/dc14baabbd-sm.webp",
       "hasLyrics": true,
       "size": 2327804,
-      "srcSig": "4859304-1793198349000"
+      "srcSig": "4859304-1793198349000",
+      "lyricsSig": ""
     },
     {
       "id": "10208acb07",
@@ -1253,7 +1383,8 @@
       "thumb": "covers/10208acb07-sm.webp",
       "hasLyrics": true,
       "size": 1707090,
-      "srcSig": "3564189-1793242802000"
+      "srcSig": "3564189-1793242802000",
+      "lyricsSig": ""
     },
     {
       "id": "7491b9539f",
@@ -1267,7 +1398,8 @@
       "thumb": "covers/7491b9539f-sm.webp",
       "hasLyrics": true,
       "size": 1586614,
-      "srcSig": "3215328-1793198362000"
+      "srcSig": "3215328-1793198362000",
+      "lyricsSig": ""
     },
     {
       "id": "cc58e6fed6",
@@ -1281,7 +1413,8 @@
       "thumb": "covers/cc58e6fed6-sm.webp",
       "hasLyrics": true,
       "size": 2128200,
-      "srcSig": "4834926-1793198364000"
+      "srcSig": "4834926-1793198364000",
+      "lyricsSig": ""
     },
     {
       "id": "67fc5f646d",
@@ -1295,7 +1428,8 @@
       "thumb": "covers/67fc5f646d-sm.webp",
       "hasLyrics": true,
       "size": 1890423,
-      "srcSig": "4581528-1793202839000"
+      "srcSig": "4581528-1793202839000",
+      "lyricsSig": ""
     },
     {
       "id": "c4362a0fe6",
@@ -1309,7 +1443,8 @@
       "thumb": "covers/c4362a0fe6-sm.webp",
       "hasLyrics": true,
       "size": 1198100,
-      "srcSig": "2718244-1793198362000"
+      "srcSig": "2718244-1793198362000",
+      "lyricsSig": ""
     },
     {
       "id": "0659f39bee",
@@ -1323,7 +1458,8 @@
       "thumb": "covers/0659f39bee-sm.webp",
       "hasLyrics": true,
       "size": 1929881,
-      "srcSig": "4053110-1793198362000"
+      "srcSig": "4053110-1793198362000",
+      "lyricsSig": ""
     },
     {
       "id": "1c825622a6",
@@ -1332,12 +1468,14 @@
       "album": "Gossip Girls",
       "category": "日语",
       "duration": 212.5,
-      "synced": false,
+      "synced": true,
       "cover": "covers/1c825622a6.webp",
       "thumb": "covers/1c825622a6-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1644649,
-      "srcSig": "3528980-1793198350000"
+      "srcSig": "3528980-1793198350000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "a6fc716138",
@@ -1351,7 +1489,8 @@
       "thumb": "covers/a6fc716138-sm.webp",
       "hasLyrics": true,
       "size": 1447366,
-      "srcSig": "3621621-1793198362000"
+      "srcSig": "3621621-1793198362000",
+      "lyricsSig": ""
     },
     {
       "id": "fd7da97b2a",
@@ -1360,12 +1499,14 @@
       "album": "Lemon",
       "category": "日语",
       "duration": 256,
-      "synced": false,
+      "synced": true,
       "cover": "covers/fd7da97b2a.webp",
       "thumb": "covers/fd7da97b2a-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2123790,
-      "srcSig": "4327457-1793198362000"
+      "srcSig": "4327457-1793198362000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "6367fc6f24",
@@ -1374,12 +1515,14 @@
       "album": "BOOTLEG",
       "category": "日语",
       "duration": 243.8,
-      "synced": false,
+      "synced": true,
       "cover": "covers/6367fc6f24.webp",
       "thumb": "covers/6367fc6f24-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1911574,
-      "srcSig": "4107664-1793198362000"
+      "srcSig": "4107664-1793198362000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "49b30de3cf",
@@ -1393,7 +1536,8 @@
       "thumb": "covers/49b30de3cf-sm.webp",
       "hasLyrics": true,
       "size": 2111463,
-      "srcSig": "4426152-1793198368000"
+      "srcSig": "4426152-1793198368000",
+      "lyricsSig": ""
     },
     {
       "id": "a69863ef36",
@@ -1407,7 +1551,8 @@
       "thumb": "covers/a69863ef36-sm.webp",
       "hasLyrics": true,
       "size": 2218615,
-      "srcSig": "4570708-1793198346000"
+      "srcSig": "4570708-1793198346000",
+      "lyricsSig": ""
     },
     {
       "id": "1d959fec9f",
@@ -1416,12 +1561,14 @@
       "album": "GUILTY",
       "category": "日语",
       "duration": 322.5,
-      "synced": false,
+      "synced": true,
       "cover": "covers/1d959fec9f.webp",
       "thumb": "covers/1d959fec9f-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2559882,
-      "srcSig": "5454731-1793198356000"
+      "srcSig": "5454731-1793198356000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "8d463f8acd",
@@ -1435,7 +1582,8 @@
       "thumb": "covers/8d463f8acd-sm.webp",
       "hasLyrics": true,
       "size": 2088554,
-      "srcSig": "4209375-1793198347000"
+      "srcSig": "4209375-1793198347000",
+      "lyricsSig": ""
     },
     {
       "id": "a53d5b9b8e",
@@ -1444,12 +1592,14 @@
       "album": "only my railgun",
       "category": "日语",
       "duration": 257.1,
-      "synced": false,
+      "synced": true,
       "cover": "covers/a53d5b9b8e.webp",
       "thumb": "covers/a53d5b9b8e-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1926049,
-      "srcSig": "4502232-1793198345000"
+      "srcSig": "4502232-1793198345000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "bfce8e9745",
@@ -1463,7 +1613,8 @@
       "thumb": "covers/bfce8e9745-sm.webp",
       "hasLyrics": true,
       "size": 2326615,
-      "srcSig": "4559679-1793198363000"
+      "srcSig": "4559679-1793198363000",
+      "lyricsSig": ""
     },
     {
       "id": "b230d6e1a8",
@@ -1472,12 +1623,14 @@
       "album": "3ラムジ",
       "category": "日语",
       "duration": 243.4,
-      "synced": false,
+      "synced": true,
       "cover": "covers/b230d6e1a8.webp",
       "thumb": "covers/b230d6e1a8-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1996929,
-      "srcSig": "4348184-1793198355000"
+      "srcSig": "4348184-1793198355000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "b833a19ae5",
@@ -1491,7 +1644,8 @@
       "thumb": "covers/b833a19ae5-sm.webp",
       "hasLyrics": true,
       "size": 2428625,
-      "srcSig": "4818022-1793198364000"
+      "srcSig": "4818022-1793198364000",
+      "lyricsSig": ""
     },
     {
       "id": "aea7976332",
@@ -1505,7 +1659,8 @@
       "thumb": "covers/aea7976332-sm.webp",
       "hasLyrics": true,
       "size": 2406307,
-      "srcSig": "5293264-1793198365000"
+      "srcSig": "5293264-1793198365000",
+      "lyricsSig": ""
     },
     {
       "id": "be1effba75",
@@ -1519,7 +1674,8 @@
       "thumb": "covers/be1effba75-sm.webp",
       "hasLyrics": true,
       "size": 2364098,
-      "srcSig": "5091741-1793198342000"
+      "srcSig": "5091741-1793198342000",
+      "lyricsSig": ""
     },
     {
       "id": "336cacd47a",
@@ -1533,7 +1689,8 @@
       "thumb": "covers/336cacd47a-sm.webp",
       "hasLyrics": true,
       "size": 1949943,
-      "srcSig": "4188410-1793198365000"
+      "srcSig": "4188410-1793198365000",
+      "lyricsSig": ""
     },
     {
       "id": "cb25d1bd8f",
@@ -1547,7 +1704,8 @@
       "thumb": "covers/cb25d1bd8f-sm.webp",
       "hasLyrics": true,
       "size": 2120636,
-      "srcSig": "4776935-1793198365000"
+      "srcSig": "4776935-1793198365000",
+      "lyricsSig": ""
     },
     {
       "id": "0f9f771abb",
@@ -1556,12 +1714,14 @@
       "album": "S.S.S.",
       "category": "日语",
       "duration": 201.7,
-      "synced": false,
+      "synced": true,
       "cover": "covers/0f9f771abb.webp",
       "thumb": "covers/0f9f771abb-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1642768,
-      "srcSig": "3380161-1793198368000"
+      "srcSig": "3380161-1793198368000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "d94c51b34d",
@@ -1570,12 +1730,14 @@
       "album": "secret base ～君がくれたもの～",
       "category": "日语",
       "duration": 352.5,
-      "synced": false,
+      "synced": true,
       "cover": "covers/d94c51b34d.webp",
       "thumb": "covers/d94c51b34d-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2894803,
-      "srcSig": "5882978-1793198361000"
+      "srcSig": "5882978-1793198361000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "cba1961857",
@@ -1589,7 +1751,8 @@
       "thumb": "covers/cba1961857-sm.webp",
       "hasLyrics": true,
       "size": 2094889,
-      "srcSig": "10792633-1793198367000"
+      "srcSig": "10792633-1793198367000",
+      "lyricsSig": ""
     },
     {
       "id": "8c0a8b0d64",
@@ -1603,7 +1766,8 @@
       "thumb": "covers/8c0a8b0d64-sm.webp",
       "hasLyrics": true,
       "size": 2294937,
-      "srcSig": "4510391-1793198350000"
+      "srcSig": "4510391-1793198350000",
+      "lyricsSig": ""
     },
     {
       "id": "3f7ab28270",
@@ -1612,12 +1776,14 @@
       "album": "SPECIALZ",
       "category": "日语",
       "duration": 239,
-      "synced": false,
+      "synced": true,
       "cover": "covers/3f7ab28270.webp",
       "thumb": "covers/3f7ab28270-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1753749,
-      "srcSig": "4562070-1793198345000"
+      "srcSig": "4562070-1793198345000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "56f16ac815",
@@ -1631,7 +1797,8 @@
       "thumb": "covers/56f16ac815-sm.webp",
       "hasLyrics": true,
       "size": 2291915,
-      "srcSig": "4741331-1793198347000"
+      "srcSig": "4741331-1793198347000",
+      "lyricsSig": ""
     },
     {
       "id": "461bcbac00",
@@ -1640,12 +1807,14 @@
       "album": "summertime",
       "category": "日语",
       "duration": 251.8,
-      "synced": false,
+      "synced": true,
       "cover": "covers/461bcbac00.webp",
       "thumb": "covers/461bcbac00-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2131048,
-      "srcSig": "4243451-1793198343000"
+      "srcSig": "4243451-1793198343000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "a3d15b8c18",
@@ -1654,12 +1823,14 @@
       "album": "妖狐×僕SS ENDING SONG Vol.3",
       "category": "日语",
       "duration": 239.5,
-      "synced": false,
+      "synced": true,
       "cover": "covers/a3d15b8c18.webp",
       "thumb": "covers/a3d15b8c18-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2013164,
-      "srcSig": "4034505-1793198359000"
+      "srcSig": "4034505-1793198359000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "864d453e31",
@@ -1673,7 +1844,8 @@
       "thumb": "covers/864d453e31-sm.webp",
       "hasLyrics": true,
       "size": 1825378,
-      "srcSig": "4144961-1793198350000"
+      "srcSig": "4144961-1793198350000",
+      "lyricsSig": ""
     },
     {
       "id": "9d31e84338",
@@ -1682,12 +1854,14 @@
       "album": "yellow",
       "category": "日语",
       "duration": 179.1,
-      "synced": false,
+      "synced": true,
       "cover": "covers/9d31e84338.webp",
       "thumb": "covers/9d31e84338-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1502210,
-      "srcSig": "2914018-1793198357000"
+      "srcSig": "2914018-1793198357000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "5d4a9c5c9c",
@@ -1696,12 +1870,14 @@
       "album": "アイドル",
       "category": "日语",
       "duration": 213.2,
-      "synced": false,
+      "synced": true,
       "cover": "covers/5d4a9c5c9c.webp",
       "thumb": "covers/5d4a9c5c9c-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1691343,
-      "srcSig": "3877563-1793198350000"
+      "srcSig": "3877563-1793198350000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "a82f4d0862",
@@ -1715,7 +1891,8 @@
       "thumb": "covers/a82f4d0862-sm.webp",
       "hasLyrics": true,
       "size": 2248099,
-      "srcSig": "4788538-1793198363000"
+      "srcSig": "4788538-1793198363000",
+      "lyricsSig": ""
     },
     {
       "id": "8bacb13cdf",
@@ -1724,12 +1901,14 @@
       "album": "アイロニ",
       "category": "日语",
       "duration": 246.9,
-      "synced": false,
+      "synced": true,
       "cover": "covers/8bacb13cdf.webp",
       "thumb": "covers/8bacb13cdf-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2038393,
-      "srcSig": "4003207-1793198346000"
+      "srcSig": "4003207-1793198346000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "116ea07051",
@@ -1738,12 +1917,14 @@
       "album": "アディオス",
       "category": "日语",
       "duration": 200.6,
-      "synced": false,
+      "synced": true,
       "cover": "covers/116ea07051.webp",
       "thumb": "covers/116ea07051-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1718239,
-      "srcSig": "3337461-1793198343000"
+      "srcSig": "3337461-1793198343000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "cbc2f1ae22",
@@ -1757,7 +1938,8 @@
       "thumb": "covers/cbc2f1ae22-sm.webp",
       "hasLyrics": true,
       "size": 2214344,
-      "srcSig": "4098223-1793198346000"
+      "srcSig": "4098223-1793198346000",
+      "lyricsSig": ""
     },
     {
       "id": "e378107f33",
@@ -1766,12 +1948,14 @@
       "album": "崖の上のポニョ/となりのトトロ~ジブリコレクション α波オルゴールベスト",
       "category": "日语",
       "duration": 228.3,
-      "synced": false,
+      "synced": true,
       "cover": "covers/e378107f33.webp",
       "thumb": "covers/e378107f33-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2183330,
-      "srcSig": "3694378-1793198368000"
+      "srcSig": "3694378-1793198368000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "d1594a4720",
@@ -1780,12 +1964,14 @@
       "album": "Prime Selection",
       "category": "日语",
       "duration": 198.4,
-      "synced": false,
+      "synced": true,
       "cover": "covers/d1594a4720.webp",
       "thumb": "covers/d1594a4720-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2131932,
-      "srcSig": "3265211-1793198369000"
+      "srcSig": "3265211-1793198369000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "0fcfdd61ba",
@@ -1794,12 +1980,14 @@
       "album": "インドア系ならトラックメイカー",
       "category": "日语",
       "duration": 197.3,
-      "synced": false,
+      "synced": true,
       "cover": "covers/0fcfdd61ba.webp",
       "thumb": "covers/0fcfdd61ba-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1562953,
-      "srcSig": "3559553-1793198351000"
+      "srcSig": "3559553-1793198351000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "347d81beb6",
@@ -1813,7 +2001,8 @@
       "thumb": "covers/347d81beb6-sm.webp",
       "hasLyrics": true,
       "size": 1641879,
-      "srcSig": "3436376-1793202778000"
+      "srcSig": "3436376-1793202778000",
+      "lyricsSig": ""
     },
     {
       "id": "981b3bfdc5",
@@ -1822,12 +2011,14 @@
       "album": "うっせぇわ",
       "category": "日语",
       "duration": 206.9,
-      "synced": false,
+      "synced": true,
       "cover": "covers/981b3bfdc5.webp",
       "thumb": "covers/981b3bfdc5-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1587379,
-      "srcSig": "3393949-1793198342000"
+      "srcSig": "3393949-1793198342000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "a94d4c3f97",
@@ -1836,12 +2027,14 @@
       "album": "TVアニメ「ダンベル何キロ持てる？」OPテーマ「お願いマッスル」／EDテーマ「マッチョアネーム？」 歌：紗倉ひびき（CV：ファイルーズあい） ＆ 街雄鳴造（CV：石川界人）／街雄鳴造（CV：石川界人）",
       "category": "日语",
       "duration": 220.9,
-      "synced": false,
+      "synced": true,
       "cover": "covers/a94d4c3f97.webp",
       "thumb": "covers/a94d4c3f97-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1651989,
-      "srcSig": "4225722-1793198353000"
+      "srcSig": "4225722-1793198353000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "7df9bb1987",
@@ -1850,12 +2043,14 @@
       "album": "カワキヲアメク",
       "category": "日语",
       "duration": 251.9,
-      "synced": false,
+      "synced": true,
       "cover": "covers/7df9bb1987.webp",
       "thumb": "covers/7df9bb1987-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1950625,
-      "srcSig": "4272930-1793198361000"
+      "srcSig": "4272930-1793198361000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "36b3f379d6",
@@ -1864,12 +2059,14 @@
       "album": "さくら",
       "category": "日语",
       "duration": 282.8,
-      "synced": false,
+      "synced": true,
       "cover": "covers/36b3f379d6.webp",
       "thumb": "covers/36b3f379d6-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2298778,
-      "srcSig": "4553730-1793198357000"
+      "srcSig": "4553730-1793198357000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "6dffe4f8d4",
@@ -1883,7 +2080,8 @@
       "thumb": "covers/6dffe4f8d4-sm.webp",
       "hasLyrics": true,
       "size": 1624966,
-      "srcSig": "3807046-1793198363000"
+      "srcSig": "3807046-1793198363000",
+      "lyricsSig": ""
     },
     {
       "id": "0fa4863f23",
@@ -1897,7 +2095,8 @@
       "thumb": "covers/0fa4863f23-sm.webp",
       "hasLyrics": true,
       "size": 1978729,
-      "srcSig": "4438373-1793198352000"
+      "srcSig": "4438373-1793198352000",
+      "lyricsSig": ""
     },
     {
       "id": "a7746c4d4e",
@@ -1906,12 +2105,14 @@
       "album": "君の名は。",
       "category": "日语",
       "duration": 534.5,
-      "synced": false,
+      "synced": true,
       "cover": "covers/a7746c4d4e.webp",
       "thumb": "covers/a7746c4d4e-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 4696646,
-      "srcSig": "8803012-1793198348000"
+      "srcSig": "8803012-1793198348000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "20232bfef8",
@@ -1920,12 +2121,14 @@
       "album": "その先へ(カバー)",
       "category": "日语",
       "duration": 282.6,
-      "synced": false,
+      "synced": true,
       "cover": "covers/20232bfef8.webp",
       "thumb": "covers/20232bfef8-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2254849,
-      "srcSig": "4694127-1793201517000"
+      "srcSig": "4694127-1793201517000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "47152a747c",
@@ -1934,12 +2137,14 @@
       "album": "そばにいるね",
       "category": "日语",
       "duration": 304.9,
-      "synced": false,
+      "synced": true,
       "cover": "covers/47152a747c.webp",
       "thumb": "covers/47152a747c-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2445722,
-      "srcSig": "4975014-1793198364000"
+      "srcSig": "4975014-1793198364000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "fc1e7ee77e",
@@ -1953,7 +2158,8 @@
       "thumb": "covers/fc1e7ee77e-sm.webp",
       "hasLyrics": true,
       "size": 2377460,
-      "srcSig": "4243489-1793198350000"
+      "srcSig": "4243489-1793198350000",
+      "lyricsSig": ""
     },
     {
       "id": "5381c5f0b2",
@@ -1967,7 +2173,8 @@
       "thumb": "covers/5381c5f0b2-sm.webp",
       "hasLyrics": true,
       "size": 804141,
-      "srcSig": "1531553-1793198344000"
+      "srcSig": "1531553-1793198344000",
+      "lyricsSig": ""
     },
     {
       "id": "f61930a753",
@@ -1976,12 +2183,14 @@
       "album": "君の名は。",
       "category": "日语",
       "duration": 341.9,
-      "synced": false,
+      "synced": true,
       "cover": "covers/f61930a753.webp",
       "thumb": "covers/f61930a753-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2914405,
-      "srcSig": "5722022-1793198348000"
+      "srcSig": "5722022-1793198348000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "d3b1962bba",
@@ -1990,12 +2199,14 @@
       "album": "なんでもないや",
       "category": "日语",
       "duration": 185.7,
-      "synced": false,
+      "synced": true,
       "cover": "covers/d3b1962bba.webp",
       "thumb": "covers/d3b1962bba-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1643449,
-      "srcSig": "4285421-1793198360000"
+      "srcSig": "4285421-1793198360000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "adbccd4d2e",
@@ -2009,7 +2220,8 @@
       "thumb": "covers/adbccd4d2e-sm.webp",
       "hasLyrics": true,
       "size": 829393,
-      "srcSig": "2180200-1793198365000"
+      "srcSig": "2180200-1793198365000",
+      "lyricsSig": ""
     },
     {
       "id": "9d3692de47",
@@ -2018,12 +2230,14 @@
       "album": "パプリカ",
       "category": "日语",
       "duration": 208.3,
-      "synced": false,
+      "synced": true,
       "cover": "covers/9d3692de47.webp",
       "thumb": "covers/9d3692de47-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1687912,
-      "srcSig": "3567503-1793198344000"
+      "srcSig": "3567503-1793198344000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "b73aac5e16",
@@ -2037,7 +2251,8 @@
       "thumb": "covers/b73aac5e16-sm.webp",
       "hasLyrics": true,
       "size": 1627313,
-      "srcSig": "3284496-1793198351000"
+      "srcSig": "3284496-1793198351000",
+      "lyricsSig": ""
     },
     {
       "id": "5df8b05e40",
@@ -2051,7 +2266,8 @@
       "thumb": "covers/5df8b05e40-sm.webp",
       "hasLyrics": true,
       "size": 1617527,
-      "srcSig": "3620715-1793198364000"
+      "srcSig": "3620715-1793198364000",
+      "lyricsSig": ""
     },
     {
       "id": "287c7ff1c8",
@@ -2060,12 +2276,14 @@
       "album": "ハレハレヤ（朗朗晴天）",
       "category": "日语",
       "duration": 208.4,
-      "synced": false,
+      "synced": true,
       "cover": "covers/287c7ff1c8.webp",
       "thumb": "covers/287c7ff1c8-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1768978,
-      "srcSig": "3489753-1793198361000"
+      "srcSig": "3489753-1793198361000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "7e6bedea6a",
@@ -2074,12 +2292,14 @@
       "album": "ピースサイン",
       "category": "日语",
       "duration": 237.3,
-      "synced": false,
+      "synced": true,
       "cover": "covers/7e6bedea6a.webp",
       "thumb": "covers/7e6bedea6a-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1881177,
-      "srcSig": "3955264-1793198362000"
+      "srcSig": "3955264-1793198362000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "24243d9bce",
@@ -2093,7 +2313,8 @@
       "thumb": "covers/24243d9bce-sm.webp",
       "hasLyrics": true,
       "size": 2293036,
-      "srcSig": "4592102-1793240721000"
+      "srcSig": "4592102-1793240721000",
+      "lyricsSig": ""
     },
     {
       "id": "dbb467ebac",
@@ -2107,7 +2328,8 @@
       "thumb": "covers/dbb467ebac-sm.webp",
       "hasLyrics": true,
       "size": 1480515,
-      "srcSig": "3257691-1793198364000"
+      "srcSig": "3257691-1793198364000",
+      "lyricsSig": ""
     },
     {
       "id": "2a994008ba",
@@ -2116,12 +2338,14 @@
       "album": "メフィスト",
       "category": "日语",
       "duration": 227.3,
-      "synced": false,
+      "synced": true,
       "cover": "covers/2a994008ba.webp",
       "thumb": "covers/2a994008ba-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1865024,
-      "srcSig": "4052821-1793198364000"
+      "srcSig": "4052821-1793198364000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "460d869fb5",
@@ -2135,7 +2359,8 @@
       "thumb": "covers/460d869fb5-sm.webp",
       "hasLyrics": true,
       "size": 2123562,
-      "srcSig": "4595060-1793198354000"
+      "srcSig": "4595060-1793198354000",
+      "lyricsSig": ""
     },
     {
       "id": "8ddcc9a861",
@@ -2149,7 +2374,8 @@
       "thumb": "covers/8ddcc9a861-sm.webp",
       "hasLyrics": true,
       "size": 2002000,
-      "srcSig": "3940075-1793200046000"
+      "srcSig": "3940075-1793200046000",
+      "lyricsSig": ""
     },
     {
       "id": "7d546f23c4",
@@ -2163,7 +2389,8 @@
       "thumb": "covers/7d546f23c4-sm.webp",
       "hasLyrics": true,
       "size": 1777429,
-      "srcSig": "4152152-1793242599000"
+      "srcSig": "4152152-1793242599000",
+      "lyricsSig": ""
     },
     {
       "id": "2740e30897",
@@ -2177,7 +2404,8 @@
       "thumb": "covers/2740e30897-sm.webp",
       "hasLyrics": true,
       "size": 1705723,
-      "srcSig": "3889346-1793198355000"
+      "srcSig": "3889346-1793198355000",
+      "lyricsSig": ""
     },
     {
       "id": "270b6b5ef4",
@@ -2191,7 +2419,8 @@
       "thumb": "covers/270b6b5ef4-sm.webp",
       "hasLyrics": true,
       "size": 2047368,
-      "srcSig": "4645937-1793241518000"
+      "srcSig": "4645937-1793241518000",
+      "lyricsSig": ""
     },
     {
       "id": "c3158bb00e",
@@ -2205,7 +2434,8 @@
       "thumb": "covers/c3158bb00e-sm.webp",
       "hasLyrics": true,
       "size": 2009965,
-      "srcSig": "4245886-1793241784000"
+      "srcSig": "4245886-1793241784000",
+      "lyricsSig": ""
     },
     {
       "id": "7124c87b6b",
@@ -2219,7 +2449,8 @@
       "thumb": "covers/7124c87b6b-sm.webp",
       "hasLyrics": true,
       "size": 1712353,
-      "srcSig": "3781700-1793241464000"
+      "srcSig": "3781700-1793241464000",
+      "lyricsSig": ""
     },
     {
       "id": "7f0412e988",
@@ -2233,7 +2464,8 @@
       "thumb": "covers/7f0412e988-sm.webp",
       "hasLyrics": true,
       "size": 2123846,
-      "srcSig": "4148846-1793198356000"
+      "srcSig": "4148846-1793198356000",
+      "lyricsSig": ""
     },
     {
       "id": "2f05c38c1d",
@@ -2247,7 +2479,8 @@
       "thumb": "covers/2f05c38c1d-sm.webp",
       "hasLyrics": true,
       "size": 1857788,
-      "srcSig": "3983217-1793242018000"
+      "srcSig": "3983217-1793242018000",
+      "lyricsSig": ""
     },
     {
       "id": "b03d680186",
@@ -2261,7 +2494,8 @@
       "thumb": "covers/b03d680186-sm.webp",
       "hasLyrics": true,
       "size": 2046939,
-      "srcSig": "4406431-1793241487000"
+      "srcSig": "4406431-1793241487000",
+      "lyricsSig": ""
     },
     {
       "id": "ba06371f6c",
@@ -2275,7 +2509,8 @@
       "thumb": "covers/ba06371f6c-sm.webp",
       "hasLyrics": true,
       "size": 1676879,
-      "srcSig": "3663875-1793241686000"
+      "srcSig": "3663875-1793241686000",
+      "lyricsSig": ""
     },
     {
       "id": "eda556cbfb",
@@ -2289,7 +2524,8 @@
       "thumb": "covers/eda556cbfb-sm.webp",
       "hasLyrics": true,
       "size": 2074384,
-      "srcSig": "4126453-1793241556000"
+      "srcSig": "4126453-1793241556000",
+      "lyricsSig": ""
     },
     {
       "id": "d97c12d0bf",
@@ -2303,7 +2539,8 @@
       "thumb": "covers/d97c12d0bf-sm.webp",
       "hasLyrics": true,
       "size": 2029551,
-      "srcSig": "4502779-1793241832000"
+      "srcSig": "4502779-1793241832000",
+      "lyricsSig": ""
     },
     {
       "id": "e9dce44082",
@@ -2317,7 +2554,8 @@
       "thumb": "covers/e9dce44082-sm.webp",
       "hasLyrics": true,
       "size": 2178270,
-      "srcSig": "4575935-1793341304000"
+      "srcSig": "4575935-1793341304000",
+      "lyricsSig": ""
     },
     {
       "id": "139c8711a7",
@@ -2331,7 +2569,8 @@
       "thumb": "covers/139c8711a7-sm.webp",
       "hasLyrics": true,
       "size": 2221504,
-      "srcSig": "4657129-1793201384000"
+      "srcSig": "4657129-1793201384000",
+      "lyricsSig": ""
     },
     {
       "id": "00165e2a0d",
@@ -2345,7 +2584,8 @@
       "thumb": "covers/00165e2a0d-sm.webp",
       "hasLyrics": true,
       "size": 2191809,
-      "srcSig": "4651274-1793241354000"
+      "srcSig": "4651274-1793241354000",
+      "lyricsSig": ""
     },
     {
       "id": "f08c4b2398",
@@ -2359,7 +2599,8 @@
       "thumb": "covers/f08c4b2398-sm.webp",
       "hasLyrics": true,
       "size": 1547675,
-      "srcSig": "3243431-1793198359000"
+      "srcSig": "3243431-1793198359000",
+      "lyricsSig": ""
     },
     {
       "id": "9568992bc1",
@@ -2373,7 +2614,8 @@
       "thumb": "covers/9568992bc1-sm.webp",
       "hasLyrics": true,
       "size": 1486205,
-      "srcSig": "3136988-1793198360000"
+      "srcSig": "3136988-1793198360000",
+      "lyricsSig": ""
     },
     {
       "id": "1e2a1d93ad",
@@ -2387,7 +2629,8 @@
       "thumb": "covers/1e2a1d93ad-sm.webp",
       "hasLyrics": true,
       "size": 1656803,
-      "srcSig": "3486865-1793241445000"
+      "srcSig": "3486865-1793241445000",
+      "lyricsSig": ""
     },
     {
       "id": "0dd137e238",
@@ -2401,7 +2644,8 @@
       "thumb": "covers/0dd137e238-sm.webp",
       "hasLyrics": true,
       "size": 2002584,
-      "srcSig": "4384277-1793241993000"
+      "srcSig": "4384277-1793241993000",
+      "lyricsSig": ""
     },
     {
       "id": "0f6b264997",
@@ -2415,7 +2659,8 @@
       "thumb": "covers/0f6b264997-sm.webp",
       "hasLyrics": true,
       "size": 1674944,
-      "srcSig": "3921487-1793241629000"
+      "srcSig": "3921487-1793241629000",
+      "lyricsSig": ""
     },
     {
       "id": "13a465390a",
@@ -2429,7 +2674,8 @@
       "thumb": "covers/13a465390a-sm.webp",
       "hasLyrics": true,
       "size": 1678971,
-      "srcSig": "3666798-1793241664000"
+      "srcSig": "3666798-1793241664000",
+      "lyricsSig": ""
     },
     {
       "id": "182d48a9e5",
@@ -2443,7 +2689,8 @@
       "thumb": "covers/182d48a9e5-sm.webp",
       "hasLyrics": true,
       "size": 2144739,
-      "srcSig": "4734672-1793198364000"
+      "srcSig": "4734672-1793198364000",
+      "lyricsSig": ""
     },
     {
       "id": "0d95a663b6",
@@ -2457,7 +2704,8 @@
       "thumb": "covers/0d95a663b6-sm.webp",
       "hasLyrics": true,
       "size": 1912840,
-      "srcSig": "4104121-1793241529000"
+      "srcSig": "4104121-1793241529000",
+      "lyricsSig": ""
     },
     {
       "id": "86fb34a438",
@@ -2471,7 +2719,8 @@
       "thumb": "covers/86fb34a438-sm.webp",
       "hasLyrics": true,
       "size": 1541391,
-      "srcSig": "3482634-1793202778000"
+      "srcSig": "3482634-1793202778000",
+      "lyricsSig": ""
     },
     {
       "id": "343ccf7a73",
@@ -2485,7 +2734,8 @@
       "thumb": "covers/343ccf7a73-sm.webp",
       "hasLyrics": true,
       "size": 2072750,
-      "srcSig": "4363333-1793241385000"
+      "srcSig": "4363333-1793241385000",
+      "lyricsSig": ""
     },
     {
       "id": "3d714f03e4",
@@ -2499,7 +2749,8 @@
       "thumb": "covers/3d714f03e4-sm.webp",
       "hasLyrics": true,
       "size": 1583645,
-      "srcSig": "3562114-1793198364000"
+      "srcSig": "3562114-1793198364000",
+      "lyricsSig": ""
     },
     {
       "id": "ecb820c25e",
@@ -2513,7 +2764,8 @@
       "thumb": "covers/ecb820c25e-sm.webp",
       "hasLyrics": true,
       "size": 1598858,
-      "srcSig": "3395003-1793202925000"
+      "srcSig": "3395003-1793202925000",
+      "lyricsSig": ""
     },
     {
       "id": "f36d8f9eff",
@@ -2527,7 +2779,8 @@
       "thumb": "covers/f36d8f9eff-sm.webp",
       "hasLyrics": true,
       "size": 1720831,
-      "srcSig": "3897556-1793241847000"
+      "srcSig": "3897556-1793241847000",
+      "lyricsSig": ""
     },
     {
       "id": "378385a604",
@@ -2541,7 +2794,8 @@
       "thumb": "covers/378385a604-sm.webp",
       "hasLyrics": true,
       "size": 1699141,
-      "srcSig": "4303280-1793198366000"
+      "srcSig": "4303280-1793198366000",
+      "lyricsSig": ""
     },
     {
       "id": "86ab600509",
@@ -2555,7 +2809,8 @@
       "thumb": "covers/86ab600509-sm.webp",
       "hasLyrics": true,
       "size": 1498156,
-      "srcSig": "3163369-1793198365000"
+      "srcSig": "3163369-1793198365000",
+      "lyricsSig": ""
     },
     {
       "id": "1a807abb44",
@@ -2569,7 +2824,8 @@
       "thumb": "covers/1a807abb44-sm.webp",
       "hasLyrics": true,
       "size": 1903167,
-      "srcSig": "4183482-1793241363000"
+      "srcSig": "4183482-1793241363000",
+      "lyricsSig": ""
     },
     {
       "id": "8dc3b0ec0a",
@@ -2583,7 +2839,8 @@
       "thumb": "covers/8dc3b0ec0a-sm.webp",
       "hasLyrics": true,
       "size": 1611305,
-      "srcSig": "3185904-1793198366000"
+      "srcSig": "3185904-1793198366000",
+      "lyricsSig": ""
     },
     {
       "id": "6d70b86fd4",
@@ -2597,7 +2854,8 @@
       "thumb": "covers/6d70b86fd4-sm.webp",
       "hasLyrics": true,
       "size": 2113362,
-      "srcSig": "4740108-1793198367000"
+      "srcSig": "4740108-1793198367000",
+      "lyricsSig": ""
     },
     {
       "id": "4b31358ddb",
@@ -2611,7 +2869,8 @@
       "thumb": "covers/4b31358ddb-sm.webp",
       "hasLyrics": true,
       "size": 2247624,
-      "srcSig": "4819286-1793198367000"
+      "srcSig": "4819286-1793198367000",
+      "lyricsSig": ""
     },
     {
       "id": "dbf115095c",
@@ -2625,7 +2884,8 @@
       "thumb": "covers/dbf115095c-sm.webp",
       "hasLyrics": true,
       "size": 2296804,
-      "srcSig": "5024289-1793241959000"
+      "srcSig": "5024289-1793241959000",
+      "lyricsSig": ""
     },
     {
       "id": "e03eb4ce0e",
@@ -2639,7 +2899,8 @@
       "thumb": "covers/e03eb4ce0e-sm.webp",
       "hasLyrics": true,
       "size": 1727484,
-      "srcSig": "3785583-1793241539000"
+      "srcSig": "3785583-1793241539000",
+      "lyricsSig": ""
     },
     {
       "id": "76cba3cd3e",
@@ -2653,7 +2914,8 @@
       "thumb": "covers/76cba3cd3e-sm.webp",
       "hasLyrics": true,
       "size": 2021755,
-      "srcSig": "4411783-1793198367000"
+      "srcSig": "4411783-1793198367000",
+      "lyricsSig": ""
     },
     {
       "id": "043c072621",
@@ -2667,7 +2929,8 @@
       "thumb": "covers/043c072621-sm.webp",
       "hasLyrics": true,
       "size": 1940019,
-      "srcSig": "4506228-1793198367000"
+      "srcSig": "4506228-1793198367000",
+      "lyricsSig": ""
     },
     {
       "id": "4308fda478",
@@ -2681,7 +2944,8 @@
       "thumb": "covers/4308fda478-sm.webp",
       "hasLyrics": true,
       "size": 1594883,
-      "srcSig": "3416228-1793199764000"
+      "srcSig": "3416228-1793199764000",
+      "lyricsSig": ""
     },
     {
       "id": "9eefd70909",
@@ -2695,7 +2959,8 @@
       "thumb": "covers/9eefd70909-sm.webp",
       "hasLyrics": true,
       "size": 1454390,
-      "srcSig": "3292358-1793241270000"
+      "srcSig": "3292358-1793241270000",
+      "lyricsSig": ""
     },
     {
       "id": "b34b1f7f0e",
@@ -2709,7 +2974,8 @@
       "thumb": "covers/b34b1f7f0e-sm.webp",
       "hasLyrics": true,
       "size": 2169021,
-      "srcSig": "4854117-1793242038000"
+      "srcSig": "4854117-1793242038000",
+      "lyricsSig": ""
     },
     {
       "id": "2018022dc8",
@@ -2723,7 +2989,8 @@
       "thumb": "covers/2018022dc8-sm.webp",
       "hasLyrics": true,
       "size": 1646454,
-      "srcSig": "3775853-1793241327000"
+      "srcSig": "3775853-1793241327000",
+      "lyricsSig": ""
     },
     {
       "id": "ca98d3810b",
@@ -2737,7 +3004,8 @@
       "thumb": "covers/ca98d3810b-sm.webp",
       "hasLyrics": true,
       "size": 1862777,
-      "srcSig": "3987964-1793241771000"
+      "srcSig": "3987964-1793241771000",
+      "lyricsSig": ""
     },
     {
       "id": "1ee2421c4b",
@@ -2751,7 +3019,8 @@
       "thumb": "covers/1ee2421c4b-sm.webp",
       "hasLyrics": true,
       "size": 1553412,
-      "srcSig": "3328765-1793198368000"
+      "srcSig": "3328765-1793198368000",
+      "lyricsSig": ""
     },
     {
       "id": "d4de5eff68",
@@ -2765,7 +3034,8 @@
       "thumb": "covers/d4de5eff68-sm.webp",
       "hasLyrics": true,
       "size": 1481294,
-      "srcSig": "3116099-1793198368000"
+      "srcSig": "3116099-1793198368000",
+      "lyricsSig": ""
     },
     {
       "id": "779f31a905",
@@ -2779,7 +3049,8 @@
       "thumb": "covers/779f31a905-sm.webp",
       "hasLyrics": true,
       "size": 1459021,
-      "srcSig": "3532511-1793198368000"
+      "srcSig": "3532511-1793198368000",
+      "lyricsSig": ""
     },
     {
       "id": "2195a39c29",
@@ -2793,7 +3064,8 @@
       "thumb": "covers/2195a39c29-sm.webp",
       "hasLyrics": true,
       "size": 1716696,
-      "srcSig": "3638235-1793241761000"
+      "srcSig": "3638235-1793241761000",
+      "lyricsSig": ""
     },
     {
       "id": "db8818fe17",
@@ -2807,7 +3079,8 @@
       "thumb": "covers/db8818fe17-sm.webp",
       "hasLyrics": true,
       "size": 1492127,
-      "srcSig": "3557112-1793241593000"
+      "srcSig": "3557112-1793241593000",
+      "lyricsSig": ""
     },
     {
       "id": "172d472051",
@@ -2821,7 +3094,8 @@
       "thumb": "covers/172d472051-sm.webp",
       "hasLyrics": true,
       "size": 2032550,
-      "srcSig": "4964490-1793198342000"
+      "srcSig": "4964490-1793198342000",
+      "lyricsSig": ""
     },
     {
       "id": "0c0796c4ef",
@@ -2835,7 +3109,8 @@
       "thumb": "covers/0c0796c4ef-sm.webp",
       "hasLyrics": true,
       "size": 2215696,
-      "srcSig": "4451652-1793202818000"
+      "srcSig": "4451652-1793202818000",
+      "lyricsSig": ""
     },
     {
       "id": "92404d1d15",
@@ -2849,7 +3124,8 @@
       "thumb": "covers/92404d1d15-sm.webp",
       "hasLyrics": true,
       "size": 1619899,
-      "srcSig": "3787127-1793198345000"
+      "srcSig": "3787127-1793198345000",
+      "lyricsSig": ""
     },
     {
       "id": "b56cbab50d",
@@ -2863,7 +3139,8 @@
       "thumb": "covers/b56cbab50d-sm.webp",
       "hasLyrics": true,
       "size": 2602827,
-      "srcSig": "5425098-1793202896000"
+      "srcSig": "5425098-1793202896000",
+      "lyricsSig": ""
     },
     {
       "id": "ba7e22389f",
@@ -2877,7 +3154,8 @@
       "thumb": "covers/ba7e22389f-sm.webp",
       "hasLyrics": true,
       "size": 2407594,
-      "srcSig": "5492313-1793198348000"
+      "srcSig": "5492313-1793198348000",
+      "lyricsSig": ""
     },
     {
       "id": "2df163de68",
@@ -2891,7 +3169,8 @@
       "thumb": "covers/2df163de68-sm.webp",
       "hasLyrics": true,
       "size": 1631176,
-      "srcSig": "3914837-1793198349000"
+      "srcSig": "3914837-1793198349000",
+      "lyricsSig": ""
     },
     {
       "id": "e151684ced",
@@ -2905,7 +3184,8 @@
       "thumb": "covers/e151684ced-sm.webp",
       "hasLyrics": true,
       "size": 2041052,
-      "srcSig": "4029965-1793241806000"
+      "srcSig": "4029965-1793241806000",
+      "lyricsSig": ""
     },
     {
       "id": "7205db5906",
@@ -2919,7 +3199,8 @@
       "thumb": "covers/7205db5906-sm.webp",
       "hasLyrics": true,
       "size": 1787653,
-      "srcSig": "3944363-1793198352000"
+      "srcSig": "3944363-1793198352000",
+      "lyricsSig": ""
     },
     {
       "id": "fb11852e25",
@@ -2933,7 +3214,8 @@
       "thumb": "covers/fb11852e25-sm.webp",
       "hasLyrics": true,
       "size": 1843209,
-      "srcSig": "3988211-1793351413579"
+      "srcSig": "3988211-1793351413579",
+      "lyricsSig": ""
     },
     {
       "id": "9c69590fe7",
@@ -2947,7 +3229,8 @@
       "thumb": "covers/9c69590fe7-sm.webp",
       "hasLyrics": true,
       "size": 2295882,
-      "srcSig": "5607415-1793198353000"
+      "srcSig": "5607415-1793198353000",
+      "lyricsSig": ""
     },
     {
       "id": "9f46876a79",
@@ -2961,7 +3244,8 @@
       "thumb": "covers/9f46876a79-sm.webp",
       "hasLyrics": true,
       "size": 2408585,
-      "srcSig": "2563793-1793198353000"
+      "srcSig": "2563793-1793198353000",
+      "lyricsSig": ""
     },
     {
       "id": "1b42ec7fae",
@@ -2975,7 +3259,8 @@
       "thumb": "covers/1b42ec7fae-sm.webp",
       "hasLyrics": true,
       "size": 2322419,
-      "srcSig": "5324404-1793198343000"
+      "srcSig": "5324404-1793198343000",
+      "lyricsSig": ""
     },
     {
       "id": "ff21babbcf",
@@ -2989,7 +3274,8 @@
       "thumb": "covers/ff21babbcf-sm.webp",
       "hasLyrics": true,
       "size": 2082771,
-      "srcSig": "4167756-1793198366000"
+      "srcSig": "4167756-1793198366000",
+      "lyricsSig": ""
     },
     {
       "id": "4ea40db15c",
@@ -2998,12 +3284,14 @@
       "album": "アルカロイドに溺れる",
       "category": "术力口",
       "duration": 232.2,
-      "synced": false,
+      "synced": true,
       "cover": "covers/4ea40db15c.webp",
       "thumb": "covers/4ea40db15c-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2010675,
-      "srcSig": "3869757-1793198347000"
+      "srcSig": "3869757-1793198347000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "e710c56e6e",
@@ -3017,7 +3305,8 @@
       "thumb": "covers/e710c56e6e-sm.webp",
       "hasLyrics": true,
       "size": 1462518,
-      "srcSig": "4202875-1793205230000"
+      "srcSig": "4202875-1793205230000",
+      "lyricsSig": ""
     },
     {
       "id": "f8cb48ac24",
@@ -3026,12 +3315,14 @@
       "album": "千本桜",
       "category": "术力口",
       "duration": 252.5,
-      "synced": false,
+      "synced": true,
       "cover": "covers/f8cb48ac24.webp",
       "thumb": "covers/f8cb48ac24-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 1949746,
-      "srcSig": "4396948-1793198358000"
+      "srcSig": "4396948-1793198358000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "a675c3e6d3",
@@ -3045,7 +3336,8 @@
       "thumb": "covers/a675c3e6d3-sm.webp",
       "hasLyrics": true,
       "size": 1760821,
-      "srcSig": "3631997-1793198366000"
+      "srcSig": "3631997-1793198366000",
+      "lyricsSig": ""
     },
     {
       "id": "10cca1f6d0",
@@ -3059,7 +3351,8 @@
       "thumb": "covers/10cca1f6d0-sm.webp",
       "hasLyrics": true,
       "size": 1790010,
-      "srcSig": "3573001-1793198366000"
+      "srcSig": "3573001-1793198366000",
+      "lyricsSig": ""
     },
     {
       "id": "7271645bf1",
@@ -3068,12 +3361,14 @@
       "album": "聖槍爆裂ボーイ",
       "category": "术力口",
       "duration": 256.4,
-      "synced": false,
+      "synced": true,
       "cover": "covers/7271645bf1.webp",
       "thumb": "covers/7271645bf1-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 2038792,
-      "srcSig": "4354248-1793198356000"
+      "srcSig": "4354248-1793198356000",
+      "lyricsChecked": true,
+      "lyricsSig": ""
     },
     {
       "id": "10a843e1b8",
@@ -3087,7 +3382,8 @@
       "thumb": "covers/10a843e1b8-sm.webp",
       "hasLyrics": true,
       "size": 2209668,
-      "srcSig": "4671756-1793202778000"
+      "srcSig": "4671756-1793202778000",
+      "lyricsSig": ""
     },
     {
       "id": "a8570c53d8",
@@ -3101,7 +3397,8 @@
       "thumb": "covers/a8570c53d8-sm.webp",
       "hasLyrics": true,
       "size": 2243323,
-      "srcSig": "4600814-1793198367000"
+      "srcSig": "4600814-1793198367000",
+      "lyricsSig": ""
     },
     {
       "id": "f4f485975b",
@@ -3115,7 +3412,8 @@
       "thumb": "covers/f4f485975b-sm.webp",
       "hasLyrics": true,
       "size": 1974104,
-      "srcSig": "4394418-1793198365000"
+      "srcSig": "4394418-1793198365000",
+      "lyricsSig": ""
     },
     {
       "id": "5d179f161a",
@@ -3129,7 +3427,8 @@
       "thumb": "covers/5d179f161a-sm.webp",
       "hasLyrics": true,
       "size": 2376213,
-      "srcSig": "4552856-1793240744000"
+      "srcSig": "4552856-1793240744000",
+      "lyricsSig": ""
     },
     {
       "id": "37367949d4",
@@ -3143,7 +3442,8 @@
       "thumb": "covers/37367949d4-sm.webp",
       "hasLyrics": true,
       "size": 2234299,
-      "srcSig": "4505357-1793198351000"
+      "srcSig": "4505357-1793198351000",
+      "lyricsSig": ""
     },
     {
       "id": "630fd14345",
@@ -3157,7 +3457,8 @@
       "thumb": "covers/630fd14345-sm.webp",
       "hasLyrics": true,
       "size": 1412891,
-      "srcSig": "3069457-1793240728000"
+      "srcSig": "3069457-1793240728000",
+      "lyricsSig": ""
     },
     {
       "id": "d733a624eb",
@@ -3171,7 +3472,8 @@
       "thumb": "covers/d733a624eb-sm.webp",
       "hasLyrics": true,
       "size": 1915812,
-      "srcSig": "3942351-1793201146000"
+      "srcSig": "3942351-1793201146000",
+      "lyricsSig": ""
     },
     {
       "id": "9f04b261f1",
@@ -3185,7 +3487,8 @@
       "thumb": "covers/9f04b261f1-sm.webp",
       "hasLyrics": true,
       "size": 1595971,
-      "srcSig": "3377380-1793240714000"
+      "srcSig": "3377380-1793240714000",
+      "lyricsSig": ""
     },
     {
       "id": "648587468b",
@@ -3199,7 +3502,8 @@
       "thumb": "covers/648587468b-sm.webp",
       "hasLyrics": true,
       "size": 1561423,
-      "srcSig": "3743091-1793201170000"
+      "srcSig": "3743091-1793201170000",
+      "lyricsSig": ""
     },
     {
       "id": "cb878fc1db",
@@ -3213,7 +3517,8 @@
       "thumb": "covers/cb878fc1db-sm.webp",
       "hasLyrics": true,
       "size": 1212678,
-      "srcSig": "2600371-1793240738000"
+      "srcSig": "2600371-1793240738000",
+      "lyricsSig": ""
     },
     {
       "id": "296e3562ff",
@@ -3227,7 +3532,8 @@
       "thumb": "covers/296e3562ff-sm.webp",
       "hasLyrics": true,
       "size": 2021002,
-      "srcSig": "4296718-1793198354000"
+      "srcSig": "4296718-1793198354000",
+      "lyricsSig": ""
     },
     {
       "id": "e2a0e2c5b8",
@@ -3241,7 +3547,8 @@
       "thumb": "covers/e2a0e2c5b8-sm.webp",
       "hasLyrics": true,
       "size": 1448123,
-      "srcSig": "3316997-1793198354000"
+      "srcSig": "3316997-1793198354000",
+      "lyricsSig": ""
     },
     {
       "id": "bd694d9252",
@@ -3255,7 +3562,8 @@
       "thumb": "covers/bd694d9252-sm.webp",
       "hasLyrics": true,
       "size": 1474421,
-      "srcSig": "3108641-1793286230000"
+      "srcSig": "3108641-1793286230000",
+      "lyricsSig": ""
     },
     {
       "id": "43e65ecf88",
@@ -3269,7 +3577,8 @@
       "thumb": "covers/43e65ecf88-sm.webp",
       "hasLyrics": true,
       "size": 1208758,
-      "srcSig": "2809430-1793198354000"
+      "srcSig": "2809430-1793198354000",
+      "lyricsSig": ""
     },
     {
       "id": "8499c76ec8",
@@ -3283,7 +3592,8 @@
       "thumb": "covers/8499c76ec8-sm.webp",
       "hasLyrics": true,
       "size": 2033382,
-      "srcSig": "4154575-1793198355000"
+      "srcSig": "4154575-1793198355000",
+      "lyricsSig": ""
     }
   ]
 }

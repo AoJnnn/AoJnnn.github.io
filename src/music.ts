@@ -149,47 +149,244 @@ function loadManifest(): Promise<Manifest> {
  *  音频元素与播放条（挂在 body 上，路由切换不会销毁）
  * ------------------------------------------------------------------ */
 
-function getAudio(): HTMLAudioElement {
-  if (audio) return audio
-  audio = document.createElement('audio')
-  audio.preload = 'metadata'
-  audio.volume = prefs.volume
-  audio.muted = prefs.muted
-  audio.addEventListener('timeupdate', onTimeUpdate)
-  audio.addEventListener('loadedmetadata', () => {
+/** 冷缓存下首字节可能要等几秒，给个可见反馈 */
+function setBuffering(on: boolean) {
+  document.getElementById('nmp')?.classList.toggle('is-buffering', on)
+  for (const el of document.querySelectorAll<HTMLElement>('.music-now, .nmp-sheet-panel')) {
+    el.classList.toggle('is-buffering', on)
+  }
+}
+
+function wireAudio(el: HTMLAudioElement) {
+  el.addEventListener('timeupdate', onTimeUpdate)
+  el.addEventListener('loadedmetadata', () => {
     renderBar()
     renderNowPanel()
   })
-  audio.addEventListener('play', () => {
+  el.addEventListener('play', () => {
     renderBar()
     renderNowPanel()
     syncListState()
   })
-  audio.addEventListener('pause', () => {
+  el.addEventListener('pause', () => {
     renderBar()
     renderNowPanel()
     syncListState()
   })
-  audio.addEventListener('ended', () => {
+  el.addEventListener('ended', () => {
     if (prefs.repeat === 'one') {
-      audio!.currentTime = 0
-      void audio!.play()
+      el.currentTime = 0
+      void el.play()
     } else {
       step(1, true)
     }
   })
-  // 冷缓存下首字节可能要等几秒，给个可见反馈
-  const setBuffering = (on: boolean) => {
-    document.getElementById('nmp')?.classList.toggle('is-buffering', on)
-    document.getElementById('now')?.classList.toggle('is-buffering', on)
+  el.addEventListener('waiting', () => setBuffering(true))
+  el.addEventListener('stalled', () => setBuffering(true))
+  el.addEventListener('playing', () => setBuffering(false))
+  el.addEventListener('canplay', () => setBuffering(false))
+  el.addEventListener('error', () => setBuffering(false))
+}
+
+function getAudio(): HTMLAudioElement {
+  if (audio) return audio
+  const el = document.createElement('audio')
+  el.preload = 'metadata'
+  el.volume = prefs.volume
+  el.muted = prefs.muted
+  wireAudio(el)
+  document.body.appendChild(el)
+  audio = el
+  return el
+}
+
+/**
+ * 彻底销毁当前 audio 元素。
+ *
+ * 只改 src 或调 load() 时，部分浏览器（安卓 Chrome、部分国产内核）仍会把
+ * 上一首的残余解码输出留在音频管线里，表现为切歌后「卡一下 + 漏出一声上一首
+ * 的尾音」。直接丢弃元素并新建，是隔离旧解码器最彻底的做法。
+ */
+function disposeAudio() {
+  const el = audio
+  if (!el) return
+  audio = null
+  try {
+    el.pause()
+  } catch {
+    /* 忽略 */
   }
-  audio.addEventListener('waiting', () => setBuffering(true))
-  audio.addEventListener('stalled', () => setBuffering(true))
-  audio.addEventListener('playing', () => setBuffering(false))
-  audio.addEventListener('canplay', () => setBuffering(false))
-  audio.addEventListener('error', () => setBuffering(false))
-  document.body.appendChild(audio)
-  return audio
+  el.removeAttribute('src')
+  try {
+    el.load()
+  } catch {
+    /* 忽略 */
+  }
+  el.remove()
+}
+
+/* ------------------------------------------------------------------ *
+ *  播放条 / 弹出页共用的按钮动作
+ * ------------------------------------------------------------------ */
+
+function handleAction(act: string | undefined) {
+  if (act === 'toggle') toggle()
+  else if (act === 'next') step(1)
+  else if (act === 'prev') step(-1)
+  else if (act === 'repeat') {
+    prefs.repeat = prefs.repeat === 'all' ? 'one' : prefs.repeat === 'one' ? 'off' : 'all'
+    savePrefs()
+    renderBar()
+  } else if (act === 'shuffle') {
+    prefs.shuffle = !prefs.shuffle
+    savePrefs()
+    renderBar()
+  } else if (act === 'mute') {
+    prefs.muted = !prefs.muted
+    if (!prefs.muted && prefs.volume === 0) prefs.volume = 0.6
+    if (audio) {
+      audio.muted = prefs.muted
+      audio.volume = prefs.volume
+    }
+    savePrefs()
+    renderBar()
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  手机端「正在播放」弹出页
+ * ------------------------------------------------------------------ */
+
+const isNarrow = () => window.matchMedia('(max-width: 980px)').matches
+
+function sheetOpen(): boolean {
+  return Boolean(document.getElementById('nmp-sheet')?.classList.contains('is-open'))
+}
+
+function ensureSheet(): HTMLElement {
+  let sheet = document.getElementById('nmp-sheet')
+  if (sheet) return sheet
+
+  sheet = document.createElement('div')
+  sheet.id = 'nmp-sheet'
+  sheet.className = 'nmp-sheet'
+  sheet.innerHTML = `
+    <div class="sheet-backdrop" data-act="close-sheet"></div>
+    <section class="nmp-sheet-panel" role="dialog" aria-modal="true" aria-label="正在播放">
+      <span class="sheet-grip" aria-hidden="true"></span>
+      <button class="sheet-close" type="button" data-act="close-sheet" aria-label="收起">✕</button>
+      <div class="now-cover">
+        <img alt="" />
+        <span class="now-ph">♪</span>
+      </div>
+      <div class="sheet-text">
+        <b class="now-title">未在播放</b>
+        <span class="now-artist"></span>
+        <small class="now-meta"></small>
+      </div>
+      <div class="sheet-seek">
+        <span class="nmp-time" id="sheet-cur">0:00</span>
+        <input class="nmp-range" id="sheet-progress" type="range" min="0" max="1000" value="0" step="1" aria-label="播放进度" />
+        <span class="nmp-time" id="sheet-dur">0:00</span>
+      </div>
+      <div class="sheet-controls">
+        <button class="nmp-btn" data-act="prev" type="button" aria-label="上一首">${ICONS.prev}</button>
+        <button class="nmp-btn nmp-play" data-act="toggle" type="button" aria-label="播放">${ICONS.play}</button>
+        <button class="nmp-btn" data-act="next" type="button" aria-label="下一首">${ICONS.next}</button>
+      </div>
+      <div class="now-lyrics"><p class="lyrics-empty">选一首歌开始播放</p></div>
+    </section>`
+  document.body.appendChild(sheet)
+
+  sheet.addEventListener('click', (event) => {
+    const el = event.target as HTMLElement
+    if (el.closest('[data-act="close-sheet"]')) {
+      closeSheet()
+      return
+    }
+    const btn = el.closest<HTMLElement>('[data-act]')
+    if (btn) handleAction(btn.dataset.act)
+  })
+
+  const seek = sheet.querySelector<HTMLInputElement>('#sheet-progress')!
+  seek.addEventListener('input', () => {
+    const ratio = Number(seek.value) / 1000
+    seek.style.setProperty('--p', String(ratio))
+    if (audio && Number.isFinite(audio.duration)) audio.currentTime = ratio * audio.duration
+  })
+
+  return sheet
+}
+
+/**
+ * 滚动锁。
+ * 只给 html/body 加 overflow:hidden 在部分移动端浏览器（安卓、部分国产内核）
+ * 拦不住手势，会被拖动灰色遮罩时带动整页。用 position:fixed 固定 body
+ * 并记住滚动位置，关闭时再还原，这是兼容性最好的做法。
+ */
+let lockedScrollY = 0
+let scrollLocked = false
+let unlockTimer: number | null = null
+
+function lockScroll() {
+  if (scrollLocked) return
+  scrollLocked = true
+  lockedScrollY = window.scrollY
+  const b = document.body
+  b.style.position = 'fixed'
+  b.style.top = `-${lockedScrollY}px`
+  b.style.left = '0'
+  b.style.right = '0'
+  b.style.width = '100%'
+  b.style.overflow = 'hidden'
+  document.documentElement.classList.add('sheet-open')
+  document.body.classList.add('sheet-open')
+}
+
+function unlockScroll() {
+  if (!scrollLocked) return
+  scrollLocked = false
+  const b = document.body
+  b.style.position = ''
+  b.style.top = ''
+  b.style.left = ''
+  b.style.right = ''
+  b.style.width = ''
+  b.style.overflow = ''
+  document.documentElement.classList.remove('sheet-open')
+  document.body.classList.remove('sheet-open')
+  window.scrollTo(0, lockedScrollY)
+}
+
+function openSheet() {
+  if (!current) return
+  // 如果正在退场动画里又重新打开，取消待执行的解锁
+  if (unlockTimer !== null) {
+    window.clearTimeout(unlockTimer)
+    unlockTimer = null
+  }
+  const sheet = ensureSheet()
+  renderNowPanel()
+  renderLyrics()
+  sheet.classList.add('is-open')
+  lockScroll()
+}
+
+function closeSheet() {
+  const sheet = document.getElementById('nmp-sheet')
+  if (!sheet?.classList.contains('is-open')) return
+  sheet.classList.remove('is-open')
+  // 等下滑 + 遮罩淡出结束再放开滚动，否则背景会在动画中途跳回原位
+  if (unlockTimer !== null) window.clearTimeout(unlockTimer)
+  unlockTimer = window.setTimeout(() => {
+    unlockTimer = null
+    unlockScroll()
+  }, 340)
+}
+
+function toggleSheet() {
+  if (sheetOpen()) closeSheet()
+  else openSheet()
 }
 
 function ensureBar(): HTMLElement {
@@ -229,33 +426,21 @@ function ensureBar(): HTMLElement {
   bar.addEventListener('click', (event) => {
     const target = (event.target as HTMLElement).closest<HTMLElement>('[data-act]')
     if (!target) return
-    const act = target.dataset.act
-    if (act === 'toggle') toggle()
-    else if (act === 'next') step(1)
-    else if (act === 'prev') step(-1)
-    else if (act === 'repeat') {
-      prefs.repeat = prefs.repeat === 'all' ? 'one' : prefs.repeat === 'one' ? 'off' : 'all'
-      savePrefs()
-      renderBar()
-    } else if (act === 'shuffle') {
-      prefs.shuffle = !prefs.shuffle
-      savePrefs()
-      renderBar()
-    } else if (act === 'mute') {
-      prefs.muted = !prefs.muted
-      if (!prefs.muted && prefs.volume === 0) prefs.volume = 0.6
-      if (audio) {
-        audio.muted = prefs.muted
-        audio.volume = prefs.volume
-      }
-      savePrefs()
-      renderBar()
-    }
+    handleAction(target.dataset.act)
   })
 
+  // 手机端：点封面或歌曲信息弹出「封面 + 歌词」页；桌面端：跳到音乐页
   bar.querySelector<HTMLButtonElement>('.nmp-cover')!.addEventListener('click', () => {
+    if (isNarrow()) {
+      toggleSheet()
+      return
+    }
     if (location.hash.startsWith('#/music')) return
     location.hash = '#/music'
+  })
+
+  bar.querySelector<HTMLElement>('.nmp-meta')!.addEventListener('click', () => {
+    if (isNarrow()) toggleSheet()
   })
 
   const progress = bar.querySelector<HTMLInputElement>('#nmp-progress')!
@@ -322,6 +507,17 @@ function renderBar() {
     progress.style.setProperty('--p', String(pct / 100))
   }
 
+  // 弹出页里的进度与时间
+  const sheetProgress = document.getElementById('sheet-progress') as HTMLInputElement | null
+  if (sheetProgress && document.activeElement !== sheetProgress) {
+    sheetProgress.value = String(Math.round(pct * 10))
+    sheetProgress.style.setProperty('--p', String(pct / 100))
+  }
+  const sheetCur = document.getElementById('sheet-cur')
+  const sheetDur = document.getElementById('sheet-dur')
+  if (sheetCur) sheetCur.textContent = mmss(cur)
+  if (sheetDur) sheetDur.textContent = mmss(dur)
+
   const repeatBtn = bar.querySelector<HTMLElement>('[data-act="repeat"]')!
   repeatBtn.innerHTML = prefs.repeat === 'one' ? ICONS.repeatOne : ICONS.repeat
   repeatBtn.title = prefs.repeat === 'one' ? '单曲循环' : prefs.repeat === 'off' ? '不循环' : '列表循环'
@@ -350,13 +546,15 @@ function playTrack(track: Track, list?: Track[]) {
   if (!queue.length) queue = manifest?.tracks.slice() ?? []
   const sameTrack = current?.id === track.id
   current = track
+
+  // 换曲：丢掉旧的 audio 元素、新建一个，避免旧解码器的残余输出漏出来
+  if (!sameTrack) disposeAudio()
   const el = getAudio()
 
   if (!sameTrack) {
-    // 先停下旧曲，避免切换瞬间新旧音源纠缠造成的一声卡顿
-    el.pause()
     el.src = assetUrl(`audio/${track.id}.opus`)
-    el.load()
+    el.volume = prefs.volume
+    el.muted = prefs.muted
   }
   void el.play().catch(() => {
     /* 自动播放被拦，等用户手动点 */
@@ -470,24 +668,26 @@ function onTimeUpdate() {
 }
 
 function renderLyrics() {
-  const box = document.getElementById('now-lyrics')
-  if (!box) return
-  if (!lyrics.length) {
-    box.innerHTML = `<p class="lyrics-empty">${current ? (current.hasLyrics ? '歌词加载中…' : '这首歌没有歌词') : '选一首歌开始播放'}</p>`
-    return
-  }
-  box.innerHTML = `<div class="lyrics-inner">${lyrics
-    .map((line, i) => {
-      const cls = i === lyricCursor ? 'ly is-active' : i < lyricCursor ? 'ly is-past' : 'ly'
-      const text = line.text ? esc(line.text) : '&#8203;'
-      return `<p class="${cls}" data-i="${i}">${text}</p>`
-    })
-    .join('')}</div>`
+  const boxes = document.querySelectorAll<HTMLElement>('.now-lyrics')
+  if (!boxes.length) return
 
-  const active = box.querySelector<HTMLElement>('.ly.is-active')
-  if (active) {
-    const target = active.offsetTop - box.clientHeight / 2 + active.clientHeight / 2
-    box.scrollTo({ top: Math.max(0, target), behavior: 'smooth' })
+  const html = !lyrics.length
+    ? `<p class="lyrics-empty">${current ? (current.hasLyrics ? '歌词加载中…' : '这首歌没有歌词') : '选一首歌开始播放'}</p>`
+    : `<div class="lyrics-inner">${lyrics
+        .map((line, i) => {
+          const cls = i === lyricCursor ? 'ly is-active' : i < lyricCursor ? 'ly is-past' : 'ly'
+          const text = line.text ? esc(line.text) : '&#8203;'
+          return `<p class="${cls}" data-i="${i}">${text}</p>`
+        })
+        .join('')}</div>`
+
+  for (const box of boxes) {
+    box.innerHTML = html
+    const active = box.querySelector<HTMLElement>('.ly.is-active')
+    if (active) {
+      const target = active.offsetTop - box.clientHeight / 2 + active.clientHeight / 2
+      box.scrollTo({ top: Math.max(0, target), behavior: 'smooth' })
+    }
   }
 }
 
@@ -595,32 +795,54 @@ function syncListState() {
 }
 
 function renderNowPanel() {
-  const panel = document.getElementById('now')
-  if (!panel) return
+  const panels = document.querySelectorAll<HTMLElement>('.music-now, .nmp-sheet-panel')
+  if (!panels.length) return
   const track = current
-  const bigCover = panel.querySelector<HTMLImageElement>('#now-cover')
-  const ph = panel.querySelector<HTMLElement>('#now-ph')
-  if (!bigCover) return
+  const playing = Boolean(audio && !audio.paused)
 
-  if (track?.cover) {
-    bigCover.src = assetUrl(track.cover)
-    bigCover.hidden = false
-    if (ph) ph.hidden = true
-  } else {
-    bigCover.hidden = true
-    if (ph) ph.hidden = false
+  for (const panel of panels) {
+    panel.classList.toggle('is-playing', playing)
+
+    // 弹层用封面做放大模糊底图。
+    // 注意必须用绝对 URL：自定义属性里的相对路径会相对 CSS 文件解析，
+    // 会变成 /assets/music/... 而 404。
+    if (track?.cover) {
+      const abs = new URL(assetUrl(track.cover), document.baseURI).href
+      panel.style.setProperty('--sheet-cover', `url("${abs}")`)
+    } else {
+      panel.style.removeProperty('--sheet-cover')
+    }
+
+    const cover = panel.querySelector<HTMLImageElement>('.now-cover img')
+    const ph = panel.querySelector<HTMLElement>('.now-ph')
+    if (cover) {
+      if (track?.cover) {
+        cover.src = assetUrl(track.cover)
+        cover.hidden = false
+        if (ph) ph.hidden = true
+      } else {
+        cover.hidden = true
+        if (ph) ph.hidden = false
+      }
+    }
+
+    const titleEl = panel.querySelector('.now-title')
+    const artistEl = panel.querySelector('.now-artist')
+    const metaEl = panel.querySelector('.now-meta')
+    if (titleEl) titleEl.textContent = track?.title ?? '未在播放'
+    if (artistEl) artistEl.textContent = track ? track.artist : '从列表里选一首歌'
+    if (metaEl) {
+      metaEl.textContent = track
+        ? [track.album, track.category, mmss(track.duration)].filter(Boolean).join(' · ')
+        : 'Opus 64k · 完整曲库'
+    }
   }
-  panel.classList.toggle('is-playing', Boolean(audio && !audio.paused))
 
-  const titleEl = panel.querySelector('#now-title')
-  const artistEl = panel.querySelector('#now-artist')
-  const metaEl = panel.querySelector('#now-meta')
-  if (titleEl) titleEl.textContent = track?.title ?? '未在播放'
-  if (artistEl) artistEl.textContent = track ? track.artist : '从右侧列表选一首歌'
-  if (metaEl) {
-    metaEl.textContent = track
-      ? [track.album, track.category, mmss(track.duration)].filter(Boolean).join(' · ')
-      : 'Opus 64k · 完整曲库'
+  // 弹出页里的播放/暂停图标
+  const sheetPlay = document.querySelector<HTMLElement>('#nmp-sheet .nmp-play')
+  if (sheetPlay) {
+    sheetPlay.innerHTML = playing ? ICONS.pause : ICONS.play
+    sheetPlay.setAttribute('aria-label', playing ? '暂停' : '播放')
   }
 }
 
@@ -665,17 +887,17 @@ export function musicPage(shell: Shell) {
           </div>
         </section>
 
-        <aside class="music-now" id="now">
+        <aside class="music-now">
           <div class="now-cover">
-            <img id="now-cover" alt="" />
-            <span class="now-ph" id="now-ph">♪</span>
+            <img alt="" />
+            <span class="now-ph">♪</span>
           </div>
           <div class="now-text">
-            <b id="now-title">未在播放</b>
-            <span id="now-artist">从右侧列表选一首歌</span>
-            <small id="now-meta">Opus 64k · 完整曲库</small>
+            <b class="now-title">未在播放</b>
+            <span class="now-artist">从右侧列表选一首歌</span>
+            <small class="now-meta">Opus 64k · 完整曲库</small>
           </div>
-          <div class="now-lyrics" id="now-lyrics"><p class="lyrics-empty">选一首歌开始播放</p></div>
+          <div class="now-lyrics"><p class="lyrics-empty">选一首歌开始播放</p></div>
         </aside>
       </div>
     </main>`,
@@ -739,6 +961,10 @@ export function musicPage(shell: Shell) {
 
 // 全局快捷键只注册一次，避免每次进页面就叠加监听
 window.addEventListener('keydown', (event) => {
+  if (event.code === 'Escape' && sheetOpen()) {
+    closeSheet()
+    return
+  }
   if (!location.hash.startsWith('#/music')) return
   const tag = (event.target as HTMLElement)?.tagName
   if (tag === 'INPUT' || tag === 'TEXTAREA') return

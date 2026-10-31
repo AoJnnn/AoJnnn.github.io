@@ -4,23 +4,37 @@
 
 /* ---------- 焦点与点按反馈 ---------- */
 
-/* 去掉移动端点按时的默认高亮（那层蓝灰色方块） */
-.nmp button,
-.nmp input,
+/* 播放条和弹层是整块可点区域（歌名/歌手是 div，不是 button），
+   只覆盖 button/input 的话，点这些 div 仍会闪出浏览器的默认蓝灰块，
+   所以这里对整棵子树统一关掉点按高亮 */
+.nmp,
+.nmp *,
+.nmp-sheet,
+.nmp-sheet *,
 .music-page button,
 .music-page input,
 .music-page a {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* 歌名那块 div 绑了 click，部分浏览器会顺势给它加焦点框 */
+.nmp-meta:focus,
+.nmp-meta:focus-visible,
+.sheet-backdrop:focus,
+.sheet-backdrop:focus-visible {
+  outline: none;
+}
+
 /* 鼠标点击 / 触摸点击不显示焦点框（不影响键盘） */
 .nmp button:focus:not(:focus-visible),
+.nmp-sheet button:focus:not(:focus-visible),
 .music-page button:focus:not(:focus-visible) {
   outline: none;
 }
 
 /* 键盘导航保留一个低调的描边，兼顾可访问性 */
 .nmp button:focus-visible,
+.nmp-sheet button:focus-visible,
 .music-page button:focus-visible {
   outline: 2px solid var(--blue);
   outline-offset: 2px;
@@ -29,6 +43,7 @@
 /* 不支持 :focus-visible 的旧浏览器：退回不显示焦点框 */
 @supports not selector(:focus-visible) {
   .nmp button:focus,
+  .nmp-sheet button:focus,
   .music-page button:focus {
     outline: none;
   }
@@ -349,9 +364,45 @@
   overflow-x: hidden;
   overflow-y: auto;
   margin-top: 14px;
-  scrollbar-width: thin;
   mask-image: linear-gradient(180deg, transparent 0, #000 34px, #000 calc(100% - 34px), transparent 100%);
   -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 34px, #000 calc(100% - 34px), transparent 100%);
+}
+
+/* Firefox 只能用标准属性。（注意：一旦设置 scrollbar-width，
+   Chrome 会忽略 ::-webkit-scrollbar，所以这里用 -moz-appearance 探测，
+   只在 Firefox 生效） */
+@supports (-moz-appearance: none) {
+  .now-lyrics {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(37, 35, 31, 0.2) transparent;
+  }
+}
+
+/* Chrome / Edge / Safari：默认滚动条带上下箭头、宽 15px，太抢眼，
+   改成 6px 半透明细条，悬停时加深 */
+.now-lyrics::-webkit-scrollbar {
+  width: 6px;
+}
+
+.now-lyrics::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.now-lyrics::-webkit-scrollbar-thumb {
+  background: rgba(37, 35, 31, 0.16);
+  border-radius: 3px;
+}
+
+.now-lyrics::-webkit-scrollbar-thumb:hover {
+  background: rgba(37, 35, 31, 0.34);
+}
+
+.now-lyrics::-webkit-scrollbar-button {
+  display: none;
+}
+
+.now-lyrics::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 .lyrics-inner {
@@ -409,6 +460,9 @@ body.has-nmp {
   -webkit-backdrop-filter: blur(16px) saturate(1.4);
   border-top: 1px solid var(--line);
   box-shadow: 0 -10px 30px rgba(37, 35, 31, 0.07);
+  /* 连续点歌名时不要触发文本选择（那会闪一层蓝色选区） */
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .nmp.is-active {
@@ -485,7 +539,8 @@ body.has-nmp {
 
 /* 缓冲提示：不额外插入 DOM，用伪元素挂在歌手名后面 */
 .nmp.is-buffering .nmp-artist::after,
-.music-now.is-buffering #now-meta::after {
+.music-now.is-buffering .now-meta::after,
+.nmp-sheet-panel.is-buffering .now-meta::after {
   content: ' · 缓冲中…';
   color: var(--red);
 }
@@ -666,28 +721,9 @@ body.has-nmp {
     gap: 28px;
   }
 
+  /* 手机端不在页面顶部显示「正在播放」，
+     改为点击底部播放条弹出封面 + 歌词页 */
   .music-now {
-    position: static;
-    order: -1;
-    display: grid;
-    grid-template-columns: 96px minmax(0, 1fr);
-    gap: 14px;
-    align-items: center;
-    padding: 16px;
-  }
-
-  .now-cover {
-    margin: 0;
-    width: 96px;
-    grid-row: span 2;
-  }
-
-  .now-text {
-    border-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  .now-lyrics {
     display: none;
   }
 }
@@ -751,5 +787,242 @@ body.has-nmp {
 
   body.has-nmp {
     padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ==================================================================
+   手机端「正在播放」弹出页
+   ================================================================== */
+
+.nmp-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  visibility: hidden;
+  pointer-events: none;
+  /* 关闭时延迟到退场动画结束再隐藏，
+     否则 visibility:hidden 立刻生效会把下滑动画截断，看起来像直接消失 */
+  transition: visibility 0s linear 0.34s;
+}
+
+.nmp-sheet.is-open {
+  visibility: visible;
+  pointer-events: auto;
+  transition: visibility 0s linear 0s;
+}
+
+.sheet-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(37, 35, 31, 0.44);
+  opacity: 0;
+  transition: opacity 0.26s ease;
+  /* iOS 上 overflow:hidden 有时拦不住手势滚动，这里再禁一层 */
+  touch-action: none;
+  overscroll-behavior: contain;
+}
+
+.nmp-sheet.is-open .sheet-backdrop {
+  opacity: 1;
+}
+
+.nmp-sheet-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: 90dvh;
+  padding: 26px 22px calc(18px + env(safe-area-inset-bottom, 0px));
+  background: var(--paper);
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -14px 44px rgba(37, 35, 31, 0.24);
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+  overflow: hidden;
+  /* 封面由 JS 写入，用于下方的放大模糊底色 */
+  --sheet-cover: none;
+  isolation: isolate;
+}
+
+/* 封面放大 + 模糊，作为弹层背景 */
+.nmp-sheet-panel::before {
+  content: '';
+  position: absolute;
+  inset: -48px;
+  z-index: 0;
+  background-image: var(--sheet-cover);
+  background-size: cover;
+  background-position: center;
+  filter: blur(22px) saturate(1.7) brightness(1.06);
+  opacity: 0.92;
+  pointer-events: none;
+}
+
+/* 米色薄罩压住模糊层，保证文字对比度；上浅下深，
+   让封面颜色在上半部分更明显，下半部分留给歌词阅读 */
+.nmp-sheet-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(245, 242, 234, 0.18) 0%,
+    rgba(245, 242, 234, 0.52) 44%,
+    rgba(245, 242, 234, 0.86) 100%
+  );
+  pointer-events: none;
+}
+
+/* flex 子项无需 position 也能生效 z-index */
+.nmp-sheet-panel > * {
+  z-index: 1;
+}
+
+@supports not (height: 100dvh) {
+  .nmp-sheet-panel {
+    max-height: 88vh;
+  }
+}
+
+.nmp-sheet.is-open .nmp-sheet-panel {
+  transform: translateY(0);
+}
+
+.sheet-grip {
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  width: 38px;
+  height: 4px;
+  margin-left: -19px;
+  border-radius: 2px;
+  background: #d9d3c7;
+}
+
+.sheet-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.16s, color 0.16s;
+}
+
+.sheet-close:hover {
+  background: rgba(37, 35, 31, 0.07);
+  color: var(--ink);
+}
+
+.nmp-sheet-panel .now-cover {
+  width: min(60vw, 230px);
+  margin: 12px auto 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #e8e2d7;
+  box-shadow: 0 12px 32px rgba(37, 35, 31, 0.2);
+  flex: none;
+}
+
+.nmp-sheet-panel .sheet-text {
+  display: grid;
+  gap: 3px;
+  text-align: center;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  flex: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.nmp-sheet-panel .sheet-text b {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.nmp-sheet-panel .sheet-text span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.nmp-sheet-panel .sheet-text small {
+  font-size: 11px;
+  color: var(--anime-cyan);
+  letter-spacing: 0.04em;
+}
+
+.nmp-sheet-panel .now-lyrics {
+  flex: 1 1 auto;
+  min-height: 120px;
+  height: auto;
+  margin-top: 8px;
+}
+
+.nmp-sheet-panel .lyrics-inner {
+  padding: 90px 4px 90px 0;
+}
+
+/* 真正的滚动容器是 html（style.css 里 html{overflow-y:scroll}），
+   只锁 body 的话，在灰色遮罩上拖动仍会滚动背后的页面 */
+html.sheet-open,
+body.sheet-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.nmp-sheet-panel .sheet-seek {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 2px 2px 10px;
+  flex: none;
+}
+
+.nmp-sheet-panel .sheet-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  padding-bottom: 12px;
+  flex: none;
+}
+
+.nmp-sheet-panel .sheet-controls .nmp-btn {
+  width: 40px;
+  height: 40px;
+}
+
+.nmp-sheet-panel .sheet-controls .nmp-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+.nmp-sheet-panel .sheet-controls .nmp-play {
+  width: 56px;
+  height: 56px;
+  margin: 0;
+}
+
+.nmp-sheet-panel .sheet-controls .nmp-play svg {
+  width: 22px;
+  height: 22px;
+}
+
+@media (max-width: 980px) {
+  .nmp-meta {
+    cursor: pointer;
   }
 }
