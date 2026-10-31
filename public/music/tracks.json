@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-31T09:05:25.036Z",
+  "generatedAt": "2026-10-31T10:08:26.610Z",
   "bitrate": "64k",
   "totalDuration": 68096,
   "categories": [
@@ -35,10 +35,9 @@
       "cover": "covers/68694d9f0b.webp",
       "thumb": "covers/68694d9f0b-sm.webp",
       "hasLyrics": true,
-      "size": 59310193,
+      "size": 59310178,
       "srcSig": "103801980-1793240584000",
-      "lyricsChecked": true,
-      "lyricsSig": "lrc-10734-1771906646000"
+      "lyricsSig": "lrc-10780-1793440948144"
     },
     {
       "id": "2c3c10d56d",
@@ -162,6 +161,21 @@
       "size": 2270028,
       "srcSig": "4096616-1793240571000",
       "lyricsChecked": true,
+      "lyricsSig": ""
+    },
+    {
+      "id": "75e469a581",
+      "title": "Bloom of Youth (风华正茂)",
+      "artist": "Key Sounds Label",
+      "album": "クドわふたー オリジナル サウンドトラック",
+      "category": "纯音乐",
+      "duration": 148,
+      "synced": true,
+      "cover": "covers/75e469a581.webp",
+      "thumb": "covers/75e469a581-sm.webp",
+      "hasLyrics": true,
+      "size": 1427669,
+      "srcSig": "2460150-1793198346000",
       "lyricsSig": ""
     },
     {
@@ -1323,21 +1337,6 @@
       "hasLyrics": true,
       "size": 2027471,
       "srcSig": "4543347-1793198348000",
-      "lyricsSig": ""
-    },
-    {
-      "id": "16510dc4fd",
-      "title": "Bloom of Youth (风华正茂)",
-      "artist": "Key Sounds Label",
-      "album": "クドわふたー オリジナル サウンドトラック",
-      "category": "日语",
-      "duration": 148,
-      "synced": true,
-      "cover": "covers/16510dc4fd.webp",
-      "thumb": "covers/16510dc4fd-sm.webp",
-      "hasLyrics": true,
-      "size": 1427684,
-      "srcSig": "2460150-1793198346000",
       "lyricsSig": ""
     },
     {

@@ -155,6 +155,39 @@ function setBuffering(on: boolean) {
   for (const el of document.querySelectorAll<HTMLElement>('.music-now, .nmp-sheet-panel')) {
     el.classList.toggle('is-buffering', on)
   }
+
+  // 顶部扫动条：只在「真的还没出声」时显示，避免播放中短暂缓冲就闪一下
+  let loadbar = document.getElementById('nmp-loadbar')
+  if (!loadbar) {
+    loadbar = document.createElement('div')
+    loadbar.id = 'nmp-loadbar'
+    loadbar.className = 'nmp-loadbar'
+    loadbar.setAttribute('aria-hidden', 'true')
+    document.body.appendChild(loadbar)
+  }
+  if (on) {
+    loadbar.classList.add('is-on')
+  } else {
+    loadbar.classList.remove('is-on')
+  }
+}
+
+/**
+ * 已缓冲比例（0~1）。
+ * 取从当前位置往后连续可用、或整段覆盖到当前播放点的那一段——
+ * 拖动进度条后 timeRanges 可能有多段，取离当前位置最近且向前覆盖最多的。
+ */
+function bufferedRatio(duration: number): number {
+  if (!audio || !Number.isFinite(duration) || duration <= 0) return 0
+  const ranges = audio.buffered
+  if (!ranges || !ranges.length) return 0
+  const t = audio.currentTime
+  let end = 0
+  for (let i = 0; i < ranges.length; i++) {
+    // 只要这一段盖住了播放点，就认为播放点之后已经有内容
+    if (ranges.start(i) <= t + 0.5) end = Math.max(end, ranges.end(i))
+  }
+  return Math.max(0, Math.min(1, end / duration))
 }
 
 function wireAudio(el: HTMLAudioElement) {
@@ -186,6 +219,9 @@ function wireAudio(el: HTMLAudioElement) {
   el.addEventListener('playing', () => setBuffering(false))
   el.addEventListener('canplay', () => setBuffering(false))
   el.addEventListener('error', () => setBuffering(false))
+  // progress 事件在下载推进时更频繁，用它刷新缓冲段
+  el.addEventListener('progress', () => renderBar())
+  el.addEventListener('loadeddata', () => renderBar())
 }
 
 function getAudio(): HTMLAudioElement {
@@ -500,12 +536,17 @@ function renderBar() {
   const cur = audio?.currentTime ?? 0
   bar.querySelector('.nmp-cur')!.textContent = mmss(cur)
   bar.querySelector('.nmp-dur')!.textContent = mmss(dur)
+
+  // 已缓冲到哪里（浅色段），让「还在加载」有可视反馈
+  const bufferedPct = bufferedRatio(dur)
+
   const progress = bar.querySelector<HTMLInputElement>('#nmp-progress')!
   const pct = dur > 0 ? Math.min(100, (cur / dur) * 100) : 0
   if (document.activeElement !== progress) {
     progress.value = String(Math.round(pct * 10))
     progress.style.setProperty('--p', String(pct / 100))
   }
+  progress.style.setProperty('--b', String(bufferedPct))
 
   // 弹出页里的进度与时间
   const sheetProgress = document.getElementById('sheet-progress') as HTMLInputElement | null
@@ -513,6 +554,7 @@ function renderBar() {
     sheetProgress.value = String(Math.round(pct * 10))
     sheetProgress.style.setProperty('--p', String(pct / 100))
   }
+  if (sheetProgress) sheetProgress.style.setProperty('--b', String(bufferedPct))
   const sheetCur = document.getElementById('sheet-cur')
   const sheetDur = document.getElementById('sheet-dur')
   if (sheetCur) sheetCur.textContent = mmss(cur)
@@ -552,6 +594,8 @@ function playTrack(track: Track, list?: Track[]) {
   const el = getAudio()
 
   if (!sameTrack) {
+    // 立刻给出反馈：waiting 事件有时要等到真正卡住才触发
+    setBuffering(true)
     el.src = assetUrl(`audio/${track.id}.opus`)
     el.volume = prefs.volume
     el.muted = prefs.muted

@@ -435,6 +435,63 @@
   padding: 40px 0;
 }
 
+/* ---------- 切歌时的顶部加载条 ---------- */
+
+/* 冷缓存下切歌要等几秒，页面顶部的扫动条能给出即时反馈 */
+.nmp-loadbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 80;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.nmp-loadbar.is-on {
+  opacity: 1;
+}
+
+.nmp-loadbar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* 站点色系里最深的灰米（--muted 提亮版），比 --line 更清楚但仍不抢眼 */
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(129, 124, 114, 0.18) 18%,
+    rgba(129, 124, 114, 0.62) 50%,
+    rgba(129, 124, 114, 0.18) 82%,
+    transparent
+  );
+  transform: translateX(-100%);
+}
+
+.nmp-loadbar.is-on::after {
+  animation: nmp-loadbar-sweep 1.1s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes nmp-loadbar-sweep {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nmp-loadbar.is-on::after,
+  .nmp.is-buffering .nmp-range::-webkit-slider-runnable-track,
+  .nmp-sheet-panel.is-buffering .nmp-range::-webkit-slider-runnable-track {
+    animation: none;
+  }
+}
+
 /* ---------- 底部播放条 ---------- */
 
 /* env(safe-area-inset-bottom) 需要 <meta viewport> 里的 viewport-fit=cover 才生效 */
@@ -660,19 +717,50 @@ body.has-nmp {
   cursor: pointer;
   min-width: 0;
   --p: 0;
+  --b: 0;
   --thumb: 11px;
   --fill: var(--red);
   --fill-end: calc(var(--thumb) / 2 + var(--p) * (100% - var(--thumb)));
+  /* 缓冲段终点，同样按滑块偏移换算 */
+  --buf-end: calc(var(--thumb) / 2 + var(--b) * (100% - var(--thumb)));
 }
 
+/* 三段式轨道：未加载(灰) → 已缓冲(灰米) → 已播放(实红) */
 .nmp-range::-webkit-slider-runnable-track {
   height: 4px;
   border-radius: 2px;
   background: linear-gradient(
     to right,
     var(--fill) 0 var(--fill-end),
-    #ded7c9 var(--fill-end) 100%
+    #c9c2b4 var(--fill-end) var(--buf-end),
+    #ded7c9 var(--buf-end) 100%
   );
+}
+
+/* 加载中：缓冲段做流动斜纹，提示「正在下载」 */
+.nmp.is-buffering .nmp-range::-webkit-slider-runnable-track,
+.nmp-sheet-panel.is-buffering .nmp-range::-webkit-slider-runnable-track {
+  background:
+    repeating-linear-gradient(
+      115deg,
+      rgba(201, 194, 180, 0.35) 0 6px,
+      rgba(129, 124, 114, 0.45) 6px 12px
+    ) 0 0 / 200% 100%,
+    linear-gradient(
+      to right,
+      var(--fill) 0 var(--fill-end),
+      #c9c2b4 var(--fill-end) 100%
+    );
+  animation: nmp-loading-stripe 0.8s linear infinite;
+}
+
+@keyframes nmp-loading-stripe {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 24px 0, 0 0;
+  }
 }
 
 .nmp-range::-webkit-slider-thumb {
