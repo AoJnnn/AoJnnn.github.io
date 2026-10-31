@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-31T05:23:56.727Z",
+  "generatedAt": "2026-10-31T09:05:25.036Z",
   "bitrate": "64k",
-  "totalDuration": 66372,
+  "totalDuration": 68096,
   "categories": [
     "纯音乐",
     "日语",
@@ -31,14 +31,14 @@
       "album": "",
       "category": "纯音乐",
       "duration": 6476.9,
-      "synced": false,
+      "synced": true,
       "cover": "covers/68694d9f0b.webp",
       "thumb": "covers/68694d9f0b-sm.webp",
-      "hasLyrics": false,
+      "hasLyrics": true,
       "size": 59310193,
       "srcSig": "103801980-1793240584000",
       "lyricsChecked": true,
-      "lyricsSig": ""
+      "lyricsSig": "lrc-10734-1771906646000"
     },
     {
       "id": "2c3c10d56d",
@@ -135,8 +135,8 @@
     },
     {
       "id": "6f389874d6",
-      "title": "鸟之诗 (小提琴合奏)",
-      "artist": "NexR",
+      "title": "鸟之诗 (钢琴版)",
+      "artist": "Animenzzz",
       "album": "鸟之诗",
       "category": "纯音乐",
       "duration": 223.4,
@@ -144,8 +144,8 @@
       "cover": "covers/6f389874d6.webp",
       "thumb": "covers/6f389874d6-sm.webp",
       "hasLyrics": true,
-      "size": 2143835,
-      "srcSig": "3688134-1793198364000",
+      "size": 2143820,
+      "srcSig": "3688134-1793436235318",
       "lyricsSig": ""
     },
     {
@@ -1111,6 +1111,21 @@
       "lyricsSig": ""
     },
     {
+      "id": "3f32b1a9ee",
+      "title": "夏霞",
+      "artist": "あたらよ",
+      "album": "夏霞",
+      "category": "日语",
+      "duration": 228.8,
+      "synced": true,
+      "cover": "covers/3f32b1a9ee.webp",
+      "thumb": "covers/3f32b1a9ee-sm.webp",
+      "hasLyrics": true,
+      "size": 1899902,
+      "srcSig": "4548755-1793435923700",
+      "lyricsSig": ""
+    },
+    {
       "id": "82e3b7cb57",
       "title": "小柳香穗asmr",
       "artist": "田中贵子",
@@ -1170,6 +1185,21 @@
       "hasLyrics": true,
       "size": 2071781,
       "srcSig": "4522319-1793198365000",
+      "lyricsSig": ""
+    },
+    {
+      "id": "8b586a00bf",
+      "title": "嘘月",
+      "artist": "ヨルシカ",
+      "album": "創作",
+      "category": "日语",
+      "duration": 290.4,
+      "synced": true,
+      "cover": "covers/8b586a00bf.webp",
+      "thumb": "covers/8b586a00bf-sm.webp",
+      "hasLyrics": true,
+      "size": 2472780,
+      "srcSig": "4678280-1793435923741",
       "lyricsSig": ""
     },
     {
@@ -2144,6 +2174,21 @@
       "size": 2445722,
       "srcSig": "4975014-1793198364000",
       "lyricsChecked": true,
+      "lyricsSig": ""
+    },
+    {
+      "id": "484ec069cf",
+      "title": "だから僕は音楽を辞めた",
+      "artist": "ヨルシカ",
+      "album": "だから僕は音楽を辞めた",
+      "category": "日语",
+      "duration": 242.9,
+      "synced": true,
+      "cover": "covers/484ec069cf.webp",
+      "thumb": "covers/484ec069cf-sm.webp",
+      "hasLyrics": true,
+      "size": 1959748,
+      "srcSig": "10314848-1793435923576",
       "lyricsSig": ""
     },
     {
@@ -3263,6 +3308,21 @@
       "lyricsSig": ""
     },
     {
+      "id": "77cf4f3a99",
+      "title": "愛言葉V",
+      "artist": "DECO*27/初音ミク",
+      "album": "愛言葉V",
+      "category": "术力口",
+      "duration": 264.4,
+      "synced": true,
+      "cover": "covers/77cf4f3a99.webp",
+      "thumb": "covers/77cf4f3a99-sm.webp",
+      "hasLyrics": true,
+      "size": 2240633,
+      "srcSig": "10441134-1793437489280",
+      "lyricsSig": ""
+    },
+    {
       "id": "ff21babbcf",
       "title": "愛して愛して愛して",
       "artist": "きくお/初音ミク",
@@ -3309,6 +3369,21 @@
       "lyricsSig": ""
     },
     {
+      "id": "374cf3b20c",
+      "title": "朧月",
+      "artist": "初音ミク/湊貴大",
+      "album": "magnet -favorites plus-",
+      "category": "术力口",
+      "duration": 255,
+      "synced": true,
+      "cover": "covers/374cf3b20c.webp",
+      "thumb": "covers/374cf3b20c-sm.webp",
+      "hasLyrics": true,
+      "size": 2132786,
+      "srcSig": "10260533-1793437171455",
+      "lyricsSig": ""
+    },
+    {
       "id": "f8cb48ac24",
       "title": "千本桜",
       "artist": "黒うさP/初音ミク",
@@ -3322,6 +3397,21 @@
       "size": 1949746,
       "srcSig": "4396948-1793198358000",
       "lyricsChecked": true,
+      "lyricsSig": ""
+    },
+    {
+      "id": "d07959403d",
+      "title": "少女A",
+      "artist": "椎名もた/鏡音リン",
+      "album": "生きる",
+      "category": "术力口",
+      "duration": 242.1,
+      "synced": true,
+      "cover": "covers/d07959403d.webp",
+      "thumb": "covers/d07959403d-sm.webp",
+      "hasLyrics": true,
+      "size": 1999234,
+      "srcSig": "4123384-1793435923753",
       "lyricsSig": ""
     },
     {
@@ -3383,6 +3473,21 @@
       "hasLyrics": true,
       "size": 2209668,
       "srcSig": "4671756-1793202778000",
+      "lyricsSig": ""
+    },
+    {
+      "id": "88024ff627",
+      "title": "威風堂々",
+      "artist": "梅とら/巡音ルカ/初音ミク/GUMI/IA/鏡音リン/MAYU",
+      "album": "EXIT TUNES PRESENTS Vocalofuture feat. 初音ミク",
+      "category": "术力口",
+      "duration": 200.4,
+      "synced": true,
+      "cover": "covers/88024ff627.webp",
+      "thumb": "covers/88024ff627-sm.webp",
+      "hasLyrics": true,
+      "size": 1641948,
+      "srcSig": "3318808-1793434168192",
       "lyricsSig": ""
     },
     {
