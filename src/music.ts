@@ -700,53 +700,76 @@ function renderBar() {
  * ------------------------------------------------------------------ */
 
 /**
- * 首次播放加速：在用户「真的要播」之前就把请求发出去。
+ * 首次播放加速：在用户「真的要播」之前把请求发出去。
  *
- * 冷缓存下每首歌都要从 GitHub 源站回源（实测 127KB/s），
+ * 冷缓存下每首歌都要从 GitHub 源站回源（实测约 127KB/s），
  * 只有把下载提前到点击之前，才能真正缩短「点下去到出声」的时间。
+ *
+ * 分两级，避免白白消耗流量：
+ * - 悬停 / 开页：只取开头 256KB（够触发 CDN 回源并让起播更快）
+ * - 真正按下（并且是鼠标设备）：才整首预取并写入本地缓存
  */
+/** 已经发过「分段预热」的曲目，同一首不重复请求 */
+const warmed = new Set<string>()
+/** 正在整首预取的曲目 */
 const prefetching = new Set<string>()
 
-function prefetchAudio(track: Track) {
-  if (!track || prefetching.has(track.id) || cachedIds.has(track.id)) return
-  // 最多同时准备 3 首，避免把带宽铺得太散
-  if (prefetching.size >= 3) return
-  prefetching.add(track.id)
-  fetch(assetUrl(`audio/${track.id}.opus`), { credentials: 'same-origin' })
-    .then((res) => (res.ok ? res.blob() : null))
-    .catch(() => null)
-    .finally(() => prefetching.delete(track.id))
-}
-
-/**
- * 页面一打开就轻量预热列表第一首：
- * 只取开头 256KB，足以让 CDN 边缘节点回源并缓存，
- * 自己几乎不耗流量，但能显著缩短第一次点击的等待。
- */
+/** 轻量预热：只取开头 256KB */
 function warmTrack(track: Track) {
-  if (!track || cachedIds.has(track.id) || prefetching.has(track.id)) return
-  prefetching.add(track.id)
+  if (!track || warmed.has(track.id) || cachedIds.has(track.id)) return
+  warmed.add(track.id)
   fetch(assetUrl(`audio/${track.id}.opus`), {
     headers: { Range: 'bytes=0-262143' },
     credentials: 'same-origin',
+  }).catch(() => {
+    warmed.delete(track.id)
   })
-    .catch(() => null)
-    .finally(() => prefetching.delete(track.id))
 }
 
-/** 悬停 / 按下时提前下载，把等待藏进用户的操作延迟里 */
+/** 整首预取并存进本地缓存（仅在用户明确按下时调用） */
+function prefetchAudio(track: Track) {
+  if (!track || prefetching.has(track.id) || cachedIds.has(track.id)) return
+  if (prefetching.size >= 2) return
+  prefetching.add(track.id)
+  fetch(assetUrl(`audio/${track.id}.opus`), { credentials: 'same-origin' })
+    .then(async (res) => {
+      if (!res.ok) return
+      const blob = await res.blob()
+      if (blob.size === 0) return
+      await putCachedBlob(track.id, blob)
+      cachedIds.add(track.id)
+    })
+    .catch(() => null)
+    .finally(() => {
+      prefetching.delete(track.id)
+    })
+}
+
+/** 只有鼠标这类精确指针才值得整首预取，触屏按流量算太贵 */
+const hasPrecisePointer = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia?.('(hover: hover) and (pointer: fine)').matches === true
+
+/** 悬停只预热、按下才预取，把等待藏进用户的操作延迟里 */
 function bindPrefetch() {
   const host = document.getElementById('music-list')
   if (!host) return
-  const onIntent = (event: Event) => {
+  const trackOf = (event: Event): Track | undefined => {
     const row = (event.target as HTMLElement).closest<HTMLElement>('.ml-row')
     const id = row?.dataset.id
-    if (!id) return
-    const track = (manifest?.tracks ?? []).find((t) => t.id === id)
-    if (track) prefetchAudio(track)
+    if (!id) return undefined
+    return (manifest?.tracks ?? []).find((t) => t.id === id)
   }
-  host.addEventListener('pointerover', onIntent)
-  host.addEventListener('pointerdown', onIntent)
+  host.addEventListener('pointerover', (event) => {
+    const track = trackOf(event)
+    if (track) warmTrack(track)
+  })
+  host.addEventListener('pointerdown', (event) => {
+    const track = trackOf(event)
+    if (!track) return
+    warmTrack(track)
+    if (hasPrecisePointer()) prefetchAudio(track)
+  })
 }
 
 function playTrack(track: Track, list?: Track[]) {
@@ -828,29 +851,44 @@ function updateMediaSession(track: Track) {
  *  歌词
  * ------------------------------------------------------------------ */
 
+/** 歌词请求序号，用来丢弃「已经切走之后才回来」的过期响应 */
+let lyricSeq = 0
+
 async function loadLyrics(track: Track) {
+  const seq = ++lyricSeq
+  // 只认最后一次请求：快速切歌时，慢的那次不能覆盖新的
+  const isStale = () => seq !== lyricSeq || current?.id !== track.id
+
   lyrics = []
   lyricCursor = -1
   if (!track.hasLyrics) {
     renderLyrics()
     return
   }
+
+  let next: LyricLine[] = []
   try {
     const res = await fetch(assetUrl(`lyrics/${track.id}.lrc`))
+    if (isStale()) return
     if (!res.ok) throw new Error('no lyrics')
     const text = await res.text()
-    lyrics = parseLrc(text)
-    if (!lyrics.length) {
+    if (isStale()) return
+    next = parseLrc(text)
+    if (!next.length) {
       // 完全无时间轴的纯文本歌词：去掉残留方括号后逐行显示
-      lyrics = text
+      next = text
         .split(/\r?\n/)
         .map((l) => l.replace(/\[[^\]]*\]/g, '').trim())
         .filter(Boolean)
         .map((l) => ({ time: -1, text: l }))
     }
   } catch {
-    lyrics = []
+    if (isStale()) return
+    next = []
   }
+
+  if (isStale()) return
+  lyrics = next
   renderLyrics()
   renderNowPanel()
 }

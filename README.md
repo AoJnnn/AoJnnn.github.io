@@ -1,4 +1,4 @@
-# Lian / Notes
+# AoJnnn / OurNotes
 
 一个基于 Vite + TypeScript 的静态个人博客，文章使用 Markdown 管理，适合部署到 GitHub Pages，也方便未来迁移到自己的服务器。
 
