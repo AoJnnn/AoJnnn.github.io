@@ -104,6 +104,9 @@ const mmss = (seconds: number) => {
 
 const assetUrl = (path: string) => `${BASE}${path}`
 
+/** 站内音乐资源的绝对地址，供音乐页以外的地方（如工具箱测速）使用 */
+export const musicAssetUrl = (path: string) => new URL(assetUrl(path), document.baseURI).href
+
 /** 解析 LRC，返回按时间排序的行 */
 function parseLrc(text: string): LyricLine[] {
   const out: LyricLine[] = []

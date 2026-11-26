@@ -1,6 +1,7 @@
 import './style.css'
-import { musicPage } from './music'
+import { musicPage, musicAssetUrl } from './music'
 import { setupTabTitle } from './tabtitle'
+import { runSpeedTest, describe, formatMbps, formatMs } from './speedtest'
 import { marked } from 'marked'
 import hljs from 'highlight.js/lib/common'
 import 'highlight.js/styles/github-dark.css'
@@ -56,12 +57,131 @@ function renderGuestMessages(messages: GuestMessage[]) { const list = document.q
 async function reloadGuestbook(status?: HTMLElement | null) { const st = status ?? document.querySelector<HTMLElement>('#guestbook-status'); try { renderGuestMessages(await fetchGuestMessages()); if (st) st.textContent = '每个浏览器 30 秒内只能发送一次'; return true } catch { const list = document.querySelector<HTMLDivElement>('#guestbook-list'); if (list) { list.innerHTML = '<p class="guestbook-empty">留言加载失败，<button class="text-link" id="guestbook-retry" type="button">点此重试</button></p>'; document.getElementById('guestbook-retry')?.addEventListener('click', () => { if (st) st.textContent = '正在重新加载...'; void reloadGuestbook(st) }) } if (st) st.textContent = '留言暂时加载失败'; return false } }
 
 async function bindGuestbook() { const form = document.querySelector<HTMLFormElement>('#guestbook-form'); if (!form) return; const status = document.querySelector<HTMLSpanElement>('#guestbook-status')!; await reloadGuestbook(status); form.addEventListener('submit', async (event) => { event.preventDefault(); const nameInput = form.elements.namedItem('name') as HTMLInputElement; const contentInput = form.elements.namedItem('content') as HTMLTextAreaElement; const honeypot = form.elements.namedItem('website') as HTMLInputElement; const name = nameInput.value.trim(); const content = contentInput.value.trim(); if (honeypot.value || !name || !content) { status.textContent = '请填写名字和内容'; return } if (name.length > 30 || content.length > 500) { status.textContent = '名字最多 30 个字，内容最多 500 个字'; return } const now = Date.now(); const day = new Date().toISOString().slice(0, 10); const activity = getGuestbookActivity(); const count = activity.day === day ? activity.count || 0 : 0; if (activity.last && now - activity.last < guestbookCooldown) { status.textContent = '发送太频繁了，请稍等 30 秒'; return } if (count >= guestbookDailyLimit) { status.textContent = '今天发送次数已达到上限，请明天再来'; return } const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!; button.disabled = true; status.textContent = '正在发送...'; try { const messages = await fetchGuestMessages(); messages.push({ name, content, time: new Date().toISOString() }); const value = JSON.stringify(messages.slice(-300)); const response = await fetch(guestbookUpdateUrl, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ key: guestbookKey, value }) }); const result = await response.json() as { status?: number }; if (!result.status) throw new Error('TextDB update failed'); setGuestbookActivity({ day, count: count + 1, last: now }); form.reset(); renderGuestMessages(messages); status.textContent = '留言已发送，谢谢你的留言'; } catch { status.textContent = '发送失败，请稍后再试'; } finally { button.disabled = false } }) }
-function home() { shell(`<main><section class="hero-section"><div class="eyebrow">葱厨 · 河豚 · 草履虫 <span></span></div><h1>你所热爱的，<br><em>是你的生活吗？</em></h1><p class="hero-copy">这里是 AoJnnn 的个人笔记。写代码、折腾网络，也记录一些二次元生活里的小灵感。</p><div class="hero-meta"><span class="avatar"><img src="${profilePic}" alt="AoJnnn 头像"></span><span>你好，我是 AoJnnn<br><small>一个喜欢写代码和看番的普通人</small></span></div></section><section class="latest"><div class="section-heading"><div><span class="eyebrow">LATEST NOTES</span><h2>最近写了什么</h2></div><a class="text-link" href="#/archive">查看全部 ${icon('→')}</a></div><div class="post-grid">${posts.slice(0, 3).map(postCard).join('')}</div></section><section class="home-tools"><div><span class="eyebrow">SMALL UTILITIES</span><h2>几个小工具</h2><p>能帮到你就非常荣幸啦～ (≧▽≦) </p></div><a class="tool-teaser" href="#/tools/json-tool"><span class="tool-number">01</span><strong>文本工具箱</strong><span>JSON 格式化 · 字数统计</span><b>${icon('↗')}</b></a></section>${guestbookMarkup()}</main>`, '') ; bindGuestbook() }
+function home() { shell(`<main><section class="hero-section"><div class="eyebrow"><a class="egg-link" href="https://aojnnn.github.io/comic/" target="_blank" rel="noreferrer" title="葱厨 · 河豚 · 草履虫">葱厨</a> · 河豚 · 草履虫 <span></span></div><h1>你所热爱的，<br><em>是你的生活吗？</em></h1><p class="hero-copy">这里是 AoJnnn 的个人笔记。写代码、折腾网络，也记录一些二次元生活里的小灵感。</p><div class="hero-meta"><span class="avatar"><img src="${profilePic}" alt="AoJnnn 头像"></span><span>你好，我是 AoJnnn<br><small>一个喜欢写代码和看番的普通人</small></span></div></section><section class="latest"><div class="section-heading"><div><span class="eyebrow">LATEST NOTES</span><h2>最近写了什么</h2></div><a class="text-link" href="#/archive">查看全部 ${icon('→')}</a></div><div class="post-grid">${posts.slice(0, 3).map(postCard).join('')}</div></section><section class="home-tools"><div><span class="eyebrow">SMALL UTILITIES</span><h2>几个小工具</h2><p>能帮到你就非常荣幸啦～ (≧▽≦) </p></div><a class="tool-teaser" href="#/tools/json-tool"><span class="tool-number">01</span><strong>文本工具箱</strong><span>JSON 格式化 · 字数统计</span><b>${icon('↗')}</b></a></section>${guestbookMarkup()}</main>`, '') ; bindGuestbook() }
 function guestbook() { shell(`<main class="guestbook-page"><section class="page-intro"><span class="eyebrow">GUESTBOOK</span><h1>留言</h1><p>留下名字和一句话，和我打个招呼。</p></section>${guestbookMarkup(false)}</main>`, '留言'); bindGuestbook() }
 function updates() { shell(`<main class="updates-page"><section class="page-intro"><span class="eyebrow">CHANGELOG</span><h1>网站动态</h1><p>这里记录每次推送到 GitHub 的更新。</p></section><section id="updates-list" class="updates-list"><p class="updates-loading">正在读取 GitHub 动态...</p></section></main>`, '动态'); loadUpdates() }
 function archive() { const cats = ['全部', ...new Set(posts.map((p) => p.category).filter(Boolean))]; shell(`<main class="archive-page"><section class="page-intro"><span class="eyebrow">THE ARCHIVE</span><h1>所有文章</h1><p>按时间整理的思考、实践和生活切片。</p></section><div class="archive-tools"><div class="archive-filter" id="archive-filter">${cats.map((c) => `<button class="chip${c === '全部' ? ' is-on' : ''}" type="button" data-cat="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join('')}</div><div class="archive-view-toggle" id="archive-view-toggle" role="group" aria-label="文章排版"><button class="view-toggle-button" type="button" data-view="grid" aria-label="网格排版" title="网格排版">${icon('▦')}</button><button class="view-toggle-button" type="button" data-view="list" aria-label="长条排版" title="长条排版">${icon('▤')}</button></div></div><div class="archive-list" id="archive-list">${posts.map(postCard).join('')}</div><p class="archive-empty" id="archive-empty" hidden>这个分类下还没有文章。</p></main>`, '文章'); const listEl = document.querySelector<HTMLElement>('#archive-list')!; const emptyEl = document.querySelector<HTMLElement>('#archive-empty')!; const viewButtons = document.querySelectorAll<HTMLButtonElement>('#archive-view-toggle [data-view]'); const applyView = (view: 'grid' | 'list') => { listEl.classList.toggle('is-list', view === 'list'); viewButtons.forEach((button) => button.classList.toggle('is-on', button.dataset.view === view)); try { localStorage.setItem('aojnnn-archive-view-v2', view) } catch {} }; let savedView: 'grid' | 'list' = 'list'; try { savedView = localStorage.getItem('aojnnn-archive-view-v2') === 'grid' ? 'grid' : 'list' } catch {} applyView(savedView); document.querySelector('#archive-view-toggle')!.addEventListener('click', (event) => { const btn = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-view]'); if (!btn) return; applyView(btn.dataset.view === 'list' ? 'list' : 'grid') }); document.querySelector('#archive-filter')!.addEventListener('click', (event) => { const btn = (event.target as HTMLElement).closest<HTMLElement>('[data-cat]'); if (!btn) return; const cat = btn.dataset.cat ?? '全部'; document.querySelectorAll('#archive-filter .chip').forEach((c) => c.classList.toggle('is-on', c === btn)); const shown = cat === '全部' ? posts : posts.filter((p) => p.category === cat); listEl.innerHTML = shown.map(postCard).join(''); emptyEl.hidden = shown.length > 0 }) }
 function article(slug: string) { const post = posts.find((item) => item.slug === slug); if (!post) return archive(); const coverName = post.cover?.split('/').pop() ?? ''; const coverUrl = coverName ? imageUrls[coverName] : undefined; const coverStyle = coverUrl ? ` style="--article-cover:url('${coverUrl}')"` : ''; shell(`<main class="article-page"><a class="back-link" href="#/archive" aria-label="返回文章列表" title="返回文章列表">${icon('←')}</a><article><div class="article-head${coverUrl ? ' has-cover' : ''}"${coverStyle}><h1>${escapeHtml(post.title)}</h1><p>${escapeHtml(post.description)}</p><div class="article-meta"><time>${formatDate(post.date)} · 阅读约 ${estimateReadingMinutes(post.content)} 分钟</time><span class="tag">${escapeHtml(post.category)}</span><span id="article-views" class="article-views">浏览量加载中</span></div></div><div class="article-body">${renderMarkdown(post.content)}</div></article></main>`, '文章'); document.title = `${post.title} · AoJnnn / OurNotes`; loadArticleViewCount(post.slug) }
-function tools() { shell(`<main class="tools-page"><section class="page-intro"><span class="eyebrow">SMALL UTILITIES</span><h1>工具箱</h1><p>几个不需要登录、不上传内容的小工具。</p></section><section class="tools-grid"><div class="tool-panel"><div class="tool-panel-head"><div><span class="tool-index">01</span><h2>JSON 格式化</h2></div><button id="format-json" class="button" type="button">格式化 ${icon('↗')}</button></div><textarea id="json-input" spellcheck="false" placeholder='粘贴 JSON，例如：{"hello":"world"}'></textarea><div id="json-status" class="tool-status">内容只在你的浏览器中处理</div></div><div class="tool-panel"><div class="tool-panel-head"><div><span class="tool-index">02</span><h2>字数统计</h2></div><span id="word-count" class="count-badge">0 字</span></div><textarea id="word-input" placeholder="粘贴或输入一段文字..."></textarea><div class="stats"><span>字符 <b id="char-count">0</b></span><span>非空格 <b id="no-space-count">0</b></span><span>行数 <b id="line-count">0</b></span></div></div><div class="tool-panel nickname-panel"><div class="tool-panel-head"><div><span class="tool-index">03</span><h2>QQ 昵称加后缀</h2></div></div><div class="nickname-fields"><label>昵称<input id="nickname-input" style="font-size:16px;line-height:1.6" placeholder="输入你的 QQ 昵称"></label><label>后缀<input id="nickname-suffix" style="font-size:16px;line-height:1.6" placeholder="例如：喵~" value="喵~"></label></div><div class="nickname-result"><span id="nickname-output" style="font-family:var(--sans);font-size:16px"></span><button id="copy-nickname" class="button" type="button">复制 ${icon('↗')}</button></div><div id="copy-status" class="tool-status">生成的昵称只能填写到 QQ 个人昵称，不能直接用于群昵称等位置。</div></div><a class="tool-panel tool-link" href="./AnimeInfo/" target="_blank" rel="noreferrer"><div class="tool-panel-head"><div><span class="tool-index">04</span><h2>番剧筛选</h2></div><span class="tool-link-badge">新标签打开 ${icon('↗')}</span></div><p class="tool-link-desc">按播出年份、评分、番名长度和首字筛选 Bangumi 收录的动画条目。</p></a></section></main>`, '工具'); const jsonInput = document.querySelector<HTMLTextAreaElement>('#json-input')!; document.querySelector('#format-json')!.addEventListener('click', () => { try { jsonInput.value = JSON.stringify(JSON.parse(jsonInput.value), null, 2); document.querySelector('#json-status')!.textContent = '格式正确 · 已完成格式化' } catch { document.querySelector('#json-status')!.textContent = '这段内容不是有效的 JSON' } }); const wordInput = document.querySelector<HTMLTextAreaElement>('#word-input')!; wordInput.addEventListener('input', () => { const value = wordInput.value; document.querySelector('#word-count')!.textContent = `${value.replace(/\s/g, '').length} 字`; document.querySelector('#char-count')!.textContent = `${value.length}`; document.querySelector('#no-space-count')!.textContent = `${value.replace(/\s/g, '').length}`; document.querySelector('#line-count')!.textContent = `${value ? value.split('\n').length : 0}` }); const nicknameInput = document.querySelector<HTMLInputElement>('#nickname-input')!; const nicknameSuffix = document.querySelector<HTMLInputElement>('#nickname-suffix')!; const nicknameOutput = document.querySelector('#nickname-output')!; const updateNickname = () => { const reversedSuffix = [...nicknameSuffix.value].reverse().join(''); nicknameOutput.textContent = nicknameInput.value ? `${nicknameInput.value}\u2067${reversedSuffix}\u2066` : '' }; nicknameInput.addEventListener('input', updateNickname); nicknameSuffix.addEventListener('input', updateNickname); document.querySelector('#copy-nickname')!.addEventListener('click', async () => { if (!nicknameOutput.textContent) return; await navigator.clipboard.writeText(nicknameOutput.textContent); document.querySelector('#copy-status')!.textContent = '已复制，可以去 QQ 个人昵称里粘贴了' }) }
+function tools() { shell(`<main class="tools-page"><section class="page-intro"><span class="eyebrow">SMALL UTILITIES</span><h1>工具箱</h1><p>几个不需要登录、不上传内容的小工具。</p></section><section class="tools-grid"><div class="tool-panel speed-panel"><div class="tool-panel-head"><div><span class="tool-index">01</span><h2>连接测速</h2></div><button id="run-speed" class="button" type="button">开始测速 ${icon('↗')}</button></div><p class="tool-link-desc">测一下你到 GitHub 的连接够不够快，能不能顺畅播放这里的音乐和番剧页面。</p><div id="speed-verdict" class="speed-verdict"><b>还没测过</b><span>点右上角「开始测速」，大约需要 10 秒。</span></div><details class="speed-detail"><summary>详细结果<span class="speed-detail-hint">悬停或点开</span></summary><div class="speed-rows"><div class="speed-row" id="speed-latency"><span class="speed-name">响应延迟</span><span class="speed-bar"><i></i></span><span class="speed-value">—</span></div><div class="speed-row" id="speed-bandwidth"><span class="speed-name">下载速度</span><span class="speed-bar"><i></i></span><span class="speed-value">—</span></div><div class="speed-row" id="speed-startup"><span class="speed-name">点击起播</span><span class="speed-bar"><i></i></span><span class="speed-value">—</span></div></div></details></div><div class="tool-panel"><div class="tool-panel-head"><div><span class="tool-index">02</span><h2>JSON 格式化</h2></div><button id="format-json" class="button" type="button">格式化 ${icon('↗')}</button></div><textarea id="json-input" spellcheck="false" placeholder='粘贴 JSON，例如：{"hello":"world"}'></textarea><div id="json-status" class="tool-status">内容只在你的浏览器中处理</div></div><div class="tool-panel"><div class="tool-panel-head"><div><span class="tool-index">03</span><h2>字数统计</h2></div><span id="word-count" class="count-badge">0 字</span></div><textarea id="word-input" placeholder="粘贴或输入一段文字..."></textarea><div class="stats"><span>字符 <b id="char-count">0</b></span><span>非空格 <b id="no-space-count">0</b></span><span>行数 <b id="line-count">0</b></span></div></div><div class="tool-panel nickname-panel"><div class="tool-panel-head"><div><span class="tool-index">04</span><h2>QQ 昵称加后缀</h2></div></div><div class="nickname-fields"><label>昵称<input id="nickname-input" style="font-size:16px;line-height:1.6" placeholder="输入你的 QQ 昵称"></label><label>后缀<input id="nickname-suffix" style="font-size:16px;line-height:1.6" placeholder="例如：喵~" value="喵~"></label></div><div class="nickname-result"><span id="nickname-output" style="font-family:var(--sans);font-size:16px"></span><button id="copy-nickname" class="button" type="button">复制 ${icon('↗')}</button></div><div id="copy-status" class="tool-status">生成的昵称只能填写到 QQ 个人昵称，不能直接用于群昵称等位置。</div></div><a class="tool-panel tool-link" href="./AnimeInfo/" target="_blank" rel="noreferrer"><div class="tool-panel-head"><div><span class="tool-index">05</span><h2>番剧筛选</h2></div><span class="tool-link-badge">新标签打开 ${icon('↗')}</span></div><p class="tool-link-desc">按播出年份、评分、番名长度和首字筛选 Bangumi 收录的动画条目。</p></a></section></main>`, '工具'); const jsonInput = document.querySelector<HTMLTextAreaElement>('#json-input')!; document.querySelector('#format-json')!.addEventListener('click', () => { try { jsonInput.value = JSON.stringify(JSON.parse(jsonInput.value), null, 2); document.querySelector('#json-status')!.textContent = '格式正确 · 已完成格式化' } catch { document.querySelector('#json-status')!.textContent = '这段内容不是有效的 JSON' } }); const wordInput = document.querySelector<HTMLTextAreaElement>('#word-input')!; wordInput.addEventListener('input', () => { const value = wordInput.value; document.querySelector('#word-count')!.textContent = `${value.replace(/\s/g, '').length} 字`; document.querySelector('#char-count')!.textContent = `${value.length}`; document.querySelector('#no-space-count')!.textContent = `${value.replace(/\s/g, '').length}`; document.querySelector('#line-count')!.textContent = `${value ? value.split('\n').length : 0}` }); const nicknameInput = document.querySelector<HTMLInputElement>('#nickname-input')!; const nicknameSuffix = document.querySelector<HTMLInputElement>('#nickname-suffix')!; const nicknameOutput = document.querySelector('#nickname-output')!; const updateNickname = () => { const reversedSuffix = [...nicknameSuffix.value].reverse().join(''); nicknameOutput.textContent = nicknameInput.value ? `${nicknameInput.value}\u2067${reversedSuffix}\u2066` : '' }; nicknameInput.addEventListener('input', updateNickname); nicknameSuffix.addEventListener('input', updateNickname); document.querySelector('#copy-nickname')!.addEventListener('click', async () => { if (!nicknameOutput.textContent) return; await navigator.clipboard.writeText(nicknameOutput.textContent); document.querySelector('#copy-status')!.textContent = '已复制，可以去 QQ 个人昵称里粘贴了' }); bindSpeedTest() }
+
+/** 绑定工具箱里的连接测速面板 */
+function bindSpeedTest() {
+  const button = document.querySelector<HTMLButtonElement>('#run-speed')
+  const verdict = document.querySelector<HTMLDivElement>('#speed-verdict')
+  if (!button || !verdict) return
+
+  const rows = {
+    latency: document.querySelector<HTMLDivElement>('#speed-latency'),
+    bandwidth: document.querySelector<HTMLDivElement>('#speed-bandwidth'),
+    startup: document.querySelector<HTMLDivElement>('#speed-startup'),
+  }
+
+  // 满分标准：延迟越低、速度越快、起播越短越好，三项都换算成 0~1 的条长
+  const scale = { latency: 1500, bandwidth: 8, startup: 6000 } as const
+
+  const fill = (key: keyof typeof rows, ratio: number | null, text: string) => {
+    const row = rows[key]
+    if (!row) return
+    const bar = row.querySelector<HTMLElement>('.speed-bar i')
+    const value = row.querySelector<HTMLElement>('.speed-value')
+    if (value) value.textContent = text
+    if (bar) bar.style.width = `${Math.max(0, Math.min(1, ratio ?? 0)) * 100}%`
+    const tone = ratio === null ? '' : ratio >= 0.66 ? ' is-good' : ratio >= 0.33 ? ' is-mid' : ' is-low'
+    row.className = `speed-row${tone}`
+  }
+
+  const IDLE = '<b>还没测过</b><span>点右上角「开始测速」，大约需要 10 秒。</span>'
+  let controller: AbortController | null = null
+
+  // 详细结果默认收起：鼠标悬停时临时展开，移开就收回；
+  // 点过一次（手动 open）之后由用户自己控制，不再跟着鼠标开合
+  const detail = document.querySelector<HTMLDetailsElement>('.speed-detail')
+  let pinned = false
+  if (detail) {
+    detail.addEventListener('toggle', () => {
+      if (detail.open) pinned = true
+    })
+    detail.addEventListener('pointerenter', (event) => {
+      // 触屏没有真正的悬停，靠点击就够了
+      if (pinned || (event as PointerEvent).pointerType === 'touch') return
+      detail.open = true
+    })
+    detail.addEventListener('pointerleave', (event) => {
+      if (pinned || (event as PointerEvent).pointerType === 'touch') return
+      detail.open = false
+    })
+  }
+
+  button.addEventListener('click', async () => {
+    if (controller) {
+      controller.abort()
+      controller = null
+      button.disabled = false
+      button.innerHTML = `开始测速 ${icon('↗')}`
+      verdict.innerHTML = '<b>已取消</b><span>点「开始测速」重新来一次。</span>'
+      verdict.className = 'speed-verdict'
+      return
+    }
+
+    fill('latency', null, '—')
+    fill('bandwidth', null, '—')
+    fill('startup', null, '—')
+    verdict.innerHTML = '<b>测速中…</b><span>正在向 GitHub 请求数据。</span>'
+    verdict.className = 'speed-verdict is-running'
+    controller = new AbortController()
+    button.disabled = true
+    button.textContent = '测速中…'
+
+    // 挑一首 0.8~3 MB 的曲子当样本，代表「点下去要等多久出声」
+    let sample = musicAssetUrl('audio/fef1738f52.opus')
+    try {
+      const list = await fetch(musicAssetUrl('tracks.json'))
+      if (list.ok) {
+        const data = (await list.json()) as { tracks: { id: string; size: number }[] }
+        const pick = data.tracks.filter((track) => track.size > 800000 && track.size < 3000000)
+        if (pick.length) sample = musicAssetUrl(`audio/${pick[Math.floor(pick.length / 2)].id}.opus`)
+      }
+    } catch {
+      // 清单拿不到就用默认样本
+    }
+
+    const result = await runSpeedTest(
+      sample,
+      ({ stage, latency, mbps }) => {
+        if (stage === 'latency') {
+          const ms = latency ?? null
+          fill('latency', ms === null ? null : 1 - Math.min(ms / scale.latency, 1) * 0.7, formatMs(ms))
+        }
+        if (stage === 'bandwidth') {
+          const rate = mbps ?? null
+          fill('bandwidth', rate === null ? null : Math.min(rate / scale.bandwidth, 1), formatMbps(rate))
+        }
+        if (stage === 'startup' && mbps !== undefined) {
+          const rate = mbps
+          const guess = rate === null ? null : 262144 / ((rate * 1e6) / 8) * 1000
+          fill('startup', guess === null ? null : 1 - Math.min(guess / scale.startup, 1) * 0.7, formatMs(guess))
+        }
+      },
+      controller.signal,
+    )
+
+    controller = null
+    button.disabled = false
+    button.innerHTML = `再测一次 ${icon('↗')}`
+
+    if (!result) {
+      verdict.innerHTML = '<b>已取消</b><span>点「再测一次」重新来。</span>'
+      verdict.className = 'speed-verdict'
+      return
+    }
+
+    const info = describe(result)
+    verdict.className = `speed-verdict is-${result.verdict}`
+    verdict.innerHTML = `<b>${escapeHtml(info.title)}</b><span>${escapeHtml(info.detail)}</span>${info.tips.length ? `<ul>${info.tips.map((tip) => `<li>${escapeHtml(tip)}</li>`).join('')}</ul>` : ''}`
+  })
+
+  if (!document.querySelector('#speed-latency')?.getAttribute('data-state')) verdict.innerHTML = IDLE
+}
 function route() { const [, page, rawSlug] = location.hash.split('/'); const slug = rawSlug ? decodeURIComponent(rawSlug) : rawSlug; page === 'post' ? article(slug) : page === 'archive' ? archive() : page === 'music' ? musicPage(shell) : page === 'tools' ? tools() : page === 'guestbook' ? guestbook() : page === 'updates' ? updates() : home(); window.scrollTo(0, 0); if (page === 'tools' && slug) requestAnimationFrame(() => { const panels = document.querySelectorAll<HTMLElement>('.tool-panel'); panels[0]?.setAttribute('id', 'json-tool'); panels[1]?.setAttribute('id', 'word-tool'); panels[2]?.setAttribute('id', 'nickname-tool'); document.getElementById(slug)?.scrollIntoView({ behavior: 'smooth', block: 'start' }) }) }
 window.addEventListener('hashchange', route); route()
 setupTabTitle()
